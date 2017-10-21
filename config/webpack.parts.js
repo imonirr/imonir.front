@@ -5,6 +5,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const { PATHS } = require('./paths');
 
+exports.defineEnvironmentalVariables = variables => ({
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': variables,
+    }),
+  ],
+});
 
 exports.setEntries = {
   entry: {
@@ -169,8 +176,28 @@ exports.dashBoardPlugin = {
   ],
 };
 
+
+/* ***************************
+ * PRODUCTION PARTS
+ * **************************/
+
 exports.clean = path => ({
   plugins: [
     new CleanWebpackPlugin([path]),
   ],
 });
+
+exports.minifyJavaScript = {
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      sourceMap: true,
+      parallel: true,
+      compress: {
+        warnings: false,
+        drop_console: true,
+      },
+    }),
+  ],
+};
+

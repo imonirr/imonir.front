@@ -6,6 +6,9 @@ const { commonConfig } = require('./webpack.common');
 const { PATHS } = require('./paths');
 
 const config = merge([
+  parts.setFreeVariables({
+    NODE_ENV: JSON.stringify('production'),
+  }),
   parts.clean(PATHS.build),
 ]);
 

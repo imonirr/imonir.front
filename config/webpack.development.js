@@ -4,6 +4,9 @@ const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
 
 const config = merge([
+  parts.setFreeVariables({
+    NODE_ENV: JSON.stringify('development'),
+  }),
   parts.setDevServer({
     host: 'localhost', // process.env.HOST,
     port: 8888, // process.env.PORT,
