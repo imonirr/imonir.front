@@ -3,11 +3,10 @@ const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
 
+const { PATHS } = require('./paths');
+
 const config = merge([
-  parts.setDevServer({
-    host: 'localhost', // process.env.HOST,
-    port: 8888, // process.env.PORT,
-  }),
+  parts.clean(PATHS.build),
 ]);
 
 

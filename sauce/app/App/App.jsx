@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = () =>
     (
-      <div style={{ textAlign: 'center' }}>
+      <div id="reactstart" >
         <h1>Hello World! </h1>
       </div>
     );

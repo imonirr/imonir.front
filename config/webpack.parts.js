@@ -1,11 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const Dashboard = require('webpack-dashboard');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const { PATHS } = require('./paths');
-
-const dashboard = new Dashboard();
 
 
 exports.setEntries = {
@@ -168,10 +166,11 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 exports.dashBoardPlugin = {
   plugins: [
     new DashboardPlugin(),
-    // {
-    //   port: 8888,
-    //   handler: dashboard.setData,
-    // }),
   ],
 };
 
+exports.clean = path => ({
+  plugins: [
+    new CleanWebpackPlugin([path]),
+  ],
+});
