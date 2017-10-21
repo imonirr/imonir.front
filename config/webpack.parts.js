@@ -1,11 +1,16 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const { PATHS } = require('./paths');
+
+const dashboard = new Dashboard();
+
 
 exports.setEntries = {
   entry: {
-    app: PATHS.sauce + '/index.js',
+    app: `${PATHS.sauce}/index.js`,
   },
 };
 
@@ -35,8 +40,8 @@ exports.generateSourceMaps = ({ type }) => ({
 exports.resolveProjectDependencies = {
   resolve: {
     modules: [
-      PATHS.sauce + '/app',
-      'node_modules',
+      `${PATHS.sauce}/app`,
+      PATHS.node,
     ],
     // alias: {
     //   asset: PATHS.asset,
@@ -50,7 +55,7 @@ exports.generateDevHTML = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: PATHS.sauce + '/index.html',
+      template: `${PATHS.sauce}/index.html`,
       filename: 'index.html',
       inject: 'body',
     }),
@@ -60,15 +65,18 @@ exports.generateDevHTML = {
 exports.setDevServer = ({ host, port } = {}) =>
   ({
     devServer: {
-      compress: true,
       hot: true,
+      quiet: true,
+      stats: {
+        colors: true,
+      },
       historyApiFallback: true,
       host,
       port,
-      overlay: {
-        warnings: true,
-        errors: true,
-      },
+      // overlay: {
+      //   warnings: true,
+      //   errors: true,
+      // },
     },
   });
 
@@ -128,3 +136,42 @@ exports.loadJavaScript = ({ include, exclude }) => ({
     ],
   },
 });
+
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        include,
+        exclude,
+        user: [
+          'style-loader',
+          'css-loader',
+          // 'postcss-loader'
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+});
+
+
+exports.dashBoardPlugin = {
+  plugins: [
+    new DashboardPlugin(),
+    // {
+    //   port: 8888,
+    //   handler: dashboard.setData,
+    // }),
+  ],
+};
+

@@ -7,8 +7,8 @@ const { PATHS } = require('./paths');
 const commonConfig = merge([
   parts.setEntries,
   parts.setOutput,
-  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
   parts.resolveProjectDependencies,
+  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
   parts.generateDevHTML,
   parts.loadFonts({
     include: PATHS.sauce,

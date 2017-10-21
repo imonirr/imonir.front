@@ -8,6 +8,7 @@ const config = merge([
     host: 'localhost', // process.env.HOST,
     port: 8888, // process.env.PORT,
   }),
+  parts.dashBoardPlugin,
 ]);
 
 
