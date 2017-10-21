@@ -1,12 +1,21 @@
 import React from 'react';
 
-import './App.scss';
+import "normalize.css";
+import 'milligram';
+
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import Main from './Main/Main';
+
 
 const App = () =>
-    (
-      <div className="reactstart" >
-        <h1>Hello World! </h1>
-      </div>
-    );
+  (
+
+    <div id="reactstart" >
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
 
 export default App;

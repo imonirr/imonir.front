@@ -122,25 +122,26 @@ exports.loadJavaScript = ({ include, exclude }) => ({
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
-    rules: [{
-      test: /\.scss$/,
-      include,
-      exclude,
-      use: [
-        'style-loader',
-        'css-loader',
-        // 'postcss-loader'
-        {
-          loader: 'sass-loader',
-        },
-      ],
-    }, {
-      test: /\.css$/,
-      include,
-      exclude,
-
-      use: ['style-loader', 'css-loader'],
-    }],
+    rules: [
+      {
+        test: /\.scss$/,
+        include,
+        exclude,
+        use: [
+          'style-loader',
+          'css-loader',
+          // 'postcss-loader'
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        include,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 });
 
