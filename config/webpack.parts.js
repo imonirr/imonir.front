@@ -138,8 +138,9 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
       },
       {
         test: /\.css$/,
-        include,
-        use: ['style-loader', 'css-loader'],
+        loader: 'style-loader!css-loader',
+        // include,
+        // use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -252,7 +253,20 @@ exports.extractCSS = ({ include, exclude }) => {
           // use style-loader in development
           fallback: 'style-loader',
         }),
-      }],
+      },
+      {
+        test: /\.css$/,
+        use: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader',
+            },
+          ],
+        }),
+        // include,
+        // use: ['style-loader', 'css-loader'],
+      },
+      ],
     },
     plugins: [extractSass],
   };
