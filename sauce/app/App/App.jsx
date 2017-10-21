@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './App.scss';
+
 const App = () =>
     (
-      <div id="reactstart" >
+      <div className="reactstart" >
         <h1>Hello World! </h1>
       </div>
     );

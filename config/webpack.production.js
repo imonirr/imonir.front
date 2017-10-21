@@ -2,15 +2,30 @@ const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
-
 const { PATHS } = require('./paths');
 
 const config = merge([
+  parts.clean(PATHS.build),
   parts.setFreeVariables({
     NODE_ENV: JSON.stringify('production'),
   }),
-  parts.clean(PATHS.build),
+  parts.minifyJavaScript,
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+        // Run cssnano in safe mode to avoid
+        // potentially unsafe transformations.
+        safe: true,
+      },
+    },
+  }),
+  parts.extractCSS({
+    include: PATHS.sauce,
+    exclude: PATHS.node,
+    // use: ['css-loader', parts.autoprefix()],
+  }),
 ]);
 
 
-exports.developmentConfig = merge(commonConfig, config);
+exports.productionConfig = merge(commonConfig, config);

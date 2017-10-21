@@ -19,6 +19,20 @@ const commonConfig = merge([
   }),
   parts.loadImages({ include: PATHS.sauce, exclude: PATHS.node }),
   parts.loadJavaScript({ include: PATHS.sauce, exclude: PATHS.node }),
+  parts.extractBundles([
+    {
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/)
+      ),
+    },
+    {
+      name: 'manifest',
+      minChunks: Infinity,
+    },
+  ]),
 ]);
 
 
