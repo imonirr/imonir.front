@@ -1,4 +1,7 @@
+@import '~Styles/ui.scss';
+
 #reactstart {
   text-align: center;
   color: orange;
+  background-color: $backgroundColor;
 }

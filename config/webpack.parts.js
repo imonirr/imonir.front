@@ -6,7 +6,7 @@ const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const { PATHS } = require('./paths');
+const { PATHS } = require('./constants');
 
 exports.setFreeVariables = variables => ({
   plugins: [
@@ -26,7 +26,7 @@ exports.setEntries = {
 exports.setOutput = {
   output: {
     path: PATHS.build,
-    filename: '[name]-[hash].bundle.js',
+    filename: '[name]-[hash].js',
   },
 };
 //   remove [chunkhash] with webpack-dev-server - https://github.com/webpack/webpack/issues/2393
@@ -48,20 +48,19 @@ exports.generateSourceMaps = ({ type }) => ({
 exports.resolveProjectDependencies = {
   resolve: {
     modules: [
-      `${PATHS.sauce}/app`,
+      PATHS.app,
       PATHS.node,
     ],
-    // alias: {
-    //   asset: PATHS.asset,
-    // },
+    alias: {
+      Assets: PATHS.assets,
+      Styles: PATHS.styles,
+    },
     extensions: ['.js', '.jsx', '.scss'],
   },
 };
 
 exports.generateDevHTML = {
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: `${PATHS.sauce}/index.html`,
       filename: 'index.html',
@@ -157,6 +156,12 @@ exports.extractBundles = bundles => ({
  * DEVELOPMENT PARTS
  * **************************/
 
+exports.hmrPlugins = {
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+};
 exports.dashBoardPlugin = {
   plugins: [
     new DashboardPlugin(),

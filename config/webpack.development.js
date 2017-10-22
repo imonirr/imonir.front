@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
-const { PATHS } = require('./paths');
+const { PATHS } = require('./constants');
 
 const config = merge([
   parts.setFreeVariables({
@@ -13,6 +13,7 @@ const config = merge([
     port: 8888, // process.env.PORT,
   }),
   parts.dashBoardPlugin,
+  parts.hmrPlugins,
 
   parts.loadCSS({
     include: PATHS.sauce,
