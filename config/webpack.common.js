@@ -9,6 +9,7 @@ const commonConfig = merge([
   parts.setOutput,
   parts.resolveProjectDependencies,
   parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+  parts.copyExternalLibs(),
   parts.generateDevHTML,
   parts.loadFonts({
     include: PATHS.sauce,
@@ -18,7 +19,7 @@ const commonConfig = merge([
     },
   }),
   parts.loadImages({ include: PATHS.sauce, exclude: PATHS.node }),
-  parts.loadJavaScript({ include: PATHS.sauce, exclude: PATHS.node }),
+  parts.loadJavaScript({ include: PATHS.sauce, exclude: [/node_modules/, /libs/]}),
   parts.extractBundles([
     {
       name: 'vendor',

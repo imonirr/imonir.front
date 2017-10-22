@@ -7,8 +7,10 @@ const PATHS = {
   build: path.join(__dirname, '../build'),
   node: path.join(__dirname, '../node_modules'),
 
-  assets: path.join(__dirname, '../sauce/assets'),
-  styles: path.join(__dirname, '../sauce/styles'),
+  Libs: path.join(__dirname, '../sauce/libs'),
+  Assets: path.join(__dirname, '../sauce/assets'),
+  Styles: path.join(__dirname, '../sauce/styles'),
+
 };
 
 exports.PATHS = PATHS;

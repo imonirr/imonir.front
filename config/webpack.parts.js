@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const { PATHS } = require('./constants');
@@ -27,6 +28,7 @@ exports.setOutput = {
   output: {
     path: PATHS.build,
     filename: '[name]-[hash].js',
+    publicPath: '/',
   },
 };
 //   remove [chunkhash] with webpack-dev-server - https://github.com/webpack/webpack/issues/2393
@@ -52,12 +54,44 @@ exports.resolveProjectDependencies = {
       PATHS.node,
     ],
     alias: {
-      Assets: PATHS.assets,
-      Styles: PATHS.styles,
+      Assets: PATHS.Assets,
+      Styles: PATHS.Styles,
     },
     extensions: ['.js', '.jsx', '.scss'],
   },
 };
+
+exports.copyExternalLibs = () => ({
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: PATHS.Libs , to: PATHS.build + '/libs/' },
+    ]),
+  ],
+});
+
+// exports.setExtraLibs = {
+//   plugins: [
+
+//     new AddAssetHtmlPlugin([
+//       { filepath: PATHS.Libs + '/jquery-2.1.1.min.js' , type: 'js'},
+//     ]),
+//   ],
+//   // resolve:
+//   // {
+//   //   alias: {
+//   //     jQuery: PATHS.Libs + '/jquery-2.1.1.min.js',
+//   //   },
+//   //   extensions: ['.js'],
+//   // },
+//   // externals: {
+//   //   jQuery: 'jQuery',
+//   // },
+//   // plugins: [
+//   //   new webpack.ProvidePlugin({
+//   //     jQuery: 'jQuery',
+//   //   }),
+//   // ],
+// };
 
 exports.generateDevHTML = {
   plugins: [
@@ -171,18 +205,19 @@ exports.dashBoardPlugin = {
 exports.setDevServer = ({ host, port } = {}) =>
   ({
     devServer: {
+      // contentBase: PATHS.build,
       hot: true,
-      quiet: true,
+      // quiet: true,
       stats: {
         colors: true,
       },
       historyApiFallback: true,
       host,
       port,
-      // overlay: {
-      //   warnings: true,
-      //   errors: true,
-      // },
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
     },
   });
 
