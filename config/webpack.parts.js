@@ -137,6 +137,8 @@ exports.loadJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
+      // test: /^(?!.*\.min\.js$).*\.(js|jsx)$/,
+      // test: /^(?!.*\.min\.js$).*\.(js|jsx)$/,
       include,
       exclude,
 

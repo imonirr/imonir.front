@@ -19,7 +19,7 @@ const commonConfig = merge([
     },
   }),
   parts.loadImages({ include: PATHS.sauce, exclude: PATHS.node }),
-  parts.loadJavaScript({ include: PATHS.sauce, exclude: [/node_modules/, /libs/]}),
+  parts.loadJavaScript({ include: PATHS.sauce, exclude: PATHS.node }),
   parts.extractBundles([
     {
       name: 'vendor',
