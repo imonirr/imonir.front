@@ -2,15 +2,18 @@ const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
-const { PATHS } = require('./constants');
+const { PATHS, HOST, PORT } = require('./constants');
+
+const configName = 'development';
 
 const config = merge([
-  parts.setFreeVariables({
-    NODE_ENV: JSON.stringify('development'),
+  parts.setGlobalVariables(configName, {
+    TEST_VAR: JSON.stringify('TEST_VALUE'),
   }),
   parts.setDevServer({
-    host: 'localhost', // process.env.HOST,
-    port: 8888, // process.env.PORT,
+    host: HOST, // process.env.HOST,
+    port: PORT, // process.env.PORT,
+    hot: true,
   }),
   parts.dashBoardPlugin,
   parts.hmrPlugins,
@@ -19,6 +22,7 @@ const config = merge([
     include: PATHS.sauce,
     exclude: PATHS.node,
   }),
+  parts.generateSourceMaps({ type: 'inline-source-map' }),
 ]);
 
 

@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/cache": {
+      "lifetime": 5
+    },
+    "import/resolver": {
+      "webpack": {
+        "config": "config/webpack.development.js"
+      },
+    },
+  },
+}

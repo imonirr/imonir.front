@@ -13,4 +13,7 @@ const PATHS = {
 
 };
 
+
+exports.HOST = '0.0.0.0';
+exports.PORT = 4000;
 exports.PATHS = PATHS;

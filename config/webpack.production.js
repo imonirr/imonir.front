@@ -4,11 +4,11 @@ const parts = require('./webpack.parts');
 const { commonConfig } = require('./webpack.common');
 const { PATHS } = require('./constants');
 
+const configName = 'production';
+
 const config = merge([
   parts.clean(PATHS.build),
-  parts.setFreeVariables({
-    NODE_ENV: JSON.stringify('production'),
-  }),
+  parts.setGlobalVariables(configName),
   parts.minifyJavaScript,
   parts.minifyCSS({
     options: {

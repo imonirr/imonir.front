@@ -7,13 +7,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const { PATHS } = require('./constants');
+const { PATHS, HOST, PORT } = require('./constants');
 
-exports.setFreeVariables = variables => ({
+exports.setGlobalVariables = (target, override = {}) => ({
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': variables,
-    }),
+    new webpack.DefinePlugin(Object.assign({
+      'process.env': {
+        NODE_ENV: JSON.stringify(target),
+      },
+      PRODUCTION: JSON.stringify(target === 'production'),
+      DEBUG: JSON.stringify(target !== 'production'),
+    }, override)),
   ],
 });
 
@@ -26,22 +30,11 @@ exports.setEntries = {
 
 exports.setOutput = {
   output: {
+    publicPath: '/',
     path: PATHS.build,
     filename: '[name]-[hash].js',
-    publicPath: '/',
   },
 };
-//   remove [chunkhash] with webpack-dev-server - https://github.com/webpack/webpack/issues/2393
-//   const filename = isProduction ? '[name].[chunkhash].bundle.js' : '[name].bundle.js';
-//   return {
-//     output: {
-//       filename,
-//       path: pathToDirectory,
-//       chunkFilename: '[name].bundle.js',
-//       publicPath: '/',
-//     },
-//   };
-// };
 
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
@@ -64,7 +57,7 @@ exports.resolveProjectDependencies = {
 exports.copyExternalLibs = () => ({
   plugins: [
     new CopyWebpackPlugin([
-      { from: PATHS.Libs , to: PATHS.build + '/libs/' },
+      { from: PATHS.Libs, to: `${PATHS.build}/libs/` },
     ]),
   ],
 });
@@ -192,24 +185,43 @@ exports.extractBundles = bundles => ({
  * DEVELOPMENT PARTS
  * **************************/
 
-exports.hmrPlugins = {
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-};
 exports.dashBoardPlugin = {
   plugins: [
     new DashboardPlugin(),
   ],
 };
 
-exports.setDevServer = ({ host, port } = {}) =>
+exports.hmrPlugins = {
+  entry: {
+    // HMR ENTRY POINTS
+    hotClient: `webpack-dev-server/client?http://${HOST}:${PORT}`,
+    hotServer: 'webpack/hot/only-dev-server',
+  },
+  // module: {
+  //   loaders: [{
+  //     test: /\.(js|jsx)$/,
+  //     loaders: ['react-hot-loader/webpack'],
+  //     include: PATHS.sauce,
+  //     exclude: PATHS.node,
+  //   }],
+  // },
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+};
+
+exports.setDevServer = ({ host, port, hot } = {}) =>
   ({
     devServer: {
-      // contentBase: PATHS.build,
-      hot: true,
-      // quiet: true,
+      contentBase: PATHS.sauce,
+      publicPath: '/', // MUST MATCH output publicPath
+      // https: true,
+      disableHostCheck: true,
+      hot,
+      inline: true,
+      // clientLogLevel: 'none',
+      // quiet: true, // enable when using dashboard
       stats: {
         colors: true,
       },

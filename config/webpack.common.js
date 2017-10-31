@@ -8,9 +8,8 @@ const commonConfig = merge([
   parts.setEntries,
   parts.setOutput,
   parts.resolveProjectDependencies,
-  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
-  parts.copyExternalLibs(),
   parts.generateDevHTML,
+  parts.copyExternalLibs(),
   parts.loadFonts({
     include: PATHS.sauce,
     exclude: PATHS.node,
