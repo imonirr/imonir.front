@@ -25,6 +25,10 @@ const config = merge([
     exclude: PATHS.node,
     // use: ['css-loader', parts.autoprefix()],
   }),
+  parts.loadImages({
+    include: PATHS.sauce,
+    exclude: PATHS.node,
+  }),
 ]);
 
 

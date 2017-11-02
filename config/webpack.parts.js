@@ -111,7 +111,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
     }],
   },
 });
-exports.loadImages = ({ include, exclude, options } = {}) => ({
+exports.loadImages = ({ include, exclude } = {}) => ({
   module: {
     rules: [{
       test: /\.(png|jpg|svg)$/,
@@ -120,7 +120,11 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 
       use: {
         loader: 'url-loader',
-        options,
+        options: {
+          // fallback: 'file-loader',
+          limit: 81,
+          name: 'assets/images/[name]-[hash].[ext]',
+        },
       },
     }],
   },

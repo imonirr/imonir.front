@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () =>
   (
-    <div>Home</div>
+    <div>List of Blog Posts</div>
   );
 
 export default Home;

@@ -2,6 +2,20 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+  },
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/cache": {
+      "lifetime": 5,
+    },
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false }],
   },
 }
+    /* "import/resolver": { */
+    /*   "webpack": { */
+    /*     "config": "config/webpack.development.js", */
+    /*   }, */
+    /* }, */

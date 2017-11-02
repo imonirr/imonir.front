@@ -22,6 +22,10 @@ const config = merge([
     include: PATHS.sauce,
     exclude: PATHS.node,
   }),
+  // parts.loadImages({
+  //   include: PATHS.sauce,
+  //   exclude: PATHS.node,
+  // }),
   parts.generateSourceMaps({ type: 'inline-source-map' }),
 ]);
 
