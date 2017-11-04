@@ -13,7 +13,13 @@ const PATHS = {
 
 };
 
+const API_URL = {
+  development: 'http:localhost:8000/',
+  production: 'http:localhost:8000/',
+};
+
 
 exports.HOST = '0.0.0.0';
 exports.PORT = 4000;
 exports.PATHS = PATHS;
+exports.API_URL = API_URL;
