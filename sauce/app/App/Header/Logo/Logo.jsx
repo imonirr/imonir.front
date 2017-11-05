@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Img from 'styledComponents/Img';
-import Anchor from 'styledComponents/Anchor';
+// import Anchor from 'styledComponents/Anchor';
 import LogoWrapper from 'styledComponents/LogoWrapper';
 
 const logo = require('./Logo.png');
@@ -16,9 +17,9 @@ const LogoImg = styled(Img)`
 const Logo = () =>
   (
     <LogoWrapper>
-      <Anchor>
+      <Link to="/">
         <LogoImg src={logo} />
-      </Anchor>
+      </Link>
     </LogoWrapper>
   );
 

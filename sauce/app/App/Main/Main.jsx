@@ -10,7 +10,7 @@ const Main = () =>
   (
     <Container>
       <Switch>
-        <IndexRoute component={LoadableHome} />
+        <Route exact path="/" component={LoadableHome} />
         <Route exact path="/whatido" component={LoadableWhatIDo} />
         <Route exact path="/whatidid" component={LoadableWhatIDid} />
         { /* <Route path="/screenshare" component={ScreenshareContainer} /> */ }

@@ -6,7 +6,7 @@ import http from './middleware/http';
 import reducer from './reducer';
 
 
-const makeStore = () => {
+const create = () => {
   const middleware = [thunk, http];
 
   const logger = createLogger({
@@ -35,4 +35,4 @@ const makeStore = () => {
   return store;
 };
 
-export default makeStore;
+export default create;
