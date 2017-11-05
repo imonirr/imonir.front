@@ -14,8 +14,8 @@ const PATHS = {
 };
 
 const API_URL = {
-  development: 'http:localhost:8000/',
-  production: 'http:localhost:8000/',
+  development: 'http://localhost:8000/',
+  production: 'http://localhost:8000/',
 };
 
 

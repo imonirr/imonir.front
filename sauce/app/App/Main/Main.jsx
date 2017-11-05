@@ -5,6 +5,7 @@ import Container from 'styledComponents/Container';
 import LoadableHome from 'Home/LoadableHome';
 import LoadableWhatIDo from 'WhatIDo/LoadableWhatIDo';
 import LoadableWhatIDid from 'WhatIDid/LoadableWhatIDid';
+import LoadableNote from 'Note/LoadableNote';
 
 const Main = () =>
   (
@@ -13,7 +14,7 @@ const Main = () =>
         <Route exact path="/" component={LoadableHome} />
         <Route exact path="/whatido" component={LoadableWhatIDo} />
         <Route exact path="/whatidid" component={LoadableWhatIDid} />
-        { /* <Route path="/screenshare" component={ScreenshareContainer} /> */ }
+        <Route exact path="/note/:noteId" component={LoadableNote} />
       </Switch>
     </Container>
   );

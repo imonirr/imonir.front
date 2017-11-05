@@ -13,6 +13,11 @@
   "rules": {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": false }],
   },
+  "globals": {
+    "PRODUCTION": true,
+    "DEBUG": true,
+    "API": true,
+  }
 }
     /* "import/resolver": { */
     /*   "webpack": { */
