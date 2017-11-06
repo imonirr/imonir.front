@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Markdown from 'react-markdown';
+
+import Content from 'styledComponents/Content';
 
 const NoteView = props =>
   (
-    <div>{props.note}</div>
+    <Content>
+      <Markdown source={props.note} />
+    </Content>
   );
 
 NoteView.propTypes = {
