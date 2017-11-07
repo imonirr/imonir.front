@@ -180,9 +180,9 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 
 exports.extractBundles = bundles => ({
-  plugins: bundles.map(bundle =>
-    new webpack.optimize.CommonsChunkPlugin(bundle),
-  ),
+  plugins: bundles.map((bundle) => {
+    return new webpack.optimize.CommonsChunkPlugin(bundle);
+  }),
 });
 
 
