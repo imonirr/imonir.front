@@ -18,6 +18,7 @@ ENV NOTE_ENV $env
 # COPY . /usr/src/app
 
 WORKDIR /code
+EXPOSE 4000
 
 # add volume
 ADD . /code
@@ -25,18 +26,16 @@ ADD . /code
 # install dependencies for app
 # COPY package.json package.json
 # COPY npm-shrinkwrap.json npm-shrinkwrap.json
-RUN npm install
+RUN yarn install
 RUN npm rebuild node-sass 
-
 
 
 # run app
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   then \
-  npm run build; \
+  yarn build; \
   else \
-  npm run dev; \
+  yarn dev; \
   fi
 
-EXPOSE 4000
 
