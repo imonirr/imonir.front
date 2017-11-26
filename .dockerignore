@@ -3,7 +3,8 @@
 Dockerfile
 .dockerignore
 .gitignore
-README.md
+*.md
+*.log
 .eslintrc
 .build.sh
 docker-compose.yml

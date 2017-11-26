@@ -2,8 +2,11 @@ version: '3'
 services:
   frontend:
     build: .
+    environment:
+      NODE_ENV: development
     ports:
       - "4000:4000"
     volumes:
-     - .:/code
+     - .:/home/app
+     - /home/app/node_modules
         

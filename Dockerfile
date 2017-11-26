@@ -1,32 +1,28 @@
 # create image based on official node 6 image from Docker
-FROM node:8-alpine
+FROM node:8
 
 # set environment
 ENV NPM_CONFIG_LOGLEVEL warn
-ARG env
-ENV NOTE_ENV $env
 
-# create app directory
-RUN mkdir -p /code
+# create app user
+# RUN useradd --user-group --create-home --shell /bin/false app 
+# RUN useradd -r -u 1001 -g appuser --create-home --shell /bin/false appuser
+
+# set app home
+ENV APP=/home/app
+
+# copy dependency lock files
+COPY ./package.json $APP/package.json 
+COPY ./yarn.lock $APP/yarn.lock
+
+# make user app owner of app directory
+# RUN chown -R app:app $HOME/*
+# USER app
 # move to app directory
-WORKDIR /code
+WORKDIR $APP
 
-EXPOSE 4000
-
-# add volume
-# ADD . /code
-
-# install dependencies for app
-COPY package.json yarn.lock /code/
-
+# install dependencies
 RUN yarn install
-# RUN npm rebuild node-sass 
-
-# copy code to app directory
-ADD . /code
- 
-# Exposing the assets for production
-# VOLUME /code/build
 
 # run app
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \

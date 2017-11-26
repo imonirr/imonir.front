@@ -6,6 +6,9 @@ import LoadableHome from 'Home/LoadableHome';
 import LoadableWhatIDo from 'WhatIDo/LoadableWhatIDo';
 import LoadableWhatIDid from 'WhatIDid/LoadableWhatIDid';
 import LoadableNote from 'Note/LoadableNote';
+import Writer from 'Writer/Writer';
+
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
 const Main = () =>
   (
@@ -15,6 +18,7 @@ const Main = () =>
         <Route exact path="/whatido" component={LoadableWhatIDo} />
         <Route exact path="/whatidid" component={LoadableWhatIDid} />
         <Route exact path="/note/:noteId" component={LoadableNote} />
+        <PrivateRoute exact path="/writer" component={Writer} />
       </Switch>
     </Container>
   );

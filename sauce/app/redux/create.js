@@ -1,5 +1,5 @@
 import thunk from 'redux-thunk';
-import { createStore , applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 
 import http from './middleware/http';
