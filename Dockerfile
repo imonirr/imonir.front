@@ -28,6 +28,10 @@ RUN yarn install
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   then \
   yarn build; \
+  npm install -g http-server && \
+  yarn build && \
+  cd build && \
+  hs -p 3000; \
   else \
   yarn dev; \
   fi

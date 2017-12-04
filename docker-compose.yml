@@ -3,9 +3,11 @@ services:
   frontend:
     build: .
     environment:
-      NODE_ENV: development
-    ports:
-      - "4000:4000"
+      - NODE_ENV=development
+      - VIRTUAL_HOST=front.imonir.com
+      - VIRTUAL_PORT=4000
+    # ports:
+    #   - "4000:4000"
     volumes:
      - .:/home/app
      - /home/app/node_modules
