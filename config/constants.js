@@ -14,12 +14,12 @@ const PATHS = {
 };
 
 const API_URL = {
-  development: 'http://localhost:8000/',
-  production: 'http://localhost:8000/',
+  development: 'http://back.imonir.com/',
+  production: 'http://back.imonir.com/',
 };
 
 
 exports.HOST = '0.0.0.0';
-exports.PORT = 4000;
+exports.PORT = 80;
 exports.PATHS = PATHS;
 exports.API_URL = API_URL;

@@ -31,7 +31,7 @@ CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   npm install -g http-server && \
   yarn build && \
   cd build && \
-  hs -p 3000; \
+  hs -p 80; \
   else \
   yarn dev; \
   fi
