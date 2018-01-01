@@ -115,7 +115,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
 exports.loadImages = ({ include, exclude } = {}) => ({
   module: {
     rules: [{
-      test: /\.(png|jpg|svg)$/,
+      test: /\.(png|jpg|svg|ico)$/,
       include,
       exclude,
 

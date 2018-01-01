@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  noteById,
+  noteBySlug,
   fetchNote,
 } from 'redux/modules/note';
 
@@ -16,7 +16,7 @@ import NoteView from './NoteView/NoteView';
 class Note extends Component {
   componentWillMount() {
     if (!this.props.note) {
-      this.props.fetchNote(this.props.match.params.noteId);
+      this.props.fetchNote(this.props.match.params.noteslug);
     }
   }
 
@@ -41,7 +41,7 @@ Note.propTypes = {
 
 const mapStateToProps = (state, props) =>
   ({
-    note: noteById(state, props.match.params.noteId),
+    note: noteBySlug(state, props.match.params.noteslug),
   });
 const mapDispatchToProps = dispatch =>
   bindActionCreators({

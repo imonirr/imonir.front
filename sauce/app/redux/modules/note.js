@@ -2,32 +2,79 @@ import { API_REQUEST } from 'redux/middleware/http';
 import { createSelector } from 'reselect';
 import moment from 'moment';
 
+import {
+  toggleLoading,
+} from 'redux/helpers';
+
 // ACTIONS
-const FETCH_LIST = 'notes/FETCH_LIST';
-const FETCH_LIST_SUCCESS = 'notes/FETCH_LIST_SUCCESS';
-const FETCH_LIST_ERROR = 'notes/FETCH_LIST_ERROR';
+const GET_LIST = 'note/GET_LIST';
+const GET_LIST_SUCCESS = 'note/GET_LIST_SUCCESS';
+const GET_LIST_ERROR = 'note/GET_LIST_ERROR';
 
-const FETCH_LIST_TYPES = [
-  FETCH_LIST,
-  FETCH_LIST_SUCCESS,
-  FETCH_LIST_ERROR,
-];
+const GET_NOTE = 'note/GET';
+const GET_NOTE_SUCCESS = 'note/GET_SUCCESS';
+const GET_NOTE_ERROR = 'note/GET_ERROR';
 
-const FETCH_NOTE = 'note/FETCH';
-const FETCH_NOTE_SUCCESS = 'note/FETCH_SUCCESS';
-const FETCH_NOTE_ERROR = 'note/FETCH_ERROR';
+const POST_NOTE = 'note/POST';
+const POST_NOTE_SUCCESS = 'note/POST_SUCCESS';
+const POST_NOTE_ERROR = 'note/POST_ERROR';
 
-const FETCH_NOTE_TYPES = [
-  FETCH_NOTE,
-  FETCH_NOTE_SUCCESS,
-  FETCH_NOTE_ERROR,
-];
+const PATCH_NOTE = 'note/PATCH';
+const PATCH_NOTE_SUCCESS = 'note/PATCH_SUCCESS';
+const PATCH_NOTE_ERROR = 'note/PATCH_ERROR';
+
+// INITIALSTATE
+const initialState = {
+  loading: false,
+  byId: {},
+  contentById: {},
+
+  ids: [],
+};
+
+// SELECTORS
+export const sampleNote = () => '';
+
+export const noteLoading = state => state.note.loading;
+const notes = state => state.note.byId;
+const noteIds = state => state.note.ids;
+
+export const noteById = (state, params) => params.id === 'new' ?
+  '' : state.note.byId[params.id];
+
+export const noteBySlug = (state, noteslug) => {
+  console.warn(`noteBySlug: ${noteslug}`);
+  return state.note.contentById[noteslug];
+};
+
+
+export const noteList = createSelector(
+  [noteIds, notes],
+  (ids, list) => ids.map(id =>
+    ({
+      id,
+      key: id,
+      link: {
+        to: `/note/${list[id].slug}/`,
+        title: list[id].title,
+      },
+      published: list[id].isPublished === 1,
+      date: moment(list[id].date).calendar(),
+      // date: moment.utc(list[id].date).format(),
+    }),
+  ),
+);
+
 
 // ACTION CREATORS
 export const fetchNoteList = () =>
   ({
     [API_REQUEST]: {
-      types: FETCH_LIST_TYPES,
+      types: [
+        GET_LIST,
+        GET_LIST_SUCCESS,
+        GET_LIST_ERROR,
+      ],
       url: `${API}note`,
       config: {
         method: 'GET',
@@ -35,10 +82,52 @@ export const fetchNoteList = () =>
     },
   });
 
+export const postNote = note =>
+  ({
+    [API_REQUEST]: {
+      types: [
+        POST_NOTE,
+        POST_NOTE_SUCCESS,
+        POST_NOTE_ERROR,
+      ],
+      url: `${API}note`,
+      config: {
+        method: 'POST',
+        body: JSON.stringify({
+          note: {
+            title: note.title,
+            content: note.content,
+            date: moment.utc(Date.now()).format(),
+          },
+        }),
+      },
+    },
+  });
+
+export const patchNote = (id, note) =>
+  ({
+    [API_REQUEST]: {
+      types: [
+        PATCH_NOTE,
+        PATCH_NOTE_SUCCESS,
+        PATCH_NOTE_ERROR,
+      ],
+      url: `${API}note/${id}`,
+      config: {
+        method: 'PATCH',
+        body: JSON.stringify({ note }),
+        params: { id },
+      },
+    },
+  });
 export const fetchNote = note =>
   ({
     [API_REQUEST]: {
-      types: FETCH_NOTE_TYPES,
+      types: [
+        GET_NOTE,
+        GET_NOTE_SUCCESS,
+        GET_NOTE_ERROR,
+      ],
       url: `${API}note/${note}`,
       config: {
         method: 'GET',
@@ -46,84 +135,62 @@ export const fetchNote = note =>
     },
   });
 
-// SELECTORS
-const notes = state => state.note.list;
-const noteIds = state => state.note.ids;
-
-export const noteById = (state, noteId) => {
-  console.warn(`noteById: ${noteId}`);
-  return state.note.contentById[noteId];
-}
-export const noteList = createSelector(
-  [noteIds, notes],
-  (ids, list) => ids.map(id =>
-    ({
-      key: list[id].key,
-      link: {
-        to: `/note/${list[id].path}/`,
-        title: list[id].title,
-      },
-      date: moment(list[id].date).calendar(),
-    }),
-  ),
-);
-
-
-const initialState = {
-  loading: false,
-  list: {},
-  contentById: {},
-
-  ids: [],
-};
 
 const ACTION_HANDLERS = {
-  [FETCH_LIST]: state =>
-    ({
-      ...state,
-      loading: false,
-    }),
-  [FETCH_NOTE]: state =>
-    ({
-      ...state,
-      loading: false,
-    }),
-  [FETCH_LIST_SUCCESS]: (state, { payload }) => {
-    const list = { ...state.list };
+  [GET_LIST]: state => toggleLoading(state),
+  [GET_NOTE]: state => toggleLoading(state),
+  [POST_NOTE]: state => toggleLoading(state),
+  [PATCH_NOTE]: state => toggleLoading(state),
+
+  [GET_LIST_SUCCESS]: (state, { payload }) => {
+    const byId = { ...state.byId };
     const ids = state.ids.slice(0);
 
     payload.notes.forEach((n) => {
-      list[n.path] = n;
-      ids.push(n.path);
+      if (!byId[n.id]) {
+        byId[n.id] = n;
+        ids.push(n.id);
+      }
     });
 
     return ({
       ...state,
       loading: false,
-      list,
+      byId,
       ids,
     });
   },
-  [FETCH_NOTE_SUCCESS]: (state, { payload }) => {
+  [GET_NOTE_SUCCESS]: (state, { payload }) => {
+    const { note, content } = payload;
     const contentById = { ...state.contentById };
-    contentById[payload.key] = payload.content;
+    const byId = { ...state.byId };
+
+    contentById[note.slug] = content;
+    byId[note.id] = note;
 
     return ({
       ...state,
       loading: false,
       contentById,
+      byId,
     });
   },
-  [FETCH_LIST_ERROR]: state =>
-    ({
+  [PATCH_NOTE_SUCCESS]: (state, { params, data }) => {
+    const byId = { ...state.byId };
+    const updated = JSON.parse(data);
+
+    byId[params.id] = { ...state.byId[params.id], ...updated.note }
+
+    return {
       ...state,
-      loading: false,
-    }),
-  [FETCH_NOTE_ERROR]: state =>
-    ({
-      ...state,
-      loading: false,
-    }),
+      byId,
+    };
+  },
+
+  [GET_LIST_ERROR]: state => toggleLoading(state),
+  [GET_NOTE_ERROR]: state => toggleLoading(state),
+  [POST_NOTE_ERROR]: state => toggleLoading(state),
+  [PATCH_NOTE_ERROR]: state => toggleLoading(state),
 };
 
 

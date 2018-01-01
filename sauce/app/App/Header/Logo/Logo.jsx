@@ -1,25 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import Img from 'styledComponents/Img';
-// import Anchor from 'styledComponents/Anchor';
-import LogoWrapper from 'styledComponents/LogoWrapper';
+import { Navigation } from 'styled/StyledLink';
 
-const logo = require('./Logo.png');
-
-const LogoImg = styled(Img)`
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
+const LogoWrapper = styled.div`
+  margin-right: auto;
+`;
+const LogoLink = styled(Navigation)`
+  font-size: 34px;
 `;
 
 const Logo = () =>
   (
     <LogoWrapper>
-      <Link to="/">
-        <LogoImg src={logo} />
-      </Link>
+      <LogoLink to="/">
+        Monir
+      </LogoLink>
     </LogoWrapper>
   );
 

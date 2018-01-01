@@ -12,16 +12,32 @@ const http = store => next => (action) => { // eslint-disable-line no-unused-var
 
   next({ type: requestType });
 
-  fetch(url, config)
+  const request = {
+    ...config,
+    headers: {
+      // Accept: 'application/x-www-form-urlencoded; charset=utf-8',
+      Accept: 'application/json; charset=utf-8',
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const token = sessionStorage.getItem('mj-token');
+  if (token) {
+    request.headers['mj-token'] = token;
+  }
+
+  fetch(url, request)
     .then((response) => {
       if (response.status >= 400) {
         next({ type: errorType, payload: 'Bad response' });
         throw new Error('Bad response from server');
       }
+
       return response.json();
     })
     .then((result) => {
-      next({ type: successType, payload: result });
+      const { body, params } = config;
+      next({ type: successType, payload: result, data: body, params });
     })
     .catch((err) => {
       next({ type: errorType, payload: err });

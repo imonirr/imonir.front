@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 
-import Content from 'styledComponents/Content';
+import Content from 'styled/Content';
 
 const NoteView = props =>
   (

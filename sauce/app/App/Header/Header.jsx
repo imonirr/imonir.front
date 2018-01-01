@@ -1,28 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import Container from 'styledComponents/Container';
-
+import { Row } from 'styled/Responsive';
 import Nav from './Nav/Nav';
 import Logo from './Logo/Logo';
+import SocialIcon from './SocialIcon/SocialIcon';
+import {
+  NavBar,
+  HeaderContainer,
+  SocialLinks,
+} from './Header.styled';
 
-
-const NavBar = styled.div`
-    font-family: "DinnCondensed";
-    z-index: 30;
-    text-align: center;
-    background: #a11c20;
-    display: block;
-    margin: 20px auto;
-`;
 
 const Header = () =>
   (
     <NavBar>
-      <Container>
+      <Row>
+        <SocialLinks>
+          <SocialIcon type="twitter" />
+          <SocialIcon type="github" />
+          <SocialIcon type="stackoverflow" />
+        </SocialLinks>
+      </Row>
+      <HeaderContainer w={1}>
         <Logo />
         <Nav />
-      </Container>
+      </HeaderContainer>
     </NavBar>
   );
 

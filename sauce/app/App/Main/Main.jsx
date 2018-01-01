@@ -1,26 +1,26 @@
 import React from 'react';
-import { Switch, Route, IndexRoute } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import Container from 'styledComponents/Container';
-import LoadableHome from 'Home/LoadableHome';
-import LoadableWhatIDo from 'WhatIDo/LoadableWhatIDo';
-import LoadableWhatIDid from 'WhatIDid/LoadableWhatIDid';
-import LoadableNote from 'Note/LoadableNote';
+import Home from 'Home/Home';
+import WhatIDo from 'WhatIDo/WhatIDo';
+import WhatIDid from 'WhatIDid/WhatIDid';
+import Note from 'Note/Note';
+import Login from 'Login/Login';
+
 import Writer from 'Writer/Writer';
-
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
 const Main = () =>
   (
-    <Container>
-      <Switch>
-        <Route exact path="/" component={LoadableHome} />
-        <Route exact path="/whatido" component={LoadableWhatIDo} />
-        <Route exact path="/whatidid" component={LoadableWhatIDid} />
-        <Route exact path="/note/:noteId" component={LoadableNote} />
-        <PrivateRoute exact path="/writer" component={Writer} />
-      </Switch>
-    </Container>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/whatido" component={WhatIDo} />
+      <Route exact path="/whatidid" component={WhatIDid} />
+      <Route exact path="/note/:noteslug" component={Note} />
+
+      <Route exact path="/login" component={Login} />
+      <PrivateRoute path="/writer" component={Writer} />
+    </Switch>
   );
 
 export default Main;

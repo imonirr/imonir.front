@@ -1,3 +1,3 @@
-#!/bin/bash
+#! /bin/bash
 
-docker build . -t imonir.front
+docker-compose -f docker-compose.yml up -d

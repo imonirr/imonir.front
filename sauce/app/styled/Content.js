@@ -5,6 +5,7 @@ const Content = styled.div`
   max-width: calc(600px - (30px * 2));
   margin: 0 auto;
   padding: 0 30px;
+  box-sizing: border-box;
 `;
 
 export default Content;

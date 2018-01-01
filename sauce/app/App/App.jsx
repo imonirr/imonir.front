@@ -1,19 +1,30 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
+import { Box } from 'grid-styled';
 
 import 'normalize.css';
 // import 'milligram';
 
 import create from 'redux/create';
 import theme from 'ui/theme';
-import AppBody from 'styledComponents/AppBody';
+
 import './App.scss';
 
 import Header from './Header/Header';
-import Footer from './Footer/Footer';
 import Main from './Main/Main';
+
+
+const AppBody = styled(Box)`
+  line-height: 1.5;
+  font-family: "Trebuchet MS";
+  color: #000;
+  font-size: 112.5%;
+  position: relative;
+  width: 100%;
+`;
+
 
 const store = create();
 
@@ -25,7 +36,6 @@ const App = () =>
           <AppBody>
             <Header />
             <Main />
-            <Footer />
           </AppBody>
         </ThemeProvider>
       </BrowserRouter>
