@@ -1,5 +1,6 @@
 import { API_REQUEST } from 'redux/middleware/http';
 import { createSelector } from 'reselect';
+import moment from 'moment';
 
 import {
   toggleLoading,
@@ -23,7 +24,13 @@ const commitIds = state => state.commit.ids;
 const commits = state => state.commit.byId;
 export const commitList = createSelector(
   [commitIds, commits],
-  (ids, list) => ids.map(id => list[id]),
+  (ids, list) =>
+    ids.map(id => ({
+      id,
+      repo: list[id].repo.substr(list[id].repo.indexOf('/') + 1, list[id].repo.length),
+      message: list[id].message,
+      date: moment(list[id].date).calendar(),
+    })),
 );
 
 
@@ -47,21 +54,21 @@ const ACTION_HANDLERS = {
   [GET_LIST]: state => toggleLoading(state),
   [GET_LIST_SUCCESS]: (state, { payload }) => {
     console.warn(payload);
-    // const byId = { ...state.byId };
-    // const ids = state.ids.slice(0);
+    const byId = { ...state.byId };
+    const ids = state.ids.slice(0);
 
-    // payload.commits.forEach((n) => {
-    //   if (!byId[n.id]) {
-    //     byId[n.id] = n;
-    //     ids.push(n.id);
-    //   }
-    // });
+    payload.commits.forEach((n) => {
+      if (!byId[n.id]) {
+        byId[n.id] = n;
+        ids.push(n.id);
+      }
+    });
 
     return ({
       ...state,
       loading: false,
-      // byId,
-      // ids,
+      byId,
+      ids,
     });
   },
   [GET_LIST_ERROR]: state => toggleLoading(state),

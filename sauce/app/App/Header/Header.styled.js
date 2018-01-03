@@ -8,7 +8,7 @@ export const NavBar = styled(Box)`
 `;
 
 export const HeaderContainer = styled(Row)`
-  max-width: 800px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 40px 0px 10px 0px;
   align-items: flex-end;
@@ -17,5 +17,6 @@ export const HeaderContainer = styled(Row)`
 
 export const SocialLinks = styled.ul`
   list-style: none;
-  margin: 10px 100px 0 auto;
+  margin: 0px 20px;
+  float: right;
 `;

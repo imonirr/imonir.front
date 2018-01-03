@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Row } from 'styled/Responsive';
+import Container from 'styled/Container';
 import Nav from './Nav/Nav';
 import Logo from './Logo/Logo';
 import SocialIcon from './SocialIcon/SocialIcon';
@@ -14,13 +14,13 @@ import {
 const Header = () =>
   (
     <NavBar>
-      <Row>
+      <Container>
         <SocialLinks>
           <SocialIcon type="twitter" />
           <SocialIcon type="github" />
           <SocialIcon type="stackoverflow" />
         </SocialLinks>
-      </Row>
+      </Container>
       <HeaderContainer w={1}>
         <Logo />
         <Nav />
