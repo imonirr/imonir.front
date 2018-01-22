@@ -14,6 +14,7 @@ import {
   getNote,
   // actions
   postNote,
+  patchNote,
   fetchNote,
 } from 'redux/modules/note';
 
@@ -39,10 +40,10 @@ class Write extends Component {
 
     const { note } = this.props;
     this.state = {
-      note: note ? note.content : '',
       title: note ? note.title : '',
-      markdownSrc: note ? note.content : '',
+      content: note ? note.content : '',
     };
+    this._changed = {};
 
     this.saveNote = this.saveNote.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -60,26 +61,32 @@ class Write extends Component {
       this.setState({
         note: nextProps.note.content,
         title: nextProps.note.title,
-        markdownSrc: nextProps.note.content,
+        content: nextProps.note.content,
       });
     }
   }
 
   handleTitle(event) {
     event.preventDefault();
+    this._changed[event.target.name] = event.target.value;
 
-    this.setState({ title: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
   handleChange(editor, data, value) {
-    this.setState({ markdownSrc: value });
+    this._changed.content = value;
+
+    this.setState({ content: value });
   }
   saveNote() {
-    if (this.state.title.length > 0 &&
-      this.state.markdownSrc.length > 0) {
-      this.props.postNote({
-        title: this.state.title,
-        content: this.state.markdownSrc,
-      });
+    const { id } = this.props.match.params;
+
+    if (this._changed.title ||
+      this._changed.content) {
+      if (id !== 'new') {
+        this.props.patchNote(id, this._changed);
+      } else {
+        this.props.postNote(this._changed);
+      }
     }
   }
 
@@ -96,14 +103,19 @@ class Write extends Component {
           <button className="button-outline" onClick={this.saveNote} >Save Note</button>
         </Row>
         <Row>
-          <Input placeholder="Note Title" value={this.state.title} onChange={this.handleTitle} />
+          <Input
+            name="title"
+            placeholder="Note Title"
+            value={this.state.title}
+            onChange={this.handleTitle}
+          />
         </Row>
         <EditPreviewWrap>
           <Column w={1 / 2}>
-            <Editor handleChange={this.handleChange} value={this.state.markdownSrc} />
+            <Editor handleChange={this.handleChange} value={this.state.content} />
           </Column>
           <Column w={1 / 2}>
-            <Preview source={this.state.markdownSrc} />
+            <Preview source={this.state.content} />
           </Column>
         </EditPreviewWrap>
       </div>
@@ -121,6 +133,7 @@ Write.propTypes = {
   match: PropTypes.object.isRequired,
   postNote: PropTypes.func.isRequired,
   fetchNote: PropTypes.func.isRequired,
+  patchNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) =>
@@ -132,6 +145,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     postNote,
+    patchNote,
     fetchNote,
   }, dispatch);
 

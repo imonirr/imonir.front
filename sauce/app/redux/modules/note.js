@@ -74,7 +74,7 @@ export const noteList = createSelector(
         title: list[id].title,
       },
       published: list[id].isPublished === 1,
-      date: moment(list[id].date).calendar(),
+      date: list[id].date,
     }),
   ),
 );
@@ -130,7 +130,7 @@ export const patchNote = (id, note) =>
       config: {
         method: 'PATCH',
         body: JSON.stringify({ note }),
-        params: { id },
+        // params: { id },
       },
     },
   });
