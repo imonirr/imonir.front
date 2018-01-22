@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Navigation }from 'styled/StyledLink';
-import Button from 'styled/Button';
+import { Navigation } from 'styled/StyledLink';
+// import Button from 'styled/Button';
 
 import {
   patchNote,
@@ -17,13 +17,13 @@ const Controls = styled.div`
 
 const EditLink = styled(Navigation)`
   padding : 0px 5px;
-`
-
-const Action = styled(Button)`
-  margin: 0 5px;
-  font-size: 0.6rem;
-  height: 1.3rem;
 `;
+
+// const Action = styled(Button)`
+//   margin: 0 5px;
+//   font-size: 0.6rem;
+//   height: 1.3rem;
+// `;
 
 class NoteControls extends Component {
   constructor(props) {
@@ -46,10 +46,10 @@ class NoteControls extends Component {
     return (
       <Controls>
         { !this.props.published &&
-          (<Action onClick={this.publishNote}>Publish</Action>)
+          (<button className="button-outline" onClick={this.publishNote}>Publish</button>)
         }
         { this.props.published &&
-          (<Action onClick={this.unpublishNote}>Unpublish</Action>)
+          (<button className="button-outline" onClick={this.unpublishNote}>Unpublish</button>)
         }
 
         <EditLink to={link}>Edit</EditLink>

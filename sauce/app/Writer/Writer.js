@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 
 
@@ -14,20 +14,16 @@ import Write from './Write/Write';
 class Writer extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Route
           exact
           path="/writer"
           render={() => (
             <Container>
-              <Column>
-                <Row>
-                  <Navigation to="/writer/new">New</Navigation>
-                </Row>
-                <Row>
-                  <NoteList />
-                </Row>
-              </Column>
+              <Row>
+                <Navigation to="/writer/new">New</Navigation>
+              </Row>
+              <NoteList />
             </Container>
           )}
         />
@@ -41,7 +37,7 @@ class Writer extends Component {
             </Column>
           }
         />
-      </div>
+      </Fragment>
     );
   }
 }

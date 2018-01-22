@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from 'Home/Home';
 import WhatIDo from 'WhatIDo/WhatIDo';
+import Projects from 'Projects/Projects';
 import WhatIDid from 'WhatIDid/WhatIDid';
 import Note from 'Note/Note';
 import Login from 'Login/Login';
@@ -16,6 +17,7 @@ const Main = () =>
       <Route exact path="/" component={Home} />
       <Route exact path="/whatido" component={WhatIDo} />
       <Route exact path="/whatidid" component={WhatIDid} />
+      <Route exact path="/projects" component={Projects} />
       <Route exact path="/note/:noteslug" component={Note} />
 
       <Route exact path="/login" component={Login} />

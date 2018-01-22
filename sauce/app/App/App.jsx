@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import { Box } from 'grid-styled';
 
 import create from 'redux/create';
 import theme from 'ui/theme';
@@ -13,7 +12,7 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 
 
-const AppBody = styled(Box)`
+const AppBody = styled.div`
   font-family: "Trebuchet MS";
   color: ${props => props.theme.colors.initial};
   position: relative;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Box } from 'grid-styled';
 
 import WithAuth from 'components/WithAuth/WithAuth';
 import { Row } from 'styled/Responsive';
@@ -39,9 +40,11 @@ class NoteList extends PureComponent {
         }
         {
           this.props.notes.map(n => (
-            <Row key={n.key} direction="column">
-              <NoteTime><NiceDate time={n.date} /></NoteTime>
-              <NoteLink link={n.link} />
+            <Row key={n.key} direction="row">
+              <Box mr="auto">
+                <NoteTime><NiceDate time={n.date} /></NoteTime>
+                <NoteLink link={n.link} />
+              </Box>
               {
                 this.props.authorized &&
                 (

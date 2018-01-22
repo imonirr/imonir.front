@@ -43,9 +43,9 @@ class Nav extends Component {
           <NavLink
             exact
             activeClassName={activeClassName}
-            to="/whatidid"
+            to="/projects"
           >
-            What I did
+            Projects
           </NavLink>
         </NavItem>
 
@@ -60,6 +60,20 @@ class Nav extends Component {
             What I do
           </NavLink>
         </NavItem>
+
+        <NavSeperator />
+
+        <NavItem>
+          <NavLink
+            exact
+            activeClassName={activeClassName}
+            to="/whatidid"
+          >
+            What I did
+          </NavLink>
+        </NavItem>
+
+
         { this.props.authenticated &&
             (
               <NavItem>

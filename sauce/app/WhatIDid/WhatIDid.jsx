@@ -30,7 +30,7 @@ class WhatIDid extends PureComponent {
   render() {
     return (
       <Container>
-        <table width="100%">
+        <table>
           <thead>
             <tr>
               <Header>Project</Header>
@@ -43,7 +43,7 @@ class WhatIDid extends PureComponent {
               this.props.commits.map(commit =>
                 (
                   <tr key={commit.id}>
-                    <td>{commit.repo}</td>
+                    <td><b>{commit.repo}</b></td>
                     <td>{commit.message}</td>
                     <td><NiceDate time={commit.date} /></td>
                   </tr>
