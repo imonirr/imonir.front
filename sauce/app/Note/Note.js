@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Markdown from 'react-markdown';
 
 import {
   noteBySlug,
@@ -9,9 +10,7 @@ import {
 } from 'redux/modules/note';
 
 import Loader from 'components/Loader/Loader';
-
-import NoteView from './NoteView/NoteView';
-
+import Container from 'styled/Container';
 
 class Note extends Component {
   componentWillMount() {
@@ -23,7 +22,9 @@ class Note extends Component {
   render() {
     if (this.props.note) {
       return (
-        <NoteView note={this.props.note} />
+        <Container>
+          <Markdown source={this.props.note} />
+        </Container>
       );
     }
 
@@ -37,6 +38,7 @@ Note.defaultProps = {
 Note.propTypes = {
   match: PropTypes.object.isRequired,
   note: PropTypes.string,
+  fetchNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) =>
