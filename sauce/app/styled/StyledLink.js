@@ -1,28 +1,46 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledLink = styled(Link)`
-  font-size: 12px;
-  color: #0074D9;
+// const commonStyle = styled`
+//   color: ${props => props.theme.colors.primary};
+//   text-decoration: none;
+//   display: inline-block;
+//   border-bottom: 1px solid ${props => props.theme.colors.background};
+//   &:hover {
+//     color: ${props => props.theme.colors.primary};
+//     border-bottom: 1px solid ${props => props.theme.colors.primary};
+//   }
+// `;
+
+export const StyledLink = styled.a`
+  color: ${props => props.theme.colors.primary};
   text-decoration: none;
   display: inline-block;
-  transition-property: color;
-  transition-duration: 0.3s;
-  text-decoration: none;
+  border-bottom: 1px solid ${props => props.theme.colors.background};
+  &:focus {
+    color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid ${props => props.theme.colors.primary};
+  };
   &:hover {
-    color: #7FDBFF;
-  }
+    color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid ${props => props.theme.colors.primary};
+  };
 `;
+
 
 export const Navigation = styled(NavLink)`
-  color: #e25a5e;
+  color: ${props => props.theme.colors.primary};
   text-decoration: none;
   display: inline-block;
-  transition-property: color;
-  transition-duration: 0.3s;
+  border-bottom: 1px solid ${props => props.theme.colors.background};
+  &:focus {
+    color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid ${props => props.theme.colors.primary};
+  };
   &:hover {
-    color: red;
-  }
+    color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid ${props => props.theme.colors.primary};
+  };
 `;
 
-export default StyledLink;
+// export default StyledLink;

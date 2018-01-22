@@ -152,27 +152,35 @@ exports.loadJavaScript = ({ include, exclude }) => ({
     }],
   },
 });
+exports.loadSass = ({ include, exclude } = {}) =>
+  ({
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          include,
+          exclude,
+          use: [
+            'style-loader',
+            'css-loader',
+            // 'postcss-loader'
+            {
+              loader: 'sass-loader',
+            },
+          ],
+        },
+      ],
+    },
+  });
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         include,
         exclude,
-        use: [
-          'style-loader',
-          'css-loader',
-          // 'postcss-loader'
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
         loader: 'style-loader!css-loader',
-        // include,
         // use: ['style-loader', 'css-loader'],
       },
     ],
@@ -180,9 +188,9 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 
 exports.extractBundles = bundles => ({
-  plugins: bundles.map((bundle) => {
-    return new webpack.optimize.CommonsChunkPlugin(bundle);
-  }),
+  plugins: bundles.map(bundle =>
+    new webpack.optimize.CommonsChunkPlugin(bundle),
+  ),
 });
 
 
@@ -280,74 +288,59 @@ exports.minifyCSS = ({ options }) => ({
   ],
 });
 
-exports.extractCSS = ({ include, exclude }) => {
+exports.extractSass = ({ include, exclude }) => {
   // Output extracted CSS to a file
   const extractSass = new ExtractTextPlugin({
     filename: '[name].[contenthash:8].css',
   });
 
-  return {
+  return ({
     module: {
-      rules: [{
-        test: /\.scss$/,
-        include,
-        exclude,
-        use: extractSass.extract({
-          // use: [
-          //   'style-loader',
-          //   'css-loader',
-          //   // 'postcss-loader'
-          //   {
-          //     loader: 'sass-loader',
-          //   },
-          // ],
-          use: [
-            {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'sass-loader',
-            },
-          ],
-          // use style-loader in development
-          fallback: 'style-loader',
-        }),
-      },
-      {
-        test: /\.css$/,
-        use: extractSass.extract({
-          use: [
-            {
-              loader: 'css-loader',
-            },
-          ],
-        }),
-        // include,
-        // use: ['style-loader', 'css-loader'],
-      },
+      rules: [
+        {
+          test: /\.scss$/,
+          include,
+          exclude,
+          use: extractSass.extract({
+            // use: [
+            //   'style-loader',
+            //   'css-loader',
+            //   // 'postcss-loader'
+            //   {
+            //     loader: 'sass-loader',
+            //   },
+            // ],
+            use: [
+              {
+                loader: 'css-loader',
+              },
+              {
+                loader: 'sass-loader',
+              },
+            ],
+            // use style-loader in development
+            fallback: 'style-loader',
+          }),
+        },
       ],
     },
     plugins: [extractSass],
-  };
-
-  // return {
-  //   module: {
-  //     rules: [
-  //       {
-  //         test: /\.css$/,
-  //         include,
-  //         exclude,
-
-  //         use: plugin.extract({
-  //           use,
-  //           fallback: 'style-loader',
-  //         }),
-  //       },
-  //     ],
-  //   },
-  //   plugins: [plugin],
-  // };
+  });
 };
+
+exports.extractCSS = ({ include, exclude }) =>
+  ({
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          include,
+          exclude,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
+  });
 
 // exports.autoprefix = () => ({
 //   loader: 'postcss-loader',

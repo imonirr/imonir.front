@@ -1,59 +1,57 @@
-import React, { Component } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import WithAuth from 'components/WithAuth/WithAuth';
-import { Column, Row } from 'styled/Responsive';
-import NoteTime from 'styled/NoteTime';
+import { Row } from 'styled/Responsive';
+
 import {
   noteList,
   noteLoading,
   fetchNoteList,
 } from 'redux/modules/note';
 
+import NiceDate from 'components/NiceDate/NiceDate';
 import Paragraph from 'styled/Paragraph';
 import NoteLink from './NoteLink/NoteLink';
 import NoteControls from './NoteControls/NoteControls';
 
-const ListWrapper = styled(Row)`
-  padding: 5px 0;
+
+const NoteTime = styled.span`
+  font-size: .8em;
+  display: block;
+  color: ${props => props.theme.colors.tertiary};
 `;
+  // color: #001f3f;
 
-
-class NoteList extends Component {
+class NoteList extends PureComponent {
   componentWillMount() {
     this.props.fetchNoteList();
   }
   render() {
     return (
-      <Column>
+      <Fragment>
         {
           !this.props.loading && this.props.notes.length === 0 &&
             (<Paragraph>Nothing Here</Paragraph>)
         }
         {
           this.props.notes.map(n => (
-            <ListWrapper key={n.key}>
-              <Column>
-                <Row>
-                  <NoteLink link={n.link} />
-                </Row>
-                <Row><NoteTime ><b>posted: </b>{n.date}</NoteTime></Row>
-              </Column>
+            <Row key={n.key} direction="column">
+              <NoteTime><NiceDate time={n.date} /></NoteTime>
+              <NoteLink link={n.link} />
               {
                 this.props.authorized &&
                 (
-                  <Column>
-                    <NoteControls id={n.id} published={n.published} />
-                  </Column>
+                  <NoteControls id={n.id} published={n.published} />
                 )
               }
-            </ListWrapper>
+            </Row>
           ))
         }
-      </Column>
+      </Fragment>
     );
   }
 }

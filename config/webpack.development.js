@@ -18,10 +18,7 @@ const config = merge([
   parts.dashBoardPlugin,
   parts.hmrPlugins,
 
-  parts.loadCSS({
-    include: PATHS.sauce,
-    exclude: PATHS.node,
-  }),
+  parts.loadCSS(),
   // parts.loadImages({
   //   include: PATHS.sauce,
   //   exclude: PATHS.node,

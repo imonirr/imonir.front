@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { Column, Row } from 'styled/Responsive';
 import Container from 'styled/Container';
-import StyledLink from 'styled/StyledLink';
+import { Navigation } from 'styled/StyledLink';
 import NoteList from 'components/NoteList/NoteList';
 // import Button from 'styled/Button';
 
@@ -22,7 +22,7 @@ class Writer extends Component {
             <Container>
               <Column>
                 <Row>
-                  <StyledLink to="/writer/new">New</StyledLink>
+                  <Navigation to="/writer/new">New</Navigation>
                 </Row>
                 <Row>
                   <NoteList />

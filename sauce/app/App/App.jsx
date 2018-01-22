@@ -4,25 +4,23 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { Box } from 'grid-styled';
 
-import 'normalize.css';
-// import 'milligram';
-
 import create from 'redux/create';
 import theme from 'ui/theme';
 
-import './App.scss';
+import './App.css';
 
 import Header from './Header/Header';
 import Main from './Main/Main';
 
 
 const AppBody = styled(Box)`
-  line-height: 1.5;
   font-family: "Trebuchet MS";
-  color: #000;
-  font-size: 112.5%;
+  color: ${props => props.theme.colors.initial};
   position: relative;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem 1.6rem;
+  background-color: ${props => props.theme.colors.background};
 `;
 
 

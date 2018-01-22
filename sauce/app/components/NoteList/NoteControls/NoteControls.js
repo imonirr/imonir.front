@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import StyledLink from 'styled/StyledLink';
+import { Navigation }from 'styled/StyledLink';
 import Button from 'styled/Button';
 
 import {
@@ -15,7 +15,7 @@ const Controls = styled.div`
   text-align:right;
 `;
 
-const EditLink = styled(StyledLink)`
+const EditLink = styled(Navigation)`
   padding : 0px 5px;
 `
 

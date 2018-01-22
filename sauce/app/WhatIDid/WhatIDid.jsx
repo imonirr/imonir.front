@@ -15,10 +15,11 @@ import {
   commitList,
 } from 'redux/modules/commit';
 
+import NiceDate from 'components/NiceDate/NiceDate';
+
 const Header = styled.th`
   text-align: left;
 `;
-
 
 class WhatIDid extends PureComponent {
   componentWillMount() {
@@ -44,7 +45,7 @@ class WhatIDid extends PureComponent {
                   <tr key={commit.id}>
                     <td>{commit.repo}</td>
                     <td>{commit.message}</td>
-                    <td>{commit.date}</td>
+                    <td><NiceDate time={commit.date} /></td>
                   </tr>
                 ))
             }
