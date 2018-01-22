@@ -14,6 +14,10 @@ class Editor extends Component {
         value={this.props.value}
         /* options={options} */
         onBeforeChange={this.props.handleChange}
+        options={{
+          theme: 'monokai',
+          lineNumbers: true,
+        }}
       />
     );
   }

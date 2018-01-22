@@ -38,14 +38,29 @@ export const sampleNote = () => '';
 export const noteLoading = state => state.note.loading;
 const notes = state => state.note.byId;
 const noteIds = state => state.note.ids;
-
-export const noteById = (state, params) => params.id === 'new' ?
-  '' : state.note.byId[params.id];
+const getContents = state => state.note.contentById;
+export const noteById = (state, params) =>
+  (params.id === 'new' ?
+    '' : state.note.byId[params.id]);
 
 export const noteBySlug = (state, noteslug) => {
   console.warn(`noteBySlug: ${noteslug}`);
   return state.note.contentById[noteslug];
 };
+
+export const getNote = createSelector(
+  [noteById, getContents],
+  (note, contents) => {
+    if (!note) {
+      return null;
+    }
+
+    return {
+      ...note,
+      content: contents[note.slug],
+    };
+  },
+);
 
 
 export const noteList = createSelector(
@@ -60,7 +75,6 @@ export const noteList = createSelector(
       },
       published: list[id].isPublished === 1,
       date: moment(list[id].date).calendar(),
-      // date: moment.utc(list[id].date).format(),
     }),
   ),
 );
@@ -179,7 +193,7 @@ const ACTION_HANDLERS = {
     const byId = { ...state.byId };
     const updated = JSON.parse(data);
 
-    byId[params.id] = { ...state.byId[params.id], ...updated.note }
+    byId[params.id] = { ...state.byId[params.id], ...updated.note };
 
     return {
       ...state,
