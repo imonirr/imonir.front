@@ -1,16 +1,16 @@
 import React from 'react';
-import Link from 'next/link';
-// import Layout from '../sauce/layout';
+import create from 'redux/create';
+import withRedux from 'next-redux-wrapper';
+
 import App from 'App/App';
+import Home from 'Home/Home';
 
 const Index = () =>
   (
     <App>
-      <Link href="/about" >
-        <button>About</button>
-      </Link>
-      Hello guys
+      <Home />
     </App>
   );
 
-export default Index;
+// export default Index;
+export default withRedux(create)(Index);

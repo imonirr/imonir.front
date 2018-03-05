@@ -21,10 +21,10 @@ const http = store => next => (action) => { // eslint-disable-line no-unused-var
     },
   };
 
-  const token = sessionStorage.getItem('mj-token');
-  if (token) {
-    request.headers['mj-token'] = token;
-  }
+  // const token = sessionStorage.getItem('mj-token');
+  // if (token) {
+    // request.headers['mj-token'] = token;
+  // }
 
   fetch(url, request)
     .then((response) => {
