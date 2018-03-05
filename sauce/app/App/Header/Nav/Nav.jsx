@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
+import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 // import styled from 'styled-components';
 
-import {
-  isAuthenticated,
-} from 'redux/modules/auth';
+// import {
+//   isAuthenticated,
+// } from 'redux/modules/auth';
 
 import {
   NavList,
   NavItem,
   NavLink,
-  RootLink,
 } from 'styled/NavList';
 
 // const Seperator = styled.span`
@@ -23,81 +24,61 @@ const NavSeperator = () =>
 
 class Nav extends Component {
   render() {
-    const activeClassName = 'active';
 
     return (
       <NavList>
         <NavItem>
-          <RootLink
-            exact
-            activeClassName={activeClassName}
-            to="/"
+          <Link
+            href="/"
           >
-            Moniruzzaman
-          </RootLink>
+            <a>Moniruzzaman</a>
+          </Link>
         </NavItem>
 
         <NavSeperator />
 
         <NavItem>
-          <NavLink
-            exact
-            activeClassName={activeClassName}
-            to="/projects"
+          <Link
+            href="/whatido"
           >
-            Projects
-          </NavLink>
+            <a>What I do</a>
+          </Link>
         </NavItem>
 
         <NavSeperator />
 
         <NavItem>
-          <NavLink
-            exact
-            activeClassName={activeClassName}
-            to="/whatido"
+          <Link
+            href="/whatidid"
           >
-            What I do
-          </NavLink>
-        </NavItem>
-
-        <NavSeperator />
-
-        <NavItem>
-          <NavLink
-            exact
-            activeClassName={activeClassName}
-            to="/whatidid"
-          >
-            What I did
-          </NavLink>
+            <a>What I did</a>
+          </Link>
         </NavItem>
 
 
-        { this.props.authenticated &&
+        { /*this.props.authenticated &&
             (
               <NavItem>
                 <NavLink
-                  exact
-                  activeClassName={activeClassName}
-                  to="/writer"
+                 hrefo="/writer"
                 >
                   Writer
                 </NavLink>
               </NavItem>)
-        }
+        */}
       </NavList>
     );
   }
 }
 
-Nav.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-};
+// Nav.propTypes = {
+//   authenticated: PropTypes.bool.isRequired,
+// };
 
-const mapStateToProps = state =>
-  ({
-    authenticated: isAuthenticated(state),
-  });
+// const mapStateToProps = state =>
+//   ({
+//     authenticated: isAuthenticated(state),
+//   });
 
-export default withRouter(connect(mapStateToProps)(Nav));
+// export default connect(mapStateToProps)(withRouter(Nav));
+export default withRouter(Nav);

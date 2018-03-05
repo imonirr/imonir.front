@@ -22,7 +22,7 @@ import SocialNav from './SocialNav/SocialNav';
 const Header = () =>
   (
     <Container>
-       <Row justify="flex-end">
+      <Row justify="flex-end">
         <SocialNav />
       </Row>
       <Row justify="flex-start">

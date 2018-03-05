@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 
-import create from 'redux/create';
+// import create from 'redux/create';
 import theme from 'ui/theme';
 
 import './App.css';
 
 import Header from './Header/Header';
-import Main from './Main/Main';
+// import Main from './Main/Main';
 
 
 const AppBody = styled.div`
@@ -23,20 +23,18 @@ const AppBody = styled.div`
 `;
 
 
-const store = create();
+// const store = create();
 
-const App = () =>
+const App = ({ children }) =>
   (
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <AppBody>
-            <Header />
-            <Main />
-          </AppBody>
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <AppBody>
+        <Header />
+        { children }
+      </AppBody>
+    </ThemeProvider>
   );
+
+            // <Main />
 
 export default App;

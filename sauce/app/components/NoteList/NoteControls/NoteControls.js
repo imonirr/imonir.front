@@ -46,10 +46,10 @@ class NoteControls extends Component {
     return (
       <Controls>
         { !this.props.published &&
-          (<button className="button-outline" onClick={this.publishNote}>Publish</button>)
+          (<button onClick={this.publishNote}>Publish</button>)
         }
         { this.props.published &&
-          (<button className="button-outline" onClick={this.unpublishNote}>Unpublish</button>)
+          (<button onClick={this.unpublishNote}>Unpublish</button>)
         }
 
         <EditLink to={link}>Edit</EditLink>

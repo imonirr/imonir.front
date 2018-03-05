@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 // const commonStyle = styled`
@@ -28,7 +28,7 @@ export const StyledLink = styled.a`
 `;
 
 
-export const Navigation = styled(NavLink)`
+export const Navigation = styled(Link)`
   color: ${props => props.theme.colors.primary};
   text-decoration: none;
   display: inline-block;

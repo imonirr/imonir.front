@@ -100,7 +100,7 @@ class Write extends Component {
     return (
       <div>
         <Row>
-          <button className="button-outline" onClick={this.saveNote} >Save Note</button>
+          <button onClick={this.saveNote} >Save Note</button>
         </Row>
         <Row>
           <Input

@@ -10,10 +10,10 @@ const initialState = {
   token: null,
 };
 
-const savedToken = sessionStorage.getItem('mj-token');
-if (sessionStorage) {
-  initialState.token = savedToken;
-}
+// const savedToken = sessionStorage.getItem('mj-token');
+// if (sessionStorage) {
+//   initialState.token = savedToken;
+// }
 
 
 // action types
@@ -51,7 +51,7 @@ const ACTION_HANDLERS = {
     }),
   [LOGIN_SUCCESS]: (state, { payload }) => {
     const { token } = payload;
-    sessionStorage.setItem('mj-token', token);
+    // sessionStorage.setItem('mj-token', token);
 
     return ({
       ...state,

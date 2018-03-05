@@ -34,7 +34,7 @@ CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   hs -p 80; \
   else \
   yarn install; \
-  yarn dev; \
+  yarn devnext; \
   fi
 
 

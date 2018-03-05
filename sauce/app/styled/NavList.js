@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { Navigation } from 'styled/StyledLink';
+// import { Navigation } from 'styled/StyledLink';
 
-export const RootLink = styled(Navigation)`
-  color: ${props => props.theme.colors.quinary};
-  &:hover, &:focus {
-    color: ${props => props.theme.colors.quinary};
-    border-bottom: 1px solid ${props => props.theme.colors.background};
-  }
-`;
+// export const RootLink = styled(Link)`
+//   color: ${props => props.theme.colors.quinary};
+//   &:hover, &:focus {
+//     color: ${props => props.theme.colors.quinary};
+//     border-bottom: 1px solid ${props => props.theme.colors.background};
+//   }
+// `;
 
 export const NavList = styled.ul`
   list-style: none;
@@ -24,19 +24,21 @@ export const NavItem = styled.li`
 `;
 
 
-export const NavLink = styled(Navigation)`
-  &.${props => props.activeClassName} {
-    color: ${props => props.theme.colors.primary};
-    border-bottom: 1px solid ${props => props.theme.colors.primary};
-  }
+export const NavLink = styled.a`
+  color: ${props => (props.isActive ? props.theme.colors.primary : props.theme.colors.quinary)};
+  border-bottom: 1px solid ${props => (props.isActive ? props.theme.colors.primary : 'none')};
 `;
-NavLink.defaultProps = {
-  activeClassName: 'active',
-};
+
+  // &.${props => props.activeClassName} {
+  //   color: ${props => props.theme.colors.primary};
+  //   border-bottom: 1px solid ${props => props.theme.colors.primary};
+// NavLink.defaultProps = {
+//   activeClassName: 'active',
+// };
 
 
 // const activeClassName = 'active';
-// export const Nav = styled(Navigation).attrs({
+// export const Nav = styled(Link).attrs({
 //   activeClassName,
 // })`
 //   &.${activeClassName} {
