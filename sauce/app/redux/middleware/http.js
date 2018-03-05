@@ -26,6 +26,7 @@ const http = store => next => (action) => { // eslint-disable-line no-unused-var
     // request.headers['mj-token'] = token;
   // }
 
+  // console.log(`#################REQUESTING ${url}#################`);
   fetch(url, request)
     .then((response) => {
       if (response.status >= 400) {
