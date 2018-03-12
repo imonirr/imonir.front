@@ -2,15 +2,15 @@ import React from 'react';
 import withRedux from 'next-redux-wrapper';
 
 import create from 'redux/create';
-import WhatIDo from 'WhatIDo/WhatIDo';
+import WhatIDid from 'WhatIDid/WhatIDid';
 import App from 'App/App';
 
-const whatido = () =>
+const whatidid = () =>
   (
     <App>
-      <WhatIDo />
+      <WhatIDid />
     </App>
   );
 
 
-export default withRedux(create)(whatido);
+export default withRedux(create)(whatidid);

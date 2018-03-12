@@ -12,15 +12,16 @@ import styled from 'styled-components';
 export const NavList = styled.ul`
   list-style: none;
   margin-bottom: 1rem;
-
-  &:(:first-child) {
-    margin-left: 0;
-  }
+  padding: 0;
 `;
+  // &:(:first-child) {
+  //   margin-left: 0;
+  // }
 
 export const NavItem = styled.li`
   display: inline-block;
-  margin: 0 .8rem;
+  padding: 0;
+  margin: 0;
 `;
 
 

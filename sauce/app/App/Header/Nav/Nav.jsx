@@ -1,30 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import { withRouter } from 'react-router-dom';
 import { withRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
-// import styled from 'styled-components';
 
-// import {
-//   isAuthenticated,
-// } from 'redux/modules/auth';
+import NavSeperator from 'components/NavSeperator/NavSeperator';
 
 import {
   NavList,
   NavItem,
-  NavLink,
 } from 'styled/NavList';
 
-// const Seperator = styled.span`
-//   color: ${props.theme.colors.initial}
-// `;
-const NavSeperator = () =>
-  <Fragment>&#171;&#187;</Fragment>;
 
 class Nav extends Component {
   render() {
-
     return (
       <NavList>
         <NavItem>
@@ -56,7 +45,7 @@ class Nav extends Component {
         </NavItem>
 
 
-        { /*this.props.authenticated &&
+        { /* this.props.authenticated &&
             (
               <NavItem>
                 <NavLink

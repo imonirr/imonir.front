@@ -11,15 +11,14 @@ services:
     expose:
       - 80
 
-    network_mode: "bridge"
-    # networks:
-    #   - imonir
+    # network_mode: "bridge"
+    networks:
+      - imonir
     # ports:
     #   - "4000:4000"
     volumes:
      - .:/home/app
      - /home/app/node_modules
-# networks:
-#   default:
-#     external:
-#       name: imonir
+networks:
+  imonir:
+    external: true

@@ -16,8 +16,6 @@ const AppBody = styled.div`
   font-family: "Trebuchet MS";
   color: ${props => props.theme.colors.initial};
   position: relative;
-  width: 100vw;
-  height: 100vh;
   padding: 1rem 1.6rem;
   background-color: ${props => props.theme.colors.background};
 `;

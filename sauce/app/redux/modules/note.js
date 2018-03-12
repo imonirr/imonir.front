@@ -1,6 +1,7 @@
-import { API_REQUEST } from 'redux/middleware/http';
 import { createSelector } from 'reselect';
 import moment from 'moment';
+import Api from 'helpers/api';
+import { API_REQUEST } from 'redux/middleware/http';
 
 import {
   toggleLoading,
@@ -80,21 +81,35 @@ export const noteList = createSelector(
 );
 
 
-// ACTION CREATORS
+// ACTION CREATORSLL
 export const fetchNoteList = () =>
-  ({
-    [API_REQUEST]: {
-      types: [
-        GET_LIST,
-        GET_LIST_SUCCESS,
-        GET_LIST_ERROR,
-      ],
-      url: `${API}note`,
-      config: {
-        method: 'GET',
+  (dispatch) => {
+    dispatch({ type: GET_LIST });
+
+    const req = {
+      [API_REQUEST]: {
+        url: process.browser ? `${API}note` : 'http://backend:8000/note',
+        config: {
+          method: 'GET',
+        },
       },
-    },
-  });
+    };
+
+    return Api.fetch(req)
+      .then(
+        response =>
+          dispatch({
+            type: GET_LIST_SUCCESS,
+            payload: response,
+          }),
+        err =>
+          dispatch({
+            type: GET_LIST_ERROR,
+            payload: err,
+          }),
+      );
+  };
+
 
 export const postNote = note =>
   ({

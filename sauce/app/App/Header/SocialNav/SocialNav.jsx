@@ -1,5 +1,6 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 
+import NavSeperator from 'components/NavSeperator/NavSeperator';
 import {
   NavList,
   NavItem,
@@ -8,9 +9,6 @@ import {
   StyledLink,
 } from 'styled/StyledLink';
 
-
-const SocialNavSeperator = () =>
-  <Fragment>&#171;&#187;</Fragment>;
 
 class SocialNav extends PureComponent {
   constructor(props) {
@@ -32,7 +30,7 @@ class SocialNav extends PureComponent {
 
         </NavItem>
 
-        <SocialNavSeperator />
+        <NavSeperator />
 
         <NavItem>
           <StyledLink
@@ -40,7 +38,7 @@ class SocialNav extends PureComponent {
           >github</StyledLink>
         </NavItem>
 
-        <SocialNavSeperator />
+        <NavSeperator />
 
         <NavItem>
           <StyledLink

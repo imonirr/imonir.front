@@ -6,7 +6,7 @@ import http from './middleware/http';
 import reducer from './reducer';
 
 
-const create = () => {
+const create = (initialState) => {
   const middleware = [thunk, http];
 
   const logger = createLogger({
@@ -24,7 +24,7 @@ const create = () => {
   }
 
   const finalCreateStore = applyMiddleware(...middleware)(createStore);
-  const store = finalCreateStore(reducer);
+  const store = finalCreateStore(reducer, initialState);
 
   // if (DEBUG && module.hot) {
   //   module.hot.accept('./modules/reducer', () => {

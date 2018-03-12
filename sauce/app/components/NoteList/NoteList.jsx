@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from 'grid-styled';
@@ -11,7 +11,7 @@ import { Row } from 'styled/Responsive';
 import {
   noteList,
   noteLoading,
-  fetchNoteList,
+  // fetchNoteList,
 } from 'redux/modules/note';
 
 import NiceDate from 'components/NiceDate/NiceDate';
@@ -28,9 +28,12 @@ const NoteTime = styled.span`
   // color: #001f3f;
 
 class NoteList extends PureComponent {
-  componentWillMount() {
-    this.props.fetchNoteList();
-  }
+  // componentWillMount() {
+  //   if (this.props.notes.length === 0) {
+  //     console.warn('note not fetched');
+  //     this.props.fetchNoteList();
+  //   }
+  // }
   render() {
     return (
       <Fragment>
@@ -64,7 +67,7 @@ NoteList.propTypes = {
   notes: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
 
-  fetchNoteList: PropTypes.func.isRequired,
+  // fetchNoteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state =>
@@ -72,10 +75,10 @@ const mapStateToProps = state =>
     notes: noteList(state),
     loading: noteLoading(state),
   });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({
-    fetchNoteList,
-  }, dispatch);
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators({
+//     fetchNoteList,
+//   }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithAuth(NoteList));
+export default connect(mapStateToProps)(WithAuth(NoteList));
 
