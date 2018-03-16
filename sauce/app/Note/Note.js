@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
+// import Markdown from 'react-markdown';
 
 import {
-  noteBySlug,
+  // noteBySlug,
   fetchNote,
 } from 'redux/modules/note';
 
@@ -13,17 +13,20 @@ import Loader from 'components/Loader/Loader';
 import Container from 'styled/Container';
 
 class Note extends Component {
-  componentWillMount() {
-    if (!this.props.note) {
-      this.props.fetchNote(this.props.match.params.noteslug);
-    }
-  }
+  // componentWillMount() {
+  //   if (!this.props.note) {
+  //     this.props.fetchNote(this.props.match.params.slug);
+  //   }
+  // }
 
   render() {
     if (this.props.note) {
       return (
         <Container>
-          <Markdown source={this.props.note} />
+          { Object.keys(this.props.note) }
+          {/*
+            <Markdown source={this.props.note} />
+          */}
         </Container>
       );
     }
@@ -34,17 +37,21 @@ class Note extends Component {
 
 Note.defaultProps = {
   note: null,
+  params: null,
 };
 Note.propTypes = {
-  match: PropTypes.object.isRequired,
+  // match: PropTypes.object.isRequired,
+  params: PropTypes.object,
   note: PropTypes.string,
-  fetchNote: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, props) =>
-  ({
-    note: noteBySlug(state, props.match.params.noteslug),
+const mapStateToProps = (state, props) => {
+  console.log('props');
+  console.log(props);
+  return ({
+    note: state.note.byId, // noteBySlug(state, props.match.params.slug),
   });
+};
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     fetchNote,

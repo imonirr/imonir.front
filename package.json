@@ -7,7 +7,7 @@
   "author": "Moniruzzaman Monir",
   "license": "MIT",
   "scripts": {
-    "devnext": "next -p 80",
+    "devnext": "nodemon ./server/server.js",
     "start": "webpack-dashboard -- webpack-dev-server --config config/webpack.run.js --env.development",
     "dev": "webpack-dev-server --config config/webpack.run.js --env.development",
     "build": "webpack -p --config config/webpack.run.js --env.production"
@@ -17,6 +17,7 @@
     "codemirror": "5",
     "dotenv": "^5.0.1",
     "es6-promise": "^4.1.1",
+    "express": "^4.16.3",
     "grid-styled": "^2.0.0-11",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.19.1",
@@ -54,6 +55,7 @@
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.17.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "path": "^0.12.7",
     "react-hot-loader": "^3.1.1",

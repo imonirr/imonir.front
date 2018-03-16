@@ -82,6 +82,34 @@ export const noteList = createSelector(
 
 
 // ACTION CREATORSLL
+export const fetchNote = slug =>
+  (dispatch) => {
+    console.log(`slug : ${slug}`);
+    dispatch({ type: GET_NOTE });
+
+    const req = {
+      [API_REQUEST]: {
+        url: process.browser ? `${API}note/${slug}` : `http://backend:8000/note/${slug}`,
+        config: {
+          method: 'GET',
+        },
+      },
+    };
+
+    return Api.fetch(req)
+      .then(
+        response =>
+          dispatch({
+            type: GET_NOTE_SUCCESS,
+            payload: response,
+          }),
+        err =>
+          dispatch({
+            type: GET_NOTE_ERROR,
+            payload: err,
+          }),
+      );
+  };
 export const fetchNoteList = () =>
   (dispatch) => {
     dispatch({ type: GET_LIST });
@@ -146,20 +174,6 @@ export const patchNote = (id, note) =>
         method: 'PATCH',
         body: JSON.stringify({ note }),
         // params: { id },
-      },
-    },
-  });
-export const fetchNote = note =>
-  ({
-    [API_REQUEST]: {
-      types: [
-        GET_NOTE,
-        GET_NOTE_SUCCESS,
-        GET_NOTE_ERROR,
-      ],
-      url: `${API}note/${note}`,
-      config: {
-        method: 'GET',
       },
     },
   });

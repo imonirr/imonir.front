@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const { nextConfig } = require('./config/webpack.next');
 const withCSS = require('@zeit/next-css');
+const getRoutes = require('./server/routes');
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
@@ -9,6 +10,8 @@ require('dotenv').config({
 
 module.exports = withCSS({
   distDir: 'build',
+  useFileSystemPublicRoutes: false,
+  exportPathMap: getRoutes,
   onDemandEntries: {
     // period (in ms) where the server will keep pages in the buffer
     maxInactiveAge: 25 * 1000,

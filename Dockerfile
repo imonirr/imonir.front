@@ -14,6 +14,8 @@ ENV APP=/home/app
 # copy dependency lock files
 COPY ./package.json $APP/package.json 
 COPY ./yarn.lock $APP/yarn.lock
+COPY ./.babelrc $APP/.babelrc
+COPY ./.env $APP/.env
 
 # make user app owner of app directory
 # RUN chown -R app:app $HOME/*

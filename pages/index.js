@@ -10,8 +10,9 @@ import {
 } from 'redux/modules/note';
 
 class Index extends Component {
-  static getInitialProps({ store, isServer }) {
+  static getInitialProps({ store, isServer, req, query }) {
     if (isServer) {
+      console.log(query);
       return store.dispatch(fetchNoteList());
     }
 
