@@ -1,4 +1,5 @@
 const express = require('express');
+// const routes = require('./routes')
 const next = require('next');
 const { parse } = require('url');
 
@@ -6,9 +7,10 @@ const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 80;
 
 const app = next({ dev });
-const handle = app.getRequestHandler();
+const handle = app.getRequestHandler(app);
 const getRoutes = require('./routes');
 
+// const handler = routes.getRequestHandler(app)
 const routes = getRoutes();
 
 app.prepare().then(() => {

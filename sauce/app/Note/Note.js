@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import Markdown from 'react-markdown';
 
 import {
-  // noteBySlug,
+  noteBySlug,
   fetchNote,
 } from 'redux/modules/note';
 
@@ -20,10 +20,13 @@ class Note extends Component {
   // }
 
   render() {
+    console.warn('RENDER NOTE');
+    console.log(`note length: ${this.props.note.length}`);
+
     if (this.props.note) {
       return (
         <Container>
-          { Object.keys(this.props.note) }
+          { this.props.note}
           {/*
             <Markdown source={this.props.note} />
           */}
@@ -41,7 +44,7 @@ Note.defaultProps = {
 };
 Note.propTypes = {
   // match: PropTypes.object.isRequired,
-  params: PropTypes.object,
+  // params: PropTypes.object,
   note: PropTypes.string,
 };
 
@@ -49,7 +52,7 @@ const mapStateToProps = (state, props) => {
   console.log('props');
   console.log(props);
   return ({
-    note: state.note.byId, // noteBySlug(state, props.match.params.slug),
+    note: noteBySlug(state, props),
   });
 };
 const mapDispatchToProps = dispatch =>

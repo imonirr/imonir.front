@@ -44,9 +44,9 @@ export const noteById = (state, params) =>
   (params.id === 'new' ?
     '' : state.note.byId[params.id]);
 
-export const noteBySlug = (state, noteslug) => {
-  console.warn(`noteBySlug: ${noteslug}`);
-  return state.note.contentById[noteslug];
+export const noteBySlug = (state, props) => {
+  console.warn(`noteBySlug: ${props.slug}`);
+  return state.note.contentById[props.slug];
 };
 
 export const getNote = createSelector(
@@ -71,7 +71,8 @@ export const noteList = createSelector(
       id,
       key: id,
       link: {
-        to: `/note/${list[id].slug}/`,
+        to: `/note/?slug=${list[id].slug}/`,
+        as: `/note/${list[id].slug}/`,
         title: list[id].title,
       },
       published: list[id].isPublished === 1,
@@ -189,6 +190,7 @@ const ACTION_HANDLERS = {
     const byId = { ...state.byId };
     const ids = state.ids.slice(0);
 
+    console.log(payload);
     payload.notes.forEach((n) => {
       if (!byId[n.id]) {
         byId[n.id] = n;

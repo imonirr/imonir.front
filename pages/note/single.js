@@ -16,16 +16,22 @@ class NoteIndex extends Component {
     console.log('In NoteInex');
 
     if (isServer) {
-      return store.dispatch(fetchNote(query.slug));
+      return store.dispatch(fetchNote(query.slug))
+        .then(() => {
+          return query;
+        });
     }
 
     store.dispatch(fetchNote(query.slug));
+    return query;
   }
 
   render() {
+    console.log('from NoteIndex');
+    console.log(this.props.query);
     return (
       <App>
-        <Note />
+        <Note slug={this.props.slug}/>
       </App>
     );
   }

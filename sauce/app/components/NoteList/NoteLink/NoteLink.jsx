@@ -16,7 +16,7 @@ import { StyledLink } from 'styled/StyledLink';
 
 const NoteLink = props =>
   (
-    <Link href={props.link.to} ><a>{props.link.title}</a></Link>
+    <Link as={props.link.as} href={props.link.to} ><a>{props.link.title}</a></Link>
   );
 
 NoteLink.propTypes = {
