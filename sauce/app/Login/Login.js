@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import Router from 'next/router'
 
 import FacebookLogin from 'react-facebook-login';
 import {
@@ -21,22 +21,23 @@ class Login extends Component {
   }
   componentWillMount() {
     if (this.props.authenticated) {
-      this.props.history.push('/');
+      Router.push('/');
     }
   }
   responseFacebook(response) {
     console.log(response);
     if (response && response.accessToken) {
+      console.log(`token: ${response.accessToken}`);
       this.props.login(response.accessToken);
-      this.props.history.push('/');
+      Router.push('/');
     }
   }
   render() {
     return (
       <FacebookLogin
         appId={FACEBOOK_APPID}
-        autoLoad
         fields="email"
+        autoLoad
         callback={this.responseFacebook}
       />
     );
@@ -46,7 +47,6 @@ class Login extends Component {
 Login.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state =>
@@ -60,4 +60,4 @@ const mapDispatchToProps = dispatch =>
   }, dispatch);
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

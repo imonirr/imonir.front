@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 // import { withRouter } from 'react-router-dom';
-import { withRouter } from 'next/router';
+// import { withRouter } from 'next/router';
 import Link from 'next/link';
 
-import NavSeperator from 'components/NavSeperator/NavSeperator';
 
+import WithAuth from 'components/WithAuth/WithAuth';
+import NavSeperator from 'components/NavSeperator/NavSeperator';
 import {
   NavList,
   NavItem,
 } from 'styled/NavList';
 
 
-class Nav extends Component {
+class Nav extends PureComponent {
   render() {
     return (
       <NavList>
@@ -45,29 +47,32 @@ class Nav extends Component {
         </NavItem>
 
 
-        { /* this.props.authenticated &&
-            (
+        {
+          this.props.authorized && (
+            <Fragment>
+            <NavSeperator />
               <NavItem>
-                <NavLink
-                 hrefo="/writer"
+                <Link
+                 href="/writer"
                 >
-                  Writer
-                </NavLink>
-              </NavItem>)
-        */}
+                  <a>Writer</a>
+                </Link>
+              </NavItem>
+            </Fragment>
+          )
+        }
       </NavList>
     );
   }
 }
 
-// Nav.propTypes = {
-//   authenticated: PropTypes.bool.isRequired,
-// };
+Nav.propTypes = {
+  authorized: PropTypes.bool.isRequired,
+};
 
 // const mapStateToProps = state =>
 //   ({
-//     authenticated: isAuthenticated(state),
+//     authorized: isauthorized(state),
 //   });
 
-// export default connect(mapStateToProps)(withRouter(Nav));
-export default withRouter(Nav);
+export default WithAuth(Nav);

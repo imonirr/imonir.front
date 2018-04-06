@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 
 import { Navigation } from 'styled/StyledLink';
 // import Button from 'styled/Button';
@@ -15,9 +16,6 @@ const Controls = styled.div`
   text-align:right;
 `;
 
-const EditLink = styled(Navigation)`
-  padding : 0px 5px;
-`;
 
 // const Action = styled(Button)`
 //   margin: 0 5px;
@@ -52,7 +50,7 @@ class NoteControls extends Component {
           (<button onClick={this.unpublishNote}>Unpublish</button>)
         }
 
-        <EditLink to={link}>Edit</EditLink>
+        <Link href={link}><a>Edit</a></Link>
       </Controls>
     );
   }

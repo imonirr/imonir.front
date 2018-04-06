@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import Markdown from 'react-markdown';
+import Markdown from 'react-markdown';
 
 import {
   noteBySlug,
@@ -20,10 +20,8 @@ class Note extends Component {
     if (this.props.note) {
       return (
         <Container>
-          { this.props.note}
-          {/*
-            <Markdown source={this.props.note} />
-          */}
+          {/* this.props.note */}
+          <Markdown source={this.props.note} />
         </Container>
       );
     }
