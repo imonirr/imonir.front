@@ -18,8 +18,14 @@ const API_URL = {
   production: 'http://back.imonir.com/',
 };
 
+const API_URL_BACK = {
+  development: 'http://backend:8000/',
+  production: 'http://backend:8000/',
+};
+
 
 exports.HOST = '0.0.0.0';
 exports.PORT = 80;
 exports.PATHS = PATHS;
 exports.API_URL = API_URL;
+exports.API_URL_BACK = API_URL_BACK;

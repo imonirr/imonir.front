@@ -25,8 +25,7 @@ app.prepare().then(() => {
   // });
   server.get('/note/:slug', (req, res) => {
     const params = { slug: req.params.slug };
-    console.log('cool route');
-    console.log(params);
+    // console.log(params);
     return app.render(req, res, '/note/single', params);
   });
 
@@ -34,13 +33,11 @@ app.prepare().then(() => {
     const { query, pathname } = parse(req.url, true);
 
     const route = routes[pathname];
-    console.log('IN SERVER ROOT ROUTE');
-    console.log('pathname');
-    console.log(pathname);
-    console.log('query');
-    console.log(query);
 
     if (route) {
+      console.log('IN SERVER ROOT ROUTE');
+      // console.log(`pathname: ${pathname}`);
+      // console.log(`query: ${query}`);
       console.log(`Page: ${route.page}`);
       return app.render(req, res, route.page, route.query);
     }

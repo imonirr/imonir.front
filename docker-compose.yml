@@ -18,7 +18,9 @@ services:
     #   - "4000:4000"
     volumes:
      - .:/home/app
-     - /home/app/node_modules
+     - node_modules:/home/app/node_modules
+volumes: 
+  node_modules:
 networks:
   imonir:
     external: true

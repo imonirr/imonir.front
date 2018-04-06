@@ -6,29 +6,30 @@ import { bindActionCreators } from 'redux';
 import App from 'App/App';
 import Note from 'Note/Note';
 import {
+  noteBySlug,
   fetchNote,
 } from 'redux/modules/note';
 
 class NoteIndex extends Component {
   static getInitialProps({ store, isServer, query }) {
-    console.log('In NoteInex');
-    console.log(query);
-    console.log('In NoteInex');
+    const state = store.getState();
+    const note = noteBySlug(state, query);
 
-    if (isServer) {
-      return store.dispatch(fetchNote(query.slug))
-        .then(() => {
-          return query;
-        });
+    if (!note) {
+      if (isServer) {
+        return store.dispatch(fetchNote(query.slug))
+          .then(() => {
+            return query;
+          });
+      }
+
+      return store.dispatch(fetchNote(query.slug));
     }
 
-    store.dispatch(fetchNote(query.slug));
     return query;
   }
 
   render() {
-    console.log('from NoteIndex');
-    console.log(this.props.query);
     return (
       <App>
         <Note slug={this.props.slug}/>

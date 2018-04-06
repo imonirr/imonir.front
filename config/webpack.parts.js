@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const { PATHS, HOST, PORT, API_URL } = require('./constants');
+const { PATHS, HOST, PORT, API_URL, API_URL_BACK} = require('./constants');
 
 exports.setGlobalVariables = (target, override = {}) => ({
   plugins: [
@@ -18,6 +18,7 @@ exports.setGlobalVariables = (target, override = {}) => ({
       PRODUCTION: JSON.stringify(target === 'production'),
       DEBUG: JSON.stringify(target !== 'production'),
       API: JSON.stringify(API_URL[target]),
+      API_BACK: JSON.stringify(API_URL_BACK[target])
     }, override)),
   ],
 });

@@ -1,6 +1,7 @@
 import { API_REQUEST } from 'redux/middleware/http';
 import { createSelector } from 'reselect';
 import moment from 'moment';
+import Api from 'helpers/api';
 
 import {
   toggleLoading,
@@ -36,19 +37,32 @@ export const commitList = createSelector(
 
 // ACTION CREATORS
 export const fetchCommits = () =>
-  ({
-    [API_REQUEST]: {
-      types: [
-        GET_LIST,
-        GET_LIST_SUCCESS,
-        GET_LIST_ERROR,
-      ],
-      url: `${API}commit`,
-      config: {
-        method: 'GET',
+  (dispatch) => {
+    dispatch({ type: GET_LIST });
+
+    const req = {
+      [API_REQUEST]: {
+        url: process.browser ? `${API}commit` : `${API_BACK}commit`,
+        config: {
+          method: 'GET',
+        },
       },
-    },
-  });
+    };
+
+    return Api.fetch(req)
+      .then(
+        response =>
+          dispatch({
+            type: GET_LIST_SUCCESS,
+            payload: response,
+          }),
+        err =>
+          dispatch({
+            type: GET_LIST_ERROR,
+            payload: err,
+          }),
+      );
+  };
 
 const ACTION_HANDLERS = {
   [GET_LIST]: state => toggleLoading(state),

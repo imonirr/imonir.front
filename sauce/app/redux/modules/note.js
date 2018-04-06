@@ -7,22 +7,6 @@ import {
   toggleLoading,
 } from 'redux/helpers';
 
-// ACTIONS
-const GET_LIST = 'note/GET_LIST';
-const GET_LIST_SUCCESS = 'note/GET_LIST_SUCCESS';
-const GET_LIST_ERROR = 'note/GET_LIST_ERROR';
-
-const GET_NOTE = 'note/GET';
-const GET_NOTE_SUCCESS = 'note/GET_SUCCESS';
-const GET_NOTE_ERROR = 'note/GET_ERROR';
-
-const POST_NOTE = 'note/POST';
-const POST_NOTE_SUCCESS = 'note/POST_SUCCESS';
-const POST_NOTE_ERROR = 'note/POST_ERROR';
-
-const PATCH_NOTE = 'note/PATCH';
-const PATCH_NOTE_SUCCESS = 'note/PATCH_SUCCESS';
-const PATCH_NOTE_ERROR = 'note/PATCH_ERROR';
 
 // INITIALSTATE
 const initialState = {
@@ -35,15 +19,14 @@ const initialState = {
 
 // SELECTORS
 export const sampleNote = () => '';
-
 export const noteLoading = state => state.note.loading;
 const notes = state => state.note.byId;
 const noteIds = state => state.note.ids;
 const getContents = state => state.note.contentById;
+
 export const noteById = (state, params) =>
   (params.id === 'new' ?
     '' : state.note.byId[params.id]);
-
 export const noteBySlug = (state, props) => {
   console.warn(`noteBySlug: ${props.slug}`);
   return state.note.contentById[props.slug];
@@ -62,8 +45,6 @@ export const getNote = createSelector(
     };
   },
 );
-
-
 export const noteList = createSelector(
   [noteIds, notes],
   (ids, list) => ids.map(id =>
@@ -71,8 +52,8 @@ export const noteList = createSelector(
       id,
       key: id,
       link: {
-        to: `/note/?slug=${list[id].slug}/`,
-        as: `/note/${list[id].slug}/`,
+        href: `/note/?slug=${list[id].slug}`,
+        as: `/note/${list[id].slug}`,
         title: list[id].title,
       },
       published: list[id].isPublished === 1,
@@ -82,15 +63,32 @@ export const noteList = createSelector(
 );
 
 
-// ACTION CREATORSLL
+// ACTIONS
+const GET_LIST = 'note/GET_LIST';
+const GET_LIST_SUCCESS = 'note/GET_LIST_SUCCESS';
+const GET_LIST_ERROR = 'note/GET_LIST_ERROR';
+
+const GET_NOTE = 'note/GET';
+const GET_NOTE_SUCCESS = 'note/GET_SUCCESS';
+const GET_NOTE_ERROR = 'note/GET_ERROR';
+
+const POST_NOTE = 'note/POST';
+const POST_NOTE_SUCCESS = 'note/POST_SUCCESS';
+const POST_NOTE_ERROR = 'note/POST_ERROR';
+
+const PATCH_NOTE = 'note/PATCH';
+const PATCH_NOTE_SUCCESS = 'note/PATCH_SUCCESS';
+const PATCH_NOTE_ERROR = 'note/PATCH_ERROR';
+
+
+// ACTION CREATOR
 export const fetchNote = slug =>
   (dispatch) => {
-    console.log(`slug : ${slug}`);
     dispatch({ type: GET_NOTE });
 
     const req = {
       [API_REQUEST]: {
-        url: process.browser ? `${API}note/${slug}` : `http://backend:8000/note/${slug}`,
+        url: process.browser ? `${API}note/${slug}` : `${API_BACK}note/${slug}`,
         config: {
           method: 'GET',
         },
@@ -117,7 +115,7 @@ export const fetchNoteList = () =>
 
     const req = {
       [API_REQUEST]: {
-        url: process.browser ? `${API}note` : 'http://backend:8000/note',
+        url: process.browser ? `${API}note` : `${API_BACK}note`,
         config: {
           method: 'GET',
         },
@@ -194,8 +192,9 @@ const ACTION_HANDLERS = {
     payload.notes.forEach((n) => {
       if (!byId[n.id]) {
         byId[n.id] = n;
-        ids.push(n.id);
       }
+
+      ids.push(n.id);
     });
 
     return ({

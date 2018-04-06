@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import create from 'redux/create';
 import withRedux from 'next-redux-wrapper';
 import { bindActionCreators } from 'redux';
 
-import App from 'App/App';
-import Home from 'Home/Home';
 import {
+  noteList,
   fetchNoteList,
 } from 'redux/modules/note';
+import App from 'App/App';
+import Home from 'Home/Home';
 
-class Index extends Component {
+class Index extends PureComponent {
   static getInitialProps({ store, isServer, req, query }) {
-    if (isServer) {
-      console.log(query);
-      return store.dispatch(fetchNoteList());
-    }
+    const state = store.getState();
+    const notes = noteList(state);
+    if (notes.length === 0) {
+      if (isServer) {
+        // console.log(query);
+        return store.dispatch(fetchNoteList());
+      }
 
-    store.dispatch(fetchNoteList());
+      return store.dispatch(fetchNoteList());
+
+    }
   }
+
   render() {
     return (
       <App>

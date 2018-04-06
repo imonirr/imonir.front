@@ -6,18 +6,12 @@ import PropTypes from 'prop-types';
 
 import {
   noteBySlug,
-  fetchNote,
 } from 'redux/modules/note';
 
 import Loader from 'components/Loader/Loader';
 import Container from 'styled/Container';
 
 class Note extends Component {
-  // componentWillMount() {
-  //   if (!this.props.note) {
-  //     this.props.fetchNote(this.props.match.params.slug);
-  //   }
-  // }
 
   render() {
     console.warn('RENDER NOTE');
@@ -40,25 +34,14 @@ class Note extends Component {
 
 Note.defaultProps = {
   note: null,
-  params: null,
 };
 Note.propTypes = {
-  // match: PropTypes.object.isRequired,
-  // params: PropTypes.object,
   note: PropTypes.string,
 };
 
-const mapStateToProps = (state, props) => {
-  console.log('props');
-  console.log(props);
-  return ({
+const mapStateToProps = (state, props) =>
+  ({
     note: noteBySlug(state, props),
   });
-};
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({
-    fetchNote,
-  }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Note);
+export default connect(mapStateToProps)(Note);
 

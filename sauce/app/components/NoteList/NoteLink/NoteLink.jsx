@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 import Link from 'next/link';
 
-import { StyledLink } from 'styled/StyledLink';
+// import { StyledLink } from 'styled/StyledLink';
 // const NoteNav = styled(Link)`
 //   color: ${props => props.theme.colors.initial};
 //   text-decoration: none;
@@ -16,7 +16,7 @@ import { StyledLink } from 'styled/StyledLink';
 
 const NoteLink = props =>
   (
-    <Link as={props.link.as} href={props.link.to} ><a>{props.link.title}</a></Link>
+    <Link as={props.link.as} href={props.link.href} ><a>{props.link.title}</a></Link>
   );
 
 NoteLink.propTypes = {
