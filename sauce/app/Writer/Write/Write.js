@@ -15,11 +15,11 @@ import {
   // actions
   postNote,
   patchNote,
-  fetchNote,
+  // fetchNote,
 } from 'redux/modules/note';
 
 import Editor from './Editor/Editor';
-import Preview from './Preview/Preview';
+// import Preview from './Preview/Preview';
 
 // const PreviewWrap = styled(Column)`
 //   background-color: cornsilk;
@@ -49,13 +49,13 @@ class Write extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
   }
-  componentWillMount() {
-    const { id } = this.props.match.params;
+  // componentWillMount() {
+  //   const { id } = this.props.match.params;
 
-    if (id !== 'new') {
-      this.props.fetchNote(id);
-    }
-  }
+  //   if (id !== 'new') {
+  //     this.props.fetchNote(id);
+  //   }
+  // }
   componentWillReceiveProps(nextProps) {
     if (this.props.note !== nextProps.note) {
       this.setState({
@@ -78,7 +78,7 @@ class Write extends Component {
     this.setState({ content: value });
   }
   saveNote() {
-    const { id } = this.props.match.params;
+    const { id } = this.props;
 
     if (this._changed.title ||
       this._changed.content) {
@@ -92,7 +92,7 @@ class Write extends Component {
 
   render() {
     if (this.props.loading ||
-        (this.props.match.params.id !== 'new' && !this.props.note)
+        (this.props.id !== 'new' && !this.props.note)
     ) {
       return <p>Loading ...</p>;
     }
@@ -111,12 +111,14 @@ class Write extends Component {
           />
         </Row>
         <EditPreviewWrap>
-          <Column w={1 / 2}>
+          <Column>
             <Editor handleChange={this.handleChange} value={this.state.content} />
           </Column>
-          <Column w={1 / 2}>
-            <Preview source={this.state.content} />
-          </Column>
+          {/*
+            <Column w={1 / 2}>
+              <Preview source={this.state.content} />
+            </Column>
+          */}
         </EditPreviewWrap>
       </div>
     );
@@ -130,24 +132,23 @@ Write.defaultProps = {
 Write.propTypes = {
   loading: PropTypes.bool.isRequired,
   note: PropTypes.object,
-  match: PropTypes.object.isRequired,
   postNote: PropTypes.func.isRequired,
-  fetchNote: PropTypes.func.isRequired,
   patchNote: PropTypes.func.isRequired,
+  // fetchNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) =>
   ({
     loading: noteLoading(state),
-    note: getNote(state, props.match.params),
+    note: getNote(state, props),
   });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     postNote,
     patchNote,
-    fetchNote,
+    // fetchNote,
   }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Write));
+export default connect(mapStateToProps, mapDispatchToProps)(Write);
 

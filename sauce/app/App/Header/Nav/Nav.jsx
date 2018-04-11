@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 
+// import NextLink from 'components/NextLink/NextLink';
 import WithAuth from 'components/WithAuth/WithAuth';
 import NavSeperator from 'components/NavSeperator/NavSeperator';
 import {
@@ -24,6 +25,9 @@ class Nav extends PureComponent {
           >
             <a>Moniruzzaman</a>
           </Link>
+          {/*
+          <NextLink href="/">Moniruzzaman</NextLink>
+          */}
         </NavItem>
 
         <NavSeperator />

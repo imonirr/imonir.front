@@ -29,6 +29,11 @@ app.prepare().then(() => {
     return app.render(req, res, '/note/single', params);
   });
 
+  server.get('/writer/:id', (req, res) => {
+    const params = { id: req.params.id};
+    return app.render(req, res, '/writer', params);
+  });
+
   server.get('*', (req, res) => {
     const { query, pathname } = parse(req.url, true);
 

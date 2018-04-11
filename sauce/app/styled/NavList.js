@@ -25,10 +25,15 @@ export const NavItem = styled.li`
 `;
 
 
-export const NavLink = styled.a`
+export const Navigation = styled.a`
   color: ${props => (props.isActive ? props.theme.colors.primary : props.theme.colors.quinary)};
-  border-bottom: 1px solid ${props => (props.isActive ? props.theme.colors.primary : 'none')};
+  cursor: pointer;
+  &:hover: {
+    text-decoration: underline;
+    color: #eee;
+  };
 `;
+  // border-bottom: 1px solid ${props => (props.isActive ? props.theme.colors.primary : 'none')};
 
   // &.${props => props.activeClassName} {
   //   color: ${props => props.theme.colors.primary};

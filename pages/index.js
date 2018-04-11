@@ -10,6 +10,23 @@ import {
 import App from 'App/App';
 import Home from 'Home/Home';
 
+// NOTE: if cookie is needed
+// import jsHttpCookie from 'cookie';
+
+// class MyPage extends Component {
+//   static async getInitialProps({ req }) {
+//     const initProps = {};
+//     if (req && req.headers) {
+//       const cookies = req.headers.cookie;
+//       if (typeof cookies === 'string') {
+//         const cookiesJSON = jsHttpCookie.parse(cookies);
+//         initProps.token = cookiesJSON.token;
+//       }
+//     }
+//     return initProps;
+//   }
+// }
+
 class Index extends PureComponent {
   static getInitialProps({ store, isServer, req, query }) {
     const state = store.getState();

@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
+import Link from 'next/link';
 
 
 import { Column, Row } from 'styled/Responsive';
 import Container from 'styled/Container';
-import { Navigation } from 'styled/StyledLink';
+// import { Navigation } from 'styled/StyledLink';
+
 import NoteList from 'components/NoteList/NoteList';
 // import Button from 'styled/Button';
 
@@ -15,13 +17,33 @@ class Writer extends Component {
   render() {
     return (
       <Fragment>
+        <p>{`writer with id: ${this.props.id}`}</p>
+        {
+          this.props.id && (
+            <Column>
+              <Write id={this.props.id} />
+            </Column>
+          )
+        }
+        {
+          !this.props.id && (
+            <Container>
+              <Row>
+                <Link href="/writer/new"><a>New</a></Link>
+              </Row>
+              <NoteList />
+            </Container>
+          )
+        }
+
+        {/*
         <Route
           exact
           path="/writer"
           render={() => (
             <Container>
               <Row>
-                <Navigation to="/writer/new">New</Navigation>
+                <Link href="/writer/new"><a>New</a></Link>
               </Row>
               <NoteList />
             </Container>
@@ -37,6 +59,7 @@ class Writer extends Component {
             </Column>
           }
         />
+        */}
       </Fragment>
     );
   }
