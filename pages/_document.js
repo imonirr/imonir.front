@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>My page</title>
+          <title>Moniruzzaman Monir</title>
           {this.props.styleTags}
           <link rel="stylesheet" href="///cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" />
           <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />

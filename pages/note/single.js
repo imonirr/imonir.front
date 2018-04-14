@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import create from 'redux/create';
 import withRedux from 'next-redux-wrapper';
 import { bindActionCreators } from 'redux';
+import Head from 'next/head';
 
 import App from 'App/App';
 import Note from 'Note/Note';
@@ -32,6 +33,9 @@ class NoteIndex extends Component {
   render() {
     return (
       <App>
+        <Head>
+          <title>{this.props.slug}</title>
+        </Head>
         <Note slug={this.props.slug}/>
       </App>
     );
