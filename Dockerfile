@@ -29,11 +29,8 @@ RUN yarn install
 # run app
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   then \
-  yarn build; \
-  npm install -g http-server && \
-  yarn build && \
-  cd build && \
-  hs -p 80; \
+  yarn buildnext; \
+  yarn start; \
   else \
   yarn install; \
   yarn devnext; \
