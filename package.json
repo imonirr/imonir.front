@@ -1,9 +1,9 @@
 {
-  "name": "ReactStart",
+  "name": "imonir Front",
   "version": "1.0.0",
   "description": "Starter Kit.",
   "main": "index.js",
-  "repository": "https://github.com/dostokhan/reactstart",
+  "repository": "https://github.com/dostokhan/imonir.front",
   "author": "Moniruzzaman Monir",
   "license": "MIT",
   "scripts": {
