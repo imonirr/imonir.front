@@ -2,9 +2,7 @@ const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
 
-const dev = process.env.NODE_ENV !== 'production';
-
-const configName = dev ? 'development' : 'production';
+const configName = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 const nextConfig = merge([
   parts.resolveProjectDependencies,

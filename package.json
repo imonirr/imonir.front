@@ -9,10 +9,7 @@
   "scripts": {
     "devnext": "nodemon ./server/server.js",
     "buildnext": "next build",
-
-    "start": "webpack-dashboard -- webpack-dev-server --config config/webpack.run.js --env.development",
-    "dev": "webpack-dev-server --config config/webpack.run.js --env.development",
-    "build": "webpack -p --config config/webpack.run.js --env.production"
+    "start": "NODE_ENV=production node ./server/server.js"
   },
   "dependencies": {
     "@zeit/next-css": "^0.1.3",
