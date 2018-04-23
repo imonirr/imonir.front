@@ -16,6 +16,7 @@ COPY ./package.json $APP/package.json
 COPY ./yarn.lock $APP/yarn.lock
 COPY ./.babelrc $APP/.babelrc
 COPY ./.env $APP/.env
+COPY ./.env.production $APP/.env.production
 
 # make user app owner of app directory
 # RUN chown -R app:app $HOME/*
