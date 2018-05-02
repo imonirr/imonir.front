@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 
 // export const Row = styled.div`
@@ -20,3 +20,11 @@ export const Column = props => (
   />
 );
 
+export const Column2 = props => (
+  <Column
+    {...props}
+    width={[1, 1 / 2]}
+  />
+);
+
+// flex="0 0 50%"

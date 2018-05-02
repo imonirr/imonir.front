@@ -14,7 +14,7 @@ import Header from './Header/Header';
 
 const AppBody = styled.div`
   font-family: "Trebuchet MS";
-  color: ${props => props.theme.colors.initial};
+  color: #3e3e3e;
   position: relative;
   padding: 1rem 1.6rem;
   background-color: ${props => props.theme.colors.background};
@@ -33,6 +33,6 @@ const App = ({ children }) =>
     </ThemeProvider>
   );
 
-            // <Main />
+// <Main />
 
 export default App;

@@ -123,9 +123,12 @@ exports.loadImages = ({ include, exclude } = {}) => ({
       use: {
         loader: 'url-loader',
         options: {
-          // fallback: 'file-loader',
-          limit: 81,
-          name: 'assets/images/[name]-[hash].[ext]',
+          fallback: 'file-loader',
+          limit: 8192,
+          name: '[name]-[hash].[ext]',
+
+          publicPath: '/_next/static/images/',
+          outputPath: 'static/images/',
         },
       },
     }],

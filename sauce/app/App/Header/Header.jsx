@@ -1,34 +1,73 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
 import { Row } from 'styled/Responsive';
 import Container from 'styled/Container';
 import Nav from './Nav/Nav';
 import SocialNav from './SocialNav/SocialNav';
-// import Logo from './Logo/Logo';
-// import SocialIcon from './SocialIcon/SocialIcon';
-// import {
-//   NavRow,
-//   SocialRow,
-//   SocialLinks,
-// } from './Header.styled';
 
-        // <SocialLinks>
+const ContactInfo = styled.p`
+  font-size: 1.2rem;
+`;
+const Button = styled.button`
+  color: ${props => props.theme.colors.primary};
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0 2rem;
+  height: auto;
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+    background-color: transparent;
+  };
+`;
 
-        //   <SocialIcon type="twitter" />
-        //   <SocialIcon type="github" />
-        //   <SocialIcon type="stackoverflow" />
-        // </SocialLinks>
 
-const Header = () =>
-  (
-    <Container>
-      <Row justify="flex-end">
-        <SocialNav />
-      </Row>
-      <Row justify="flex-start">
-        <Nav />
-      </Row>
-    </Container>
-  );
+class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      viewemail: false,
+    };
+
+    this.viewEmail = this.viewEmail.bind(this);
+  }
+  viewEmail() {
+    this.setState({
+      viewemail: true,
+    });
+  }
+  render() {
+    const mail = 'moniruzzaman.monir@live.com';
+
+    return (
+      <Container>
+        <Row justify="flex-end">
+          <SocialNav />
+        </Row>
+        <Row justify="flex-end">
+          <ContactInfo>
+            {
+              this.state.viewemail && (
+                mail
+              )
+            }
+            {
+              !this.state.viewemail && (
+                <Button onClick={this.viewEmail}>View Email</Button>
+              )
+            }
+            <span> +88 01716108114 </span>
+          </ContactInfo>
+        </Row>
+        <Row justify="flex-start">
+          <Nav />
+        </Row>
+      </Container>
+    );
+  }
+}
+
 
 export default Header;
