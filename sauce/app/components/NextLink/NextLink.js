@@ -1,23 +1,23 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 
 import {
-  Navigation,
+  NavLink,
 } from 'styled/NavList';
 
-class NextLink extends PureComponent {
+class NavLink extends PureComponent {
   render() {
     return (
-      <Navigation onClick={() => Router.push(this.props.href)}>
+      <NavLink onClick={() => Router.push(this.props.href)}>
         {this.props.children}
-      </Navigation>
+      </NavLink>
     );
   }
 }
 
-NextLink.propTypes = {
+NavLink.propTypes = {
   href: PropTypes.string.isRequired,
 };
 
-export default NextLink;
+export default NavLink;

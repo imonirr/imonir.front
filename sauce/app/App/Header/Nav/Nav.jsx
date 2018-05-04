@@ -1,5 +1,4 @@
 import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { withRouter } from 'react-router-dom';
 // import { withRouter } from 'next/router';
@@ -13,6 +12,9 @@ import {
   NavList,
   NavItem,
 } from 'styled/NavList';
+import {
+  Navigation,
+} from 'styled/StyledLink';
 
 
 class Nav extends PureComponent {
@@ -21,13 +23,11 @@ class Nav extends PureComponent {
       <NavList>
         <NavItem>
           <Link
+            passHref
             href="/"
           >
-            <a>Moniruzzaman</a>
+            <Navigation>Moniruzzaman</Navigation>
           </Link>
-          {/*
-          <NextLink href="/">Moniruzzaman</NextLink>
-          */}
         </NavItem>
 
         <NavSeperator />
@@ -35,8 +35,11 @@ class Nav extends PureComponent {
         <NavItem>
           <Link
             href="/whatido"
+            passHref
           >
-            <a>What I do</a>
+            <Navigation>
+              What I do
+            </Navigation>
           </Link>
         </NavItem>
 
@@ -44,9 +47,10 @@ class Nav extends PureComponent {
 
         <NavItem>
           <Link
+            passHref
             href="/whatidid"
           >
-            <a>What I did</a>
+            <Navigation>What I did</Navigation>
           </Link>
         </NavItem>
 
@@ -54,12 +58,13 @@ class Nav extends PureComponent {
         {
           this.props.authorized && (
             <Fragment>
-            <NavSeperator />
+              <NavSeperator />
               <NavItem>
                 <Link
-                 href="/writer"
+                  passHref
+                  href="/writer"
                 >
-                  <a>Writer</a>
+                  <Navigation>Writer</Navigation>
                 </Link>
               </NavItem>
             </Fragment>

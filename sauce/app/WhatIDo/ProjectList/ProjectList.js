@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 
+import { StyledLink } from 'styled/StyledLink';
 import {
   Column,
   Column2,
@@ -29,10 +30,12 @@ class ProjectList extends PureComponent {
           this.props.projects.map(project => (
             <Project key={project.key} wrap="wrap" my={1} py={2}>
               <Column2>
-                <ProjectTitle><a href={project.title.link}>{project.title.text}</a></ProjectTitle>
+                <ProjectTitle>
+                  <StyledLink href={project.title.link}>{project.title.text}</StyledLink>
+                </ProjectTitle>
                 {
                   project.skills.map(skill => (
-                    <em>{skill} </em>
+                    <em key={skill.toLowerCase()}>{skill} </em>
                   ))
                 }
                 <p>{project.title.time}</p>
@@ -40,7 +43,7 @@ class ProjectList extends PureComponent {
               <Column2 justify="flex-end">
                 <Pic src={project.image} />
               </Column2>
-              <Column>{project.description}</Column>
+              <Column py={2}>{project.description}</Column>
             </Project>
           ))
         }

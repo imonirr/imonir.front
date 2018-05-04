@@ -30,7 +30,7 @@ class WhatIDo extends PureComponent {
   render() {
     return (
       <Container>
-        <Row wrap="wrap">
+        <Row wrap="wrap" mb={4}>
           <Column2 order={2}>
             <p>
               Hi there.
