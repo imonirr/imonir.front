@@ -79,7 +79,6 @@ export const PROJECTS = [
   },
 
 
-
   {
     key: autoKey(),
     date: new Date('2011-10-26'),
@@ -148,19 +147,6 @@ export const PROJECTS = [
   },
 
 
-  {
-    key: autoKey(),
-    date: new Date('2012-07-20'),
-    title: {
-      text: 'Vitamin Blue',
-      link: 'http://vitaminblue.com/',
-    },
-    skills: ['Joomla', 'Html', 'CSS', 'Virtuemart', 'Joomla Template'],
-    image: '',
-    description: 'Vitaminblue Surf equipments E-Commerce website',
-  },
-
-
-].sort((a, b) => (a.date < b.date));
+].sort((a, b) => -(a.date - b.date));
 
 /* eslint-enable import/prefer-default-export */

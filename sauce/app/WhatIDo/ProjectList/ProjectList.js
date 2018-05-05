@@ -1,8 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 
 import { StyledLink } from 'styled/StyledLink';
+// import NiceDate from 'components/NiceDate/NiceDate';
 import {
   Column,
   Column2,
@@ -11,6 +13,7 @@ import {
   Pic,
   Project,
   ProjectTitle,
+  When,
 } from './ProjectList.styled';
 // const pic = require('./images/pic.jpg');
 
@@ -33,6 +36,9 @@ class ProjectList extends PureComponent {
                 <ProjectTitle>
                   <StyledLink href={project.title.link}>{project.title.text}</StyledLink>
                 </ProjectTitle>
+                <When>
+                  {moment(project.date).format('LL')}
+                </When>
                 {
                   project.skills.map(skill => (
                     <em key={skill.toLowerCase()}>{skill} </em>
