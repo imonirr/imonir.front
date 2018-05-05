@@ -14,8 +14,11 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>Moniruzzaman Monir</title>
+          {/*
           <link rel="stylesheet" href="///cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" />
           <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+          */}
+          <link rel="stylesheet" href="/_next/static/style.css" />
           {this.props.styleTags}
         </Head>
         <body>

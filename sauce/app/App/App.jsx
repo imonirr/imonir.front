@@ -2,8 +2,8 @@ import React from 'react';
 // import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 // import { Provider } from 'react-redux';
-// import normalize from 'normalize.css';
-// import milligram from 'milligram';
+import normalize from 'normalize.css';
+import milligram from 'milligram';
 
 // import create from 'redux/create';
 import theme from 'ui/theme';

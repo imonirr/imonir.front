@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const { PATHS, HOST, PORT, API_URL, API_URL_BACK} = require('./constants');
+const { PATHS, HOST, PORT, API_URL, API_URL_BACK } = require('./constants');
 
 exports.setGlobalVariables = (target, override = {}) => ({
   plugins: [
@@ -176,6 +176,19 @@ exports.loadSass = ({ include, exclude } = {}) =>
       ],
     },
   });
+
+// exports.loadCSSNext = ({ include, exclude } = {}) => ({
+//   module: {
+//     rules: [
+//       {
+//         test: /\.css$/,
+//         include,
+//         exclude,
+//         loader: 'css-loader',
+//       },
+//     ],
+//   },
+// });
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
