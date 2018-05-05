@@ -15,6 +15,7 @@ const Button = styled.button`
   border: none;
   margin: 0;
   padding: 0 2rem;
+  line-height: 1rem;
   height: auto;
   &:hover {
     color: ${props => props.theme.colors.secondary};
@@ -58,7 +59,7 @@ class Header extends PureComponent {
                 <Button onClick={this.viewEmail}>View Email</Button>
               )
             }
-            <span> +88 01716108114 </span>
+            <span>  +88 01716108114 </span>
           </ContactInfo>
         </Row>
         <Row justify="flex-start">

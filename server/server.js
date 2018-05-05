@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 // const routes = require('./routes')
 const next = require('next');
 const { parse } = require('url');
@@ -16,6 +17,7 @@ const routes = getRoutes();
 
 app.prepare().then(() => {
   const server = express();
+  server.use(compression());
 
   // server.get('/note/:slug', (req, res) => {
   //   const params = { slug: req.params.slug };
@@ -31,7 +33,7 @@ app.prepare().then(() => {
   });
 
   server.get('/writer/:id', (req, res) => {
-    const params = { id: req.params.id};
+    const params = { id: req.params.id };
     return app.render(req, res, '/writer', params);
   });
 
