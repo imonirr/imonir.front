@@ -14,12 +14,11 @@ import Header from './Header/Header';
 // import Main from './Main/Main';
 
 
+// # #222629;
 const AppBody = styled.div`
   font-family: "Trebuchet MS";
-  color: #3e3e3e;
   position: relative;
   padding: 1rem 1.6rem;
-  background-color: ${props => props.theme.colors.background};
 `;
 
 

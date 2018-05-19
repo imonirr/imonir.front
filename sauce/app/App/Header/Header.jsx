@@ -22,6 +22,9 @@ const Button = styled.button`
     background-color: transparent;
   };
 `;
+const HeaderWrap = styled(Container)`
+  margin: 0 auto 2rem auto;
+`;
 
 
 class Header extends PureComponent {
@@ -43,7 +46,7 @@ class Header extends PureComponent {
     const mail = 'moniruzzaman.monir@live.com';
 
     return (
-      <Container>
+      <HeaderWrap>
         <Row justify="flex-end">
           <SocialNav />
         </Row>
@@ -65,7 +68,7 @@ class Header extends PureComponent {
         <Row justify="flex-start">
           <Nav />
         </Row>
-      </Container>
+      </HeaderWrap>
     );
   }
 }

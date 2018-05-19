@@ -33,8 +33,8 @@ const theme = {
     // quaternary: '#d1d1d1',
     // quinary: '#e1e1e1',
 
-    primary: '#999999', //  '#9b4dca',
-    secondary: '#777777',
+    primary: '#333', //  '#999999', //  '#9b4dca',
+    secondary: '#555555', //  '#777777',
     tertiary: '#555555',
     quaternary: '#333333',
     quinary: '#111111',

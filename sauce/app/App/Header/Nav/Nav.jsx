@@ -43,6 +43,7 @@ class Nav extends PureComponent {
           </Link>
         </NavItem>
 
+        {/*
         <NavSeperator />
 
         <NavItem>
@@ -53,7 +54,7 @@ class Nav extends PureComponent {
             <Navigation>What I did</Navigation>
           </Link>
         </NavItem>
-
+        */}
 
         {
           this.props.authorized && (

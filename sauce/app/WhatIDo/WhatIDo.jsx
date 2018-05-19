@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import styled from 'styled-components';
 
 import Container from 'styled/Container';
 import {
@@ -18,12 +18,19 @@ import {
 } from './WhatIDo.constants';
 
 
+const EmText = styled.em`
+  color: #3d3d3d;
+  font-weight: bold;
+  text-decoration: underline;
+`;
+
+
 class WhatIDo extends PureComponent {
   constructor(props) {
     super(props);
     const todate = new Date();
     this.state = {
-      years: todate.getFullYear() - 2011,
+      years: todate.getFullYear() - 2011 - 1,
       projects: PROJECTS,
     };
   }
@@ -36,13 +43,19 @@ class WhatIDo extends PureComponent {
               Hi there.
             </p>
 
-            <p>
-              I am <strong>Moniuzzaman Monir.</strong><br />
-              A full stack Developer.<br />
-              I have been working for {this.state.years}+ years.<br /><br />
-              <em>Favorite stack: </em>
-              Frontend(React), Backend(Django/Nodejs) to Deployment with Docker containers.
-            </p>
+            <div>
+              <p>
+                I am <strong>Moniuzzaman Monir.</strong><br />
+                A full stack Developer.<br />
+                I have been working for {this.state.years}+ years.<br /><br />
+              </p>
+              <h5>Favorite stack</h5>
+              <p>
+                <EmText>Frontend</EmText>: React, Redux, Webpack + goodies(Eslint, Nextjs ...).<br />
+                <EmText>Backend</EmText>: Django/Nodejs.<br />
+                <EmText>My SwissArmyKnive</EmText>: Docker, Vim, Linux, Gitlab/Github ...
+              </p>
+            </div>
           </Column2>
           <Column2>
             <Pic alt="" src="/static/images/pic.jpg" />
