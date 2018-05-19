@@ -18,6 +18,7 @@ import {
   Project,
   ProjectTitle,
   When,
+  DownArrow,
 } from './ProjectList.styled';
 // const pic = require('./images/pic.jpg');
 
@@ -78,9 +79,14 @@ class ProjectList extends PureComponent {
             </Project>
           ))
         }
-        <Row justify="center">
-          <ClearButton onClick={this.viewOlderProjects}>Not So Recent work</ClearButton>
-        </Row>
+        {
+          !this.state.showNotSoRecent && (
+            <Row justify="center" my={4}>
+              <ClearButton onClick={this.viewOlderProjects}>Not So Recent work</ClearButton>
+              <DownArrow onClick={this.viewOlderProjects} alt="See More" src="/static/images/down_arrow.png" />
+            </Row>
+          )
+        }
       </Fragment>
 
     );

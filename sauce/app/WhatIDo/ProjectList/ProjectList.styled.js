@@ -19,3 +19,9 @@ export const When = styled.p`
 export const ProjectTitle = styled.h4`
   margin-bottom: 0.2em;
 `;
+export const DownArrow = styled.img`
+  width: 3.2rem;
+  height: 3.2rem;
+  align-self: center;
+  cursor: pointer;
+`;
