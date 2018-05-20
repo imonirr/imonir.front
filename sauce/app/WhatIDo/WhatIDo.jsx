@@ -46,14 +46,14 @@ class WhatIDo extends PureComponent {
             <div>
               <p>
                 I am <strong>Moniuzzaman Monir.</strong><br />
-                A full stack Developer.<br />
+                Fullstack Developer.<br />
                 I have been working for {this.state.years}+ years.<br /><br />
               </p>
               <h5>Favorite stack</h5>
               <p>
                 <EmText>Frontend</EmText>: React, Redux, Webpack + goodies(Eslint, Nextjs ...).<br />
                 <EmText>Backend</EmText>: Django/Nodejs.<br />
-                <EmText>My SwissArmyKnive</EmText>: Docker, Vim, Linux, Gitlab/Github ...
+                <EmText>My SwissArmyKnife</EmText>: Docker, Vim, Linux, Gitlab/Github ...
               </p>
             </div>
           </Column2>

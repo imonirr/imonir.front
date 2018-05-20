@@ -26,7 +26,7 @@ export const PROJECTS = [
       link: 'https://www.shikhai.live',
     },
     skills: ['React', 'Webpack', 'Fabricjs', 'Strophe', 'Jitsi'],
-    image: '',
+    image: '/static/images/portfolio/shikhai.jpg',
     description: 'Live, Interactive Tutoring/Mentoring Web app ',
   },
   {
