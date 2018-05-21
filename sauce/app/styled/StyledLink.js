@@ -12,35 +12,28 @@ import styled from 'styled-components';
 //   }
 // `;
 
+// text-decoration: none;
+// display: inline-block;
+// border-bottom: 1px solid ${props => props.theme.colors.background};
 export const StyledLink = styled.a`
   color: ${props => props.theme.colors.primary};
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1px solid ${props => props.theme.colors.background};
+  font-size: 1.8rem;
+  font-weight: bold;
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.active};
     border-bottom: 1px solid ${props => props.theme.colors.primary};
   };
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.active};
     border-bottom: 1px solid ${props => props.theme.colors.primary};
   };
 `;
+  // &:visited {
+  //   color: ${props => props.theme.colors.inactive};
+  // }
 
 
-export const Navigation = styled.a`
-  color: ${props => props.theme.colors.primary};
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1px solid ${props => props.theme.colors.background};
-  &:focus {
-    color: ${props => props.theme.colors.primary};
-    border-bottom: 1px solid ${props => props.theme.colors.primary};
-  };
-  &:hover {
-    color: ${props => props.theme.colors.primary};
-    border-bottom: 1px solid ${props => props.theme.colors.primary};
-  };
+export const Navigation = styled(StyledLink)`
 `;
 
 // export default StyledLink;

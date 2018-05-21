@@ -1,8 +1,10 @@
 body {
   background: #fff; 
-  color: #000;
+}
+strong {
+/*
+ * active
+ * */
+  color: #111;
 }
 
-a {
-  color: #111111;
-}

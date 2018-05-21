@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 import { Row } from 'styled/Responsive';
+import {
+  ClearButton,
+} from 'styled/Elements';
 import Container from 'styled/Container';
 import Nav from './Nav/Nav';
 import SocialNav from './SocialNav/SocialNav';
@@ -9,19 +12,20 @@ import SocialNav from './SocialNav/SocialNav';
 const ContactInfo = styled.p`
   font-size: 1.2rem;
 `;
-const Button = styled.button`
-  color: ${props => props.theme.colors.primary};
-  background-color: transparent;
-  border: none;
+const Button = styled(ClearButton)`
   margin: 0;
-  padding: 0 2rem;
-  line-height: 1rem;
+  padding: 0 2em;
+  line-height: 1em;
   height: auto;
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
-    background-color: transparent;
-  };
+  font-size: 1.2rem;
 `;
+
+  // &:hover {
+  //   color: ${props => props.theme.colors.secondary};
+  //   background-color: transparent;
+  // };
+  // background-color: transparent;
+  // border: none;
 const HeaderWrap = styled(Container)`
   margin: 0 auto 2rem auto;
 `;

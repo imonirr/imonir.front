@@ -55,15 +55,15 @@ export const ClearButton = Button.extend`
   }};
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.active};
     ${transparentBack};
   };
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.active};
     ${transparentBack};
   }
-  &:hover:disabled {
-    color: #cecece;
+  &:disabled {
+    color: ${props => props.theme.colors.inactive};
     ${transparentBack};
   };
 `;

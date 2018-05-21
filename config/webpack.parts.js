@@ -52,7 +52,7 @@ exports.resolveProjectDependencies = {
       Assets: PATHS.Assets,
       Styles: PATHS.Styles,
     },
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: ['.js', '.jsx', '.scss', '.css'],
   },
 };
 

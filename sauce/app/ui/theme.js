@@ -24,20 +24,19 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 
 const theme = {
   colors: {
-    background: '#fff',
-    initial: '#3A4145',
+    background: '#FFF',
+    text: '#333',
+// '#e25a5e',
+    primary: '#001f3f', //  '#9b4dca',
 
-    // primary: '#e25a5e', //  '#9b4dca',
+
     // secondary: '#606c76',
     // tertiary: '#f4f5f6',
     // quaternary: '#d1d1d1',
     // quinary: '#e1e1e1',
 
-    primary: '#333', //  '#999999', //  '#9b4dca',
-    secondary: '#555555', //  '#777777',
-    tertiary: '#555555',
-    quaternary: '#333333',
-    quinary: '#111111',
+    active: '#111',
+    inactive: '#CECECE', // #CECECE
   },
   xy: {
     navHeight: '60px',

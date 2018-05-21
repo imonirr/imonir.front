@@ -19,9 +19,8 @@ import {
 
 
 const EmText = styled.em`
-  color: #3d3d3d;
+  color: ${props => props.theme.colors.active};
   font-weight: bold;
-  text-decoration: underline;
 `;
 
 
@@ -51,7 +50,8 @@ class WhatIDo extends PureComponent {
               </p>
               <h5>Favorite stack</h5>
               <p>
-                <EmText>Frontend</EmText>: React, Redux, Webpack + goodies(Eslint, Nextjs ...).<br />
+                <EmText>Frontend</EmText>:
+                <span> React, Redux, Webpack + goodies(Eslint, Nextjs ...).</span><br />
                 <EmText>Backend</EmText>: Django/Nodejs.<br />
                 <EmText>My SwissArmyKnife</EmText>: Docker, Vim, Linux, Gitlab/Github ...
               </p>

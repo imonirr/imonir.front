@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import theme from 'ui/theme';
+// import theme from 'ui/theme';
 
 const Button = styled.button`
-  background-color: ${theme.colors.primary};
-  border: .1rem solid ${theme.colors.primary};
+  color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.background};
+  border: ${props => props.theme.colors.background};
   border-radius: .4rem;
-  color: ${theme.colors.initial};
   cursor: pointer;
   display: inline-block;
   font-size: .7rem;
@@ -20,9 +20,9 @@ const Button = styled.button`
 
   &:focus,
   &:hover {
-    background-color: ${theme.colors.secondary};
-    border-color: ${theme.colors.secondary};
-    color: ${theme.colors.initial};
+    color: ${props => props.theme.colors.active};
+    background-color: ${props => props.theme.colors.background};
+    border-color: ${props => props.theme.colors.background};
     outline: 0;
   }
   &[disabled] {
@@ -31,8 +31,8 @@ const Button = styled.button`
 
     &:focus,
     &:hover {
-      background-color: ${theme.colors.primary};
-      border-color: ${theme.colors.primary};
+      background-color: ${props => props.theme.colors.background};
+      border-color: ${props => props.theme.colors.background};
     }
   }
 `;

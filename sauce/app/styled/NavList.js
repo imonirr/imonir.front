@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 // import { Navigation } from 'styled/StyledLink';
 
-// export const RootLink = styled(Link)`
-//   color: ${props => props.theme.colors.quinary};
-//   &:hover, &:focus {
-//     color: ${props => props.theme.colors.quinary};
-//     border-bottom: 1px solid ${props => props.theme.colors.background};
-//   }
-// `;
 
 export const NavList = styled.ul`
   list-style: none;
@@ -26,7 +19,7 @@ export const NavItem = styled.li`
 
 
 export const Navigation = styled.a`
-  color: ${props => (props.isActive ? props.theme.colors.primary : props.theme.colors.quinary)};
+  color: ${props => (props.isActive ? props.theme.colors.active : props.theme.colors.primary)};
   cursor: pointer;
   &:hover: {
     text-decoration: underline;

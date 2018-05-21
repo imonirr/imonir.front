@@ -16,6 +16,8 @@ import Header from './Header/Header';
 
 // # #222629;
 const AppBody = styled.div`
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
   font-family: "Trebuchet MS";
   position: relative;
   padding: 1rem 1.6rem;
