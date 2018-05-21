@@ -15,7 +15,7 @@ export const PROJECTS = [
       link: 'https://www.ringid.com',
     },
     skills: ['Angularjs', 'Gruntjs'],
-    image: '/static/images/portfolio/ringid.png',
+    image: '/static/images/portfolio/ringid_x300.jpg',
     description: 'Social Network website with chat, pages, news and entertainment channels',
   },
   {
@@ -26,7 +26,7 @@ export const PROJECTS = [
       link: 'https://www.shikhai.live',
     },
     skills: ['React', 'Webpack', 'Fabricjs', 'Strophe', 'Jitsi'],
-    image: '/static/images/portfolio/shikhai.jpg',
+    image: '/static/images/portfolio/shikhai_x300.jpg',
     description: 'Live, Interactive Tutoring/Mentoring Web app ',
   },
   {
@@ -37,7 +37,7 @@ export const PROJECTS = [
       link: 'https://www.crosspointdentistry.com/',
     },
     skills: ['Html', 'Css', 'PSD->HTML', 'JOOMLA'],
-    image: '/static/images/portfolio/crosspoint-dentistry.jpg',
+    image: '/static/images/portfolio/crosspoint-dentistry_x300.jpg',
     description: 'Full website development using Joomla from Provided PSD.',
   },
   {
@@ -47,7 +47,7 @@ export const PROJECTS = [
       text: 'Crank Text',
       link: 'http://cranktexts.com/',
     },
-    image: '/static/images/portfolio/cranktexts.jpg',
+    image: '/static/images/portfolio/cranktexts_x300.jpg',
     skills: ['html', 'css', 'jquery'],
     description: `Crank Text submission form and preview templates work.
     used html and css along with jQuery Sortable Plugin`,
@@ -87,7 +87,7 @@ export const PROJECTS = [
       link: 'http://www.idgbuffalo.com/',
     },
     skills: ['Joomla', 'Html', 'CSS'],
-    image: '/static/images/portfolio/idgbuffalo.jpg',
+    image: '/static/images/portfolio/idgbuffalo_x300.jpg',
     description: 'Marketing firm website',
   },
   {
@@ -98,7 +98,7 @@ export const PROJECTS = [
       link: '',
     },
     skills: ['Joomla', 'Html', 'CSS'],
-    image: '/static/images/portfolio/babysitter.jpg',
+    image: '/static/images/portfolio/babysitter_x300.jpg',
     description: 'Babysitter marketplace with member(babysitters) management',
   },
   {
@@ -109,7 +109,7 @@ export const PROJECTS = [
       link: 'https://www.buffspine.com/',
     },
     skills: ['Joomla', 'Html', 'CSS', 'Joomla Template'],
-    image: '/static/images/portfolio/buffspine.jpg',
+    image: '/static/images/portfolio/buffspine_x300.jpg',
     description: 'Buffspine Institute Website',
   },
   {
@@ -120,7 +120,7 @@ export const PROJECTS = [
       link: 'https://www.buffalocitymission.org/',
     },
     skills: ['Joomla', 'Joomla Template', 'Html', 'CSS'],
-    image: '/static/images/portfolio/citymission.png',
+    image: '/static/images/portfolio/citymission_x300.jpg',
     description: 'Buffalo City Mission Website with Donation capabilities',
   },
   {
@@ -142,7 +142,7 @@ export const PROJECTS = [
       link: 'https://thekensingtonwhiteplains.com/',
     },
     skills: ['Joomla', 'Html', 'CSS', 'Joomla Template'],
-    image: '/static/images/portfolio/kensington.png',
+    image: '/static/images/portfolio/kensington_x300.jpg',
     description: '',
   },
 
