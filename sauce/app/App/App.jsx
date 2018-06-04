@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 // import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 // import { Provider } from 'react-redux';
@@ -6,17 +9,18 @@ import normalize from 'normalize.css';
 import milligram from 'milligram';
 
 // import create from 'redux/create';
-import { media } from 'styled/utils';
 import theme from 'ui/theme';
 import {
   initGA,
   logPageView,
 } from 'utils/analytics';
+import {
+  setToken,
+} from 'redux/modules/auth';
 
 import './App.css';
 
 import Header from './Header/Header';
-// import Main from './Main/Main';
 
 const AppBody = styled.div`
   position: relative;
@@ -24,15 +28,6 @@ const AppBody = styled.div`
   background: ${props => props.theme.colors.background};
   padding: 1em 1.6em;
 `;
-// ${media.handheld`
-//   font-size: 1.6rem;
-// `};
-
-
-  // font-size: 5rem;
-
-
-// const store = create();
 
 class App extends PureComponent {
   componentDidMount() {
@@ -42,6 +37,15 @@ class App extends PureComponent {
         window.GA_INITIALIZED = true;
       }
       logPageView();
+    }
+
+    this.checkLoginState();
+  }
+
+  checkLoginState() {
+    const savedToken = sessionStorage.getItem('mj-token');
+    if (savedToken) {
+      this.props.setToken(savedToken);
     }
   }
 
@@ -56,5 +60,12 @@ class App extends PureComponent {
     );
   }
 }
+App.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
 
-export default App;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    setToken,
+  }, dispatch);
+export default connect(null, mapDispatchToProps)(App);

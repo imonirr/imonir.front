@@ -20,6 +20,7 @@ if (process.browser) {
 
 // action types
 const AUTHORIZE = 'auth/authorize';
+const SET_TOKEN = 'auth/setToken';
 const LOGIN = 'auth/login';
 const LOGIN_SUCCESS = 'auth/login/success';
 const LOGIN_FAIL = 'auth/login/fail';
@@ -38,8 +39,20 @@ export const login = accessToken =>
       },
     },
   });
+export const setToken = accessToken =>
+  ({
+    type: SET_TOKEN,
+    payload: {
+      accessToken,
+    },
+  });
 // action handlers
 const ACTION_HANDLERS = {
+  [SET_TOKEN]: (prevState, { payload }) =>
+    ({
+      ...prevState,
+      token: payload.accessToken,
+    }),
   [AUTHORIZE]: state =>
     ({
       ...state,
