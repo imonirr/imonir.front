@@ -5,8 +5,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 
-import { Navigation } from 'styled/StyledLink';
-// import Button from 'styled/Button';
+import {
+  ClearButton,
+  Anchor,
+} from 'styled/Elements';
 
 import {
   patchNote,
@@ -44,13 +46,13 @@ class NoteControls extends Component {
     return (
       <Controls>
         { !this.props.published &&
-          (<button onClick={this.publishNote}>Publish</button>)
+          (<ClearButton onClick={this.publishNote}>Publish</ClearButton>)
         }
         { this.props.published &&
-          (<button onClick={this.unpublishNote}>Unpublish</button>)
+          (<ClearButton onClick={this.unpublishNote}>Unpublish</ClearButton>)
         }
 
-        <Link href={link}><a>Edit</a></Link>
+        <Link href={link}><Anchor>Edit</Anchor></Link>
       </Controls>
     );
   }

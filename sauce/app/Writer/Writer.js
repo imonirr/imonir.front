@@ -5,6 +5,9 @@ import Link from 'next/link';
 
 import { Column, Row } from 'styled/Responsive';
 import Container from 'styled/Container';
+import {
+  Anchor,
+} from 'styled/Elements';
 // import { Navigation } from 'styled/StyledLink';
 
 import NoteList from 'components/NoteList/NoteList';
@@ -29,7 +32,7 @@ class Writer extends Component {
           !this.props.id && (
             <Container>
               <Row>
-                <Link href="/writer/new"><a>New</a></Link>
+                <Link href="/writer/new"><Anchor>New</Anchor></Link>
               </Row>
               <NoteList />
             </Container>
@@ -43,7 +46,7 @@ class Writer extends Component {
           render={() => (
             <Container>
               <Row>
-                <Link href="/writer/new"><a>New</a></Link>
+                <Link href="/writer/new"><Anchor>New</Anchor></Link>
               </Row>
               <NoteList />
             </Container>

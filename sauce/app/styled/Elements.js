@@ -1,11 +1,21 @@
 import styled, { css } from 'styled-components';
 import { media } from 'styled/utils';
 
+const ButtonFontSize = css`
+  font-size: 1.6rem;
+`;
+const transparentBack = css`
+  background-color: transparent;
+`;
+
+
 export const Button = styled.button`
   background-color: #F20018;
   border: 0.1em solid red;
   margin: 0.2em 0;
   padding: 0 1.4rem;
+
+  ${ButtonFontSize};
 `;
 
 export const SmallButton = Button.extend`
@@ -13,15 +23,8 @@ export const SmallButton = Button.extend`
   padding: 0 .5rem;
   margin: .5rem;
   line-height: 2.6rem;
-
-  ${media.handheld`
-    font-size: 1rem;
-  `};
 `;
 
-const transparentBack = css`
-  background-color: transparent;
-`;
 
 // ${props => props.theme.bigTextColor};
 export const ClearButton = Button.extend`
@@ -29,9 +32,6 @@ export const ClearButton = Button.extend`
   margin: 0;
   ${transparentBack};
 
-  ${media.handheld`
-    font-size: 1.8rem;
-  `};
 
   border: ${(props) => {
     if (props.bordered) {
@@ -56,6 +56,7 @@ export const ClearButton = Button.extend`
 `;
 
 export const Anchor = styled.a`
+  cursor: pointer;
   color: ${props => props.theme.colors.primary};
   font-weight: bold;
   &:focus {
@@ -66,8 +67,4 @@ export const Anchor = styled.a`
     color: ${props => props.theme.colors.active};
     border-bottom: 1px solid ${props => props.theme.colors.primary};
   };
-
-  ${media.handheld`
-    font-size: 1.8rem;
-  `};
 `;
