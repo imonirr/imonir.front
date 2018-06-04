@@ -6,6 +6,7 @@ import normalize from 'normalize.css';
 import milligram from 'milligram';
 
 // import create from 'redux/create';
+import { media } from 'styled/utils';
 import theme from 'ui/theme';
 import {
   initGA,
@@ -18,12 +19,17 @@ import Header from './Header/Header';
 // import Main from './Main/Main';
 
 const AppBody = styled.div`
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
-  font-family: "Trebuchet MS";
   position: relative;
-  padding: 1rem 1.6rem;
+  color: ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background};
+  padding: 1em 1.6em;
 `;
+// ${media.handheld`
+//   font-size: 1.6rem;
+// `};
+
+
+  // font-size: 5rem;
 
 
 // const store = create();

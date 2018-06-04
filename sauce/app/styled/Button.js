@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styled/utils';
 // import theme from 'ui/theme';
 
 const Button = styled.button`
@@ -8,7 +9,6 @@ const Button = styled.button`
   border-radius: .4rem;
   cursor: pointer;
   display: inline-block;
-  font-size: .7rem;
   font-weight: 600;
   height: 1.8rem;
   letter-spacing: .1rem;
@@ -17,6 +17,10 @@ const Button = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+
+  ${media.handheld`
+    font-size: .7rem;
+  `};
 
   &:focus,
   &:hover {

@@ -52,7 +52,7 @@ class WhatIDo extends PureComponent {
               <p>
                 <EmText>Frontend</EmText>:
                 <span> React, Redux, Webpack + goodies(Eslint, Nextjs ...).</span><br />
-                <EmText>Backend</EmText>: Django/Nodejs.<br />
+                <EmText>Backend</EmText>: Django, Nodejs.<br />
                 <EmText>My SwissArmyKnife</EmText>: Docker, Vim, Linux, Gitlab/Github ...
               </p>
             </div>

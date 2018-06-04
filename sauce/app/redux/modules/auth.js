@@ -27,7 +27,6 @@ const LOGIN_FAIL = 'auth/login/fail';
 
 export const login = accessToken =>
   ({
-
     [API_REQUEST]: {
       types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
       url: `${API}auth/facebook`,

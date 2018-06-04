@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react';
 
 import NavSeperator from 'components/NavSeperator/NavSeperator';
 import {
-  NavList,
   NavItem,
 } from 'styled/NavList';
+
 import {
-  StyledLink,
-} from 'styled/StyledLink';
+  SocialAnchor,
+  SocialNavs,
+} from './SocialNav.styled';
 
 
 class SocialNav extends PureComponent {
@@ -22,30 +23,30 @@ class SocialNav extends PureComponent {
   }
   render() {
     return (
-      <NavList>
+      <SocialNavs>
         <NavItem>
-          <StyledLink
+          <SocialAnchor
             href={this._links.twitter}
-          >twitter</StyledLink>
+          >twitter</SocialAnchor>
 
         </NavItem>
 
         <NavSeperator />
 
         <NavItem>
-          <StyledLink
+          <SocialAnchor
             href={this._links.github}
-          >github</StyledLink>
+          >github</SocialAnchor>
         </NavItem>
 
         <NavSeperator />
 
         <NavItem>
-          <StyledLink
+          <SocialAnchor
             href={this._links.stackoverflow}
-          >stackoverflow</StyledLink>
+          >stackoverflow</SocialAnchor>
         </NavItem>
-      </NavList>
+      </SocialNavs>
     );
   }
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styled/utils';
 import {
   Row,
 } from 'styled/Responsive';
@@ -13,8 +14,11 @@ export const Project = styled(Row)`
 `;
 export const When = styled.p`
   margin-bottom: 0.5em;
-  font-size: 1.4rem;
   color: #555;
+
+  ${media.handheld`
+    font-size: 1.4rem;
+  `};
 `;
 export const ProjectTitle = styled.h4`
   margin-bottom: 0.2em;

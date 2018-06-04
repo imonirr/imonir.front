@@ -1,22 +1,43 @@
-import styled from 'styled-components';
-import { Box } from 'grid-styled';
+import styled, { css } from 'styled-components';
 
 import { Row } from 'styled/Responsive';
+import {
+  ClearButton,
+  Anchor,
+} from 'styled/Elements';
+import { media } from 'styled/utils';
 import Container from 'styled/Container';
 
-export const SocialRow = styled(Row)`
-  aligh-items: flex-end;
+
+const ContactFontSize = css`
+  font-size: 1.2rem;
 `;
 
-export const NavRow = styled(Row)`
-  align-items: flex-start;
+export const ContactRow = styled(Row)`
+  ${ContactFontSize};
+  margin-bottom: 4em;
+`
+
+export const Button = styled(ClearButton)`
+  margin: 0;
+  padding: 0 2em;
+  line-height: 1em;
+  height: auto;
+
+  ${ContactFontSize};
 `;
-
-  // max-width: 1280px;
-  // margin: 0 auto;
-  // padding: 40px 0px 10px 0px;
-
-export const SocialLinks = styled.ul`
-  list-style: none;
-  margin-left: auto;
+export const Email = styled(Anchor)`
+  ${ContactFontSize};
+`;
+export const Phone = styled.span`
+  ${ContactFontSize};
+`;
+  // &:hover {
+  //   color: ${props => props.theme.colors.secondary};
+  //   background-color: transparent;
+  // };
+  // background-color: transparent;
+  // border: none;
+export const HeaderWrap = styled(Container)`
+  margin: 0 auto 2rem auto;
 `;

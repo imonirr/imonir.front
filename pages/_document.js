@@ -13,6 +13,9 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <meta charset="utf-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>Moniruzzaman Monir</title>
 
           <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicon/apple-icon-57x57.png" />

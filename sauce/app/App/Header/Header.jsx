@@ -1,34 +1,16 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
 
 import { Row } from 'styled/Responsive';
-import {
-  ClearButton,
-} from 'styled/Elements';
-import Container from 'styled/Container';
 import Nav from './Nav/Nav';
 import SocialNav from './SocialNav/SocialNav';
 
-const ContactInfo = styled.p`
-  font-size: 1.2rem;
-`;
-const Button = styled(ClearButton)`
-  margin: 0;
-  padding: 0 2em;
-  line-height: 1em;
-  height: auto;
-  font-size: 1.2rem;
-`;
-
-  // &:hover {
-  //   color: ${props => props.theme.colors.secondary};
-  //   background-color: transparent;
-  // };
-  // background-color: transparent;
-  // border: none;
-const HeaderWrap = styled(Container)`
-  margin: 0 auto 2rem auto;
-`;
+import {
+  Email,
+  Phone,
+  Button,
+  HeaderWrap,
+  ContactRow,
+} from './Header.styled';
 
 
 class Header extends PureComponent {
@@ -48,17 +30,18 @@ class Header extends PureComponent {
   }
   render() {
     const mail = 'moniruzzaman.monir@live.com';
+    const mailtoHref = `mailto:${mail}`;
 
     return (
       <HeaderWrap>
         <Row justify="flex-end">
           <SocialNav />
         </Row>
-        <Row justify="flex-end">
-          <ContactInfo>
+        <ContactRow justify="flex-end">
+          <div>
             {
               this.state.viewemail && (
-                mail
+                <Email href={mailtoHref}>{mail}</Email>
               )
             }
             {
@@ -66,9 +49,9 @@ class Header extends PureComponent {
                 <Button onClick={this.viewEmail}>View Email</Button>
               )
             }
-            <span>  +88 01716108114 </span>
-          </ContactInfo>
-        </Row>
+            <Phone>  +88 01716108114 </Phone>
+          </div>
+        </ContactRow>
         <Row justify="flex-start">
           <Nav />
         </Row>
