@@ -1,4 +1,4 @@
-export const FACEBOOK_APPID = '305901179897919'; // dostokhan AppTest app
+export const FACEBOOK_APPID = '476512526138466'; // dostokhan imonir.com app
 // export const FACEBOOK_APPID = '534974206861491'; // imonir.dev
 //
 export const GA_TRACKING_ID = 'UA-119671429-1';
