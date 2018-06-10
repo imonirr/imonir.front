@@ -13,9 +13,11 @@ const PATHS = {
 
 };
 
+const PROTOCOL = 'https://';
+
 const API_URL = {
-  development: 'http://local.api.imonir.com/',
-  production: 'http://api.imonir.com/',
+  development: `${PROTOCOL}local.api.imonir.com/`,
+  production: `${PROTOCOL}api.imonir.com/`,
 };
 
 const API_URL_BACK = {
