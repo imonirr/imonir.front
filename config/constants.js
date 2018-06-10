@@ -14,8 +14,8 @@ const PATHS = {
 };
 
 const API_URL = {
-  development: 'http://back.imonir.com/',
-  production: 'http://back.imonir.com/',
+  development: 'http://local.api.imonir.com/',
+  production: 'http://api.imonir.com/',
 };
 
 const API_URL_BACK = {

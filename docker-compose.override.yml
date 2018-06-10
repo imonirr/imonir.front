@@ -3,7 +3,7 @@ services:
   frontend:
     environment:
       - "NODE_ENV=development"
-      - "VIRTUAL_HOST=local.imonir.com"
+      - "VIRTUAL_HOST=local.www.imonir.com"
       # - "LETSENCRYPT_HOST=local.imonir.com"
       # - "LETSENCRYPT_EMAIL=imonir.dev@gmail.com"
       - "VIRTUAL_PORT=80"
