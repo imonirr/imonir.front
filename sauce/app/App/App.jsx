@@ -26,7 +26,6 @@ const AppBody = styled.div`
   position: relative;
   color: ${props => props.theme.colors.text};
   background: ${props => props.theme.colors.background};
-  padding: 1em 1.6em;
 `;
 
 class App extends PureComponent {

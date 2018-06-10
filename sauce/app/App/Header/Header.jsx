@@ -10,6 +10,7 @@ import {
   Button,
   HeaderWrap,
   ContactRow,
+  HeaderTag,
 } from './Header.styled';
 
 
@@ -33,29 +34,31 @@ class Header extends PureComponent {
     const mailtoHref = `mailto:${mail}`;
 
     return (
-      <HeaderWrap>
-        <Row justify="flex-end">
-          <SocialNav />
-        </Row>
-        <ContactRow justify="flex-end">
-          <div>
-            {
-              this.state.viewemail && (
-                <Email href={mailtoHref}>{mail}</Email>
-              )
-            }
-            {
-              !this.state.viewemail && (
-                <Button onClick={this.viewEmail}>View Email</Button>
-              )
-            }
-            <Phone>  +88 01716108114 </Phone>
-          </div>
-        </ContactRow>
-        <Row justify="flex-start">
-          <Nav />
-        </Row>
-      </HeaderWrap>
+      <HeaderTag>
+        <HeaderWrap>
+          <Row justify="flex-end">
+            <SocialNav />
+          </Row>
+          <ContactRow justify="flex-end">
+            <div>
+              {
+                this.state.viewemail && (
+                  <Email href={mailtoHref}>{mail}</Email>
+                )
+              }
+              {
+                !this.state.viewemail && (
+                  <Button onClick={this.viewEmail}>View Email</Button>
+                )
+              }
+              <Phone>  +88 01716108114 </Phone>
+            </div>
+          </ContactRow>
+          <Row justify="flex-start">
+            <Nav />
+          </Row>
+        </HeaderWrap>
+      </HeaderTag>
     );
   }
 }

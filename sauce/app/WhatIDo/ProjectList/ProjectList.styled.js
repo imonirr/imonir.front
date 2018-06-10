@@ -11,6 +11,7 @@ export const Pic = styled.img`
 `;
 export const Project = styled(Row)`
   border-bottom: 1px dotted #cecece;
+  box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,.15);
 `;
 export const When = styled.p`
   margin-bottom: 0.5em;

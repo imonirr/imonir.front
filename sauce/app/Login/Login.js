@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import Router from 'next/router'
+import Router from 'next/router';
 
 import FacebookLogin from 'react-facebook-login';
 import {
@@ -12,14 +12,23 @@ import {
   isAuthenticated,
   login,
 } from 'redux/modules/auth';
+import Loader from 'components/Loader/Loader';
 
 
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      mounted: false,
+    };
     this.responseFacebook = this.responseFacebook.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
+    this.setState({
+      mounted: true,
+    });
+
     if (this.props.authenticated) {
       Router.push('/');
     }
@@ -33,6 +42,10 @@ class Login extends Component {
     }
   }
   render() {
+    if (!this.state.mounted) {
+      return <Loader />;
+    }
+
     return (
       <FacebookLogin
         appId={FACEBOOK_APPID}

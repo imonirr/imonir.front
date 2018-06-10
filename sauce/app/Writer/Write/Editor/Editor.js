@@ -1,60 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Controlled as CodeMirror } from 'react-codemirror2';
+import styled from 'styled-components';
 
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/monokai.css');
 
-let CodeMirror;
+const TextArea = styled.textarea`
+  min-height: 40rem;
+  background-color: ${props => props.theme.colors.background};
+`;
 
 class Editor extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      mounted: false,
-    };
-  }
-  componentDidMount() {
-    CodeMirror = require('react-codemirror2');
-    require('codemirror/mode/markdown/markdown');
-    this.setState({
-      mounted: true,
-    });
-  }
   render() {
-    if (!this.state.mounted) {
-      return <p>Loading...</p>;
-    }
-
     return (
-      <Fragment>
-        {
-          CodeMirror && (
-            <CodeMirror
-              editorDidMount={editor => { this.instance = editor }}
-              value={this.props.value}
-              /* options={options} */
-              onBeforeChange={this.props.handleChange}
-              options={{
-                theme: 'monokai',
-                lineNumbers: true,
-              }}
-            />
-          )
-        }
-      </Fragment>
+      <TextArea
+        placeholder="Note Content"
+        value={this.props.content}
+        onChange={this.props.handleChange}
+      />
     );
   }
 }
-
-
 Editor.defaultProps = {
-  value: '',
+  content: '',
 };
-
 Editor.propTypes = {
-  value: PropTypes.string,
+  content: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
 };
 

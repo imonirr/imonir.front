@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { Row, Column } from 'styled/Responsive';
 import { Input } from 'styled/Form';
+import {
+  SmallButton,
+} from 'styled/Elements';
 
 import {
   // selectors
@@ -19,20 +20,8 @@ import {
 } from 'redux/modules/note';
 
 import Editor from './Editor/Editor';
-// import Preview from './Preview/Preview';
+import Preview from './Preview/Preview';
 
-// const PreviewWrap = styled(Column)`
-//   background-color: cornsilk;
-//   color: #444;
-//   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-//   font-size: 16px;
-//   line-height: 1.5em;
-// `;
-
-const EditPreviewWrap = styled(Row)`
-  min-height: 700px;
-  max-height: 100vh;
-`;
 
 class Write extends Component {
   constructor(props) {
@@ -42,10 +31,13 @@ class Write extends Component {
     this.state = {
       title: note ? note.title : '',
       content: note ? note.content : '',
+
+      showPreview: false,
     };
     this._changed = {};
 
     this.saveNote = this.saveNote.bind(this);
+    this.previewNote = this.previewNote.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
   }
@@ -72,10 +64,16 @@ class Write extends Component {
 
     this.setState({ [event.target.name]: event.target.value });
   }
-  handleChange(editor, data, value) {
+  handleChange(event) {
+    const value = event.target.value;
     this._changed.content = value;
 
     this.setState({ content: value });
+  }
+  previewNote() {
+    this.setState({
+      showPreview: !this.state.showPreview,
+    });
   }
   saveNote() {
     const { id } = this.props;
@@ -99,8 +97,9 @@ class Write extends Component {
 
     return (
       <div>
-        <Row>
-          <button onClick={this.saveNote} >Save Note</button>
+        <Row justify="space-between" mb={2}>
+          <SmallButton onClick={this.previewNote} >Preview</SmallButton>
+          <SmallButton onClick={this.saveNote} >Save Note</SmallButton>
         </Row>
         <Row>
           <Input
@@ -110,16 +109,20 @@ class Write extends Component {
             onChange={this.handleTitle}
           />
         </Row>
-        <EditPreviewWrap>
+        <Row>
           <Column>
-            <Editor handleChange={this.handleChange} value={this.state.content} />
+            {
+              !this.state.showPreview && (
+                <Editor handleChange={this.handleChange} content={this.state.content} />
+              )
+            }
+            {
+              this.state.showPreview && (
+                <Preview source={this.state.content} />
+              )
+            }
           </Column>
-          {/*
-            <Column w={1 / 2}>
-              <Preview source={this.state.content} />
-            </Column>
-          */}
-        </EditPreviewWrap>
+        </Row>
       </div>
     );
   }
@@ -130,6 +133,7 @@ Write.defaultProps = {
   note: null,
 };
 Write.propTypes = {
+  id: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   note: PropTypes.object,
   postNote: PropTypes.func.isRequired,

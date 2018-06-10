@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 
@@ -15,11 +16,12 @@ import NoteList from 'components/NoteList/NoteList';
 import Write from './Write/Write';
 
 
-class Writer extends Component {
+class Writer extends PureComponent {
   render() {
+    console.warn(`writer with id: ${this.props.id}`);
+
     return (
-      <Fragment>
-        <p>{`writer with id: ${this.props.id}`}</p>
+      <Container>
         {
           this.props.id && (
             <Column>
@@ -37,34 +39,12 @@ class Writer extends Component {
             </Container>
           )
         }
-
-        {/*
-        <Route
-          exact
-          path="/writer"
-          render={() => (
-            <Container>
-              <Row>
-                <Link href="/writer/new"><Anchor>New</Anchor></Link>
-              </Row>
-              <NoteList />
-            </Container>
-          )}
-        />
-
-        <Route
-          exact
-          path="/writer/:id"
-          render={() =>
-            <Column>
-              <Write />
-            </Column>
-          }
-        />
-        */}
-      </Fragment>
+      </Container>
     );
   }
 }
+Writer.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default Writer;

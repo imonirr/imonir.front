@@ -53,7 +53,7 @@ class ProjectList extends PureComponent {
       <Fragment>
         {
           projects.map(project => (
-            <Project key={project.key} wrap="wrap" my={1} py={2}>
+            <Project key={project.key} wrap="wrap" my={1} p={2}>
               <Column2>
                 <ProjectTitle>
                   <StyledLink href={project.title.link}>{project.title.text}</StyledLink>
