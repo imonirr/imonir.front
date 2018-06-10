@@ -34,7 +34,9 @@ class Write extends Component {
 
       showPreview: false,
     };
-    this._changed = {};
+    this._changed = {
+      title: this.state.title,
+    };
 
     this.saveNote = this.saveNote.bind(this);
     this.previewNote = this.previewNote.bind(this);
