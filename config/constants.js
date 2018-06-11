@@ -13,7 +13,7 @@ const PATHS = {
 
 };
 
-const PROTOCOL = 'https://';
+const PROTOCOL = '//';
 
 const API_URL = {
   development: `${PROTOCOL}local.api.imonir.com/`,
