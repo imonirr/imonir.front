@@ -4,3 +4,6 @@ npm-debug.log
 build
 .env
 .env.production
+up.sh
+down.sh
+
