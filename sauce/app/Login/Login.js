@@ -38,7 +38,7 @@ class Login extends Component {
     if (response && response.accessToken) {
       console.log(`token: ${response.accessToken}`);
       this.props.login(response.accessToken);
-      Router.push('/');
+      Router.push('/writer');
     }
   }
   render() {
