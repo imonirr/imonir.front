@@ -1,9 +1,15 @@
 import {
   API_REQUEST,
 } from 'redux/middleware/http';
+import Api from 'helpers/api';
+import {
+  setCookie,
+  getCookie,
+} from 'utils/cookie';
 
 export const isAuthenticated = state => Boolean(state.auth.token);
 export const isAuthorized = state => Boolean(state.auth.token);
+export const getToken = state => state.auth.token;
 
 const initialState = {
   loading: false,
@@ -11,8 +17,8 @@ const initialState = {
 };
 
 if (process.browser) {
-  const savedToken = sessionStorage.getItem('mj-token');
-  if (sessionStorage) {
+  const savedToken = getCookie('mj-token');
+  if (savedToken) {
     initialState.token = savedToken;
   }
 }
@@ -26,19 +32,37 @@ const LOGIN_SUCCESS = 'auth/login/success';
 const LOGIN_FAIL = 'auth/login/fail';
 
 
-export const login = accessToken =>
-  ({
-    [API_REQUEST]: {
-      types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-      url: `${API}auth/facebook`,
-      config: {
-        method: 'post',
-        body: JSON.stringify({
-          access_token: accessToken,
-        }),
+export const login = (accessToken, Router) =>
+  (dispatch) => {
+    dispatch({ type: LOGIN });
+    const req = {
+      [API_REQUEST]: {
+        url: `${API}auth/facebook`,
+        config: {
+          method: 'post',
+          data: {
+            access_token: accessToken,
+          },
+        },
       },
-    },
-  });
+    };
+
+    return Api.fetch(req).then(
+      (response) => {
+        // const expires = new Date();
+        // expires.setHours(expires.getHours() + 1);
+        // document.cookie =
+        // `mj-token=${response.token}; expires=${expires.toUTCString()}; domain=.imonir.com`;
+
+        setCookie('mj-token', response.token);
+        Router.push('/writer');
+        // expires=Thu, 18 Dec 2020 12:00:00 UTC`
+        return dispatch({ type: LOGIN_SUCCESS, payload: response });
+      },
+      err =>
+        dispatch({ type: LOGIN_SUCCESS, payload: err }),
+    );
+  };
 export const setToken = accessToken =>
   ({
     type: SET_TOKEN,
@@ -65,9 +89,9 @@ const ACTION_HANDLERS = {
     }),
   [LOGIN_SUCCESS]: (state, { payload }) => {
     const { token } = payload;
-    if (process.browser) {
-      sessionStorage.setItem('mj-token', token);
-    }
+    // if (process.browser) {
+    //   sessionStorage.setItem('mj-token', token);
+    // }
 
     return ({
       ...state,

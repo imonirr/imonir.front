@@ -9,6 +9,7 @@ import {
 } from 'redux/modules/note';
 import App from 'App/App';
 import Home from 'Home/Home';
+import initialize from 'utils/initialize';
 
 // NOTE: if cookie is needed
 // import jsHttpCookie from 'cookie';
@@ -28,17 +29,19 @@ import Home from 'Home/Home';
 // }
 
 class Index extends PureComponent {
-  static getInitialProps({ store, isServer, req, query }) {
-    const state = store.getState();
+  static getInitialProps(ctx) {
+    initialize(ctx);
+
+    const state = ctx.store.getState();
     const notes = noteList(state);
+
     if (notes.length === 0) {
-      if (isServer) {
-        // console.log(query);
-        return store.dispatch(fetchNoteList());
+      if (ctx.isServer) {
+        // console.log(ctx.query);
+        return ctx.store.dispatch(fetchNoteList());
       }
 
-      return store.dispatch(fetchNoteList());
-
+      return ctx.store.dispatch(fetchNoteList());
     }
   }
 

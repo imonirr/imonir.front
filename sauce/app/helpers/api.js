@@ -3,11 +3,9 @@ import { API_REQUEST } from 'redux/middleware/http';
 // import StoreMan from 'helpers/storeman';
 
 const addToken = (meta, req) => {
-  // const noAuth = Boolean(meta && meta.noAuth);
-  // const token = StoreMan.get('token');
-  // if (token && !noAuth) {
-  //   req.headers.Authorization = `JWT ${token}`;
-  // }
+  if (meta && meta.token) {
+    req.headers['mj-token'] = `${meta.token}`;
+  }
 
   return req;
 };
@@ -21,7 +19,7 @@ const Api = {
     } = action[API_REQUEST];
 
     const options = addToken(meta, {
-      credentials: 'same-origin',
+      credentials: 'include',
       method: config.method,
       body: JSON.stringify(config.data),
       headers: {

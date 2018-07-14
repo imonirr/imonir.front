@@ -6,6 +6,9 @@ import { API_REQUEST } from 'redux/middleware/http';
 import {
   toggleLoading,
 } from 'redux/helpers';
+import {
+  getToken,
+} from 'redux/modules/auth';
 
 
 // INITIALSTATE
@@ -83,14 +86,19 @@ const PATCH_NOTE_ERROR = 'note/PATCH_ERROR';
 
 // ACTION CREATOR
 export const fetchNote = slug =>
-  (dispatch) => {
+  (dispatch, getState) => {
     dispatch({ type: GET_NOTE });
+    const state = getState();
+    const token = getToken(state);
 
     const req = {
       [API_REQUEST]: {
         url: process.browser ? `${API}note/${slug}` : `${API_BACK}note/${slug}`,
         config: {
           method: 'GET',
+        },
+        meta: {
+          token,
         },
       },
     };
@@ -110,14 +118,19 @@ export const fetchNote = slug =>
       );
   };
 export const fetchNoteList = () =>
-  (dispatch) => {
+  (dispatch, getState) => {
     dispatch({ type: GET_LIST });
+    const state = getState();
+    const token = getToken(state);
 
     const req = {
       [API_REQUEST]: {
         url: process.browser ? `${API}note` : `${API_BACK}note`,
         config: {
           method: 'GET',
+        },
+        meta: {
+          token,
         },
       },
     };
