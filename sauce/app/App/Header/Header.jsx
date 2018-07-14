@@ -30,7 +30,7 @@ class Header extends PureComponent {
     });
   }
   render() {
-    const mail = 'moniruzzaman.monir@live.com';
+    const mail = 'imonir.com@gmail.com';
     const mailtoHref = `mailto:${mail}`;
 
     return (
