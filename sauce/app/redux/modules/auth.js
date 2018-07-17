@@ -5,6 +5,7 @@ import Api from 'helpers/api';
 import {
   setCookie,
   getCookie,
+  removeCookie,
 } from 'utils/cookie';
 
 export const isAuthenticated = state => Boolean(state.auth.token);
@@ -30,8 +31,15 @@ const SET_TOKEN = 'auth/setToken';
 const LOGIN = 'auth/login';
 const LOGIN_SUCCESS = 'auth/login/success';
 const LOGIN_FAIL = 'auth/login/fail';
+const AUTH_EXPIRED = 'auth/expired';
 
+export const authExpired = () => {
+  removeCookie('mj-token');
 
+  return ({
+    type: AUTH_EXPIRED,
+  });
+};
 export const login = (accessToken, Router) =>
   (dispatch) => {
     dispatch({ type: LOGIN });
@@ -77,32 +85,37 @@ const ACTION_HANDLERS = {
       ...prevState,
       token: payload.accessToken,
     }),
-  [AUTHORIZE]: state =>
+  [AUTHORIZE]: prevState =>
     ({
-      ...state,
+      ...prevState,
       loading: false,
     }),
-  [LOGIN]: state =>
+  [LOGIN]: prevState =>
     ({
-      ...state,
+      ...prevState,
       loading: true,
     }),
-  [LOGIN_SUCCESS]: (state, { payload }) => {
+  [LOGIN_SUCCESS]: (prevState, { payload }) => {
     const { token } = payload;
     // if (process.browser) {
     //   sessionStorage.setItem('mj-token', token);
     // }
 
     return ({
-      ...state,
+      ...prevState,
       loading: false,
       token,
     });
   },
-  [LOGIN_FAIL]: state =>
+  [LOGIN_FAIL]: prevState =>
     ({
-      ...state,
+      ...prevState,
       loading: false,
+    }),
+  [AUTH_EXPIRED]: prevState =>
+    ({
+      ...prevState,
+      token: null,
     }),
 };
 

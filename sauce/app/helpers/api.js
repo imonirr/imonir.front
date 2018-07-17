@@ -1,21 +1,37 @@
 import fetch from 'isomorphic-fetch';
 import { API_REQUEST } from 'redux/middleware/http';
 // import StoreMan from 'helpers/storeman';
+import {
+  authExpired,
+} from 'redux/modules/auth';
+import {
+  getCookie,
+} from 'utils/cookie';
 
 const addToken = (meta, req) => {
+  // add token to meta
+
   if (meta && meta.token) {
     req.headers['mj-token'] = `${meta.token}`;
+  } else if (process.browser) {
+    const token = getCookie('mj-token');
+    if (token) {
+      req.headers['mj-token'] = token;
+      // `${meta.token}`;
+      // action[API_REQUEST].meta = meta ? { token } : { ...action.meta, token };
+    }
   }
 
   return req;
 };
 
 const Api = {
-  fetch: (action) => {
+  fetch: (action, dispatch) => {
     const {
       meta,
       url,
       config,
+      types,
     } = action[API_REQUEST];
 
     const options = addToken(meta, {
@@ -32,6 +48,11 @@ const Api = {
       .then((response) => {
         if (response.ok) {
           return Promise.resolve(response);
+        } else if (response.status === 401) {
+          dispatch(authExpired());
+        } else if (response.status >= 400) {
+          dispatch({ type: types[2], payload: 'Bad response' });
+          throw new Error('Bad response from server');
         }
 
         console.log(response.json());

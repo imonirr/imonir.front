@@ -49,7 +49,7 @@ export const fetchCommits = () =>
       },
     };
 
-    return Api.fetch(req)
+    return Api.fetch(req, dispatch)
       .then(
         response =>
           dispatch({

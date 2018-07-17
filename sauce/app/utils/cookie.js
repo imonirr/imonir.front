@@ -30,8 +30,11 @@ export const setCookie = (key, value) => {
 };
 export const removeCookie = (key) => {
   if (process.browser) {
+    console.warn('COOKIE REMOVED');
     cookie.remove(key, {
       expires: 1,
+      path: '/',
+      domain: '.imonir.com',
     });
   }
 };

@@ -48,6 +48,7 @@
         "DEBUG": true,
         "DEBUG_RENDER": true,
         "API": true,
+        "API_BACK": true,
         "XMPP_DOMAIN": true,
         "localStorage": true,
         "window": true,

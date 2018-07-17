@@ -83,6 +83,10 @@ const PATCH_NOTE = 'note/PATCH';
 const PATCH_NOTE_SUCCESS = 'note/PATCH_SUCCESS';
 const PATCH_NOTE_ERROR = 'note/PATCH_ERROR';
 
+const DELETE_NOTE = 'note/DELETE';
+const DELETE_NOTE_SUCCESS = 'note/DELETE_SUCCESS';
+const DELETE_NOTE_ERROR = 'note/DELETE_ERROR';
+
 
 // ACTION CREATOR
 export const fetchNote = slug =>
@@ -103,7 +107,7 @@ export const fetchNote = slug =>
       },
     };
 
-    return Api.fetch(req)
+    return Api.fetch(req, dispatch)
       .then(
         response =>
           dispatch({
@@ -135,7 +139,7 @@ export const fetchNoteList = () =>
       },
     };
 
-    return Api.fetch(req)
+    return Api.fetch(req, dispatch)
       .then(
         response =>
           dispatch({
@@ -149,8 +153,6 @@ export const fetchNoteList = () =>
           }),
       );
   };
-
-
 export const postNote = note =>
   ({
     [API_REQUEST]: {
@@ -172,7 +174,6 @@ export const postNote = note =>
       },
     },
   });
-
 export const patchNote = (id, note) =>
   ({
     [API_REQUEST]: {
@@ -189,13 +190,29 @@ export const patchNote = (id, note) =>
       },
     },
   });
+export const deleteNote = id =>
+  ({
+    [API_REQUEST]: {
+      types: [
+        DELETE_NOTE,
+        DELETE_NOTE_SUCCESS,
+        DELETE_NOTE_ERROR,
+      ],
+      url: `${API}note/${id}`,
+      config: {
+        method: 'DELETE',
+      },
+    },
+  });
 
 
+// REDUCERS
 const ACTION_HANDLERS = {
   [GET_LIST]: state => toggleLoading(state),
   [GET_NOTE]: state => toggleLoading(state),
   [POST_NOTE]: state => toggleLoading(state),
   [PATCH_NOTE]: state => toggleLoading(state),
+  [DELETE_NOTE]: state => toggleLoading(state),
 
   [GET_LIST_SUCCESS]: (state, { payload }) => {
     const byId = { ...state.byId };
@@ -243,11 +260,21 @@ const ACTION_HANDLERS = {
       byId,
     };
   },
+  [DELETE_NOTE_SUCCESS]: (prevState, { data }) => {
+    const byId = { ...prevState.byId };
+    delete byId[data.id];
+
+    return {
+      ...prevState,
+      byId,
+    };
+  },
 
   [GET_LIST_ERROR]: state => toggleLoading(state),
   [GET_NOTE_ERROR]: state => toggleLoading(state),
   [POST_NOTE_ERROR]: state => toggleLoading(state),
   [PATCH_NOTE_ERROR]: state => toggleLoading(state),
+  [DELETE_NOTE_ERROR]: state => toggleLoading(state),
 };
 
 

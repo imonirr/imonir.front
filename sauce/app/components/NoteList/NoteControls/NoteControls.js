@@ -12,6 +12,7 @@ import {
 
 import {
   patchNote,
+  deleteNote,
 } from 'redux/modules/note';
 
 const Controls = styled.div`
@@ -31,6 +32,7 @@ class NoteControls extends Component {
 
     this.publishNote = this.publishNote.bind(this);
     this.unpublishNote = this.unpublishNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   publishNote() {
@@ -38,6 +40,9 @@ class NoteControls extends Component {
   }
   unpublishNote() {
     this.props.patchNote(this.props.id, { isPublished: 0 });
+  }
+  deleteNote() {
+    this.props.deleteNote(this.props.id);
   }
 
   render() {
@@ -52,6 +57,8 @@ class NoteControls extends Component {
           (<ClearButton onClick={this.unpublishNote}>Unpublish</ClearButton>)
         }
 
+        <ClearButton onClick={this.deleteNote}>Delete</ClearButton>
+
         <Link href={link}><Anchor>Edit</Anchor></Link>
       </Controls>
     );
@@ -62,10 +69,12 @@ NoteControls.propTypes = {
   id: PropTypes.number.isRequired,
   published: PropTypes.bool.isRequired,
   patchNote: PropTypes.func.isRequired,
+  deleteNote: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     patchNote,
+    deleteNote,
   }, dispatch);
 export default connect(null, mapDispatchToProps)(NoteControls);
