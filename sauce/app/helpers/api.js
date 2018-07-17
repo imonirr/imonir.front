@@ -49,7 +49,7 @@ const Api = {
         if (response.ok) {
           return Promise.resolve(response);
         } else if (response.status === 401) {
-          dispatch(authExpired());
+          return dispatch(authExpired());
         } else if (response.status >= 400) {
           dispatch({ type: types[2], payload: 'Bad response' });
           throw new Error('Bad response from server');

@@ -55,7 +55,7 @@ export const login = (accessToken, Router) =>
       },
     };
 
-    return Api.fetch(req).then(
+    return Api.fetch(req, dispatch).then(
       (response) => {
         // const expires = new Date();
         // expires.setHours(expires.getHours() + 1);
