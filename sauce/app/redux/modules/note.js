@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
 import Api from 'helpers/api';
+import Router from 'next/router';
 import { API_REQUEST } from 'redux/middleware/http';
 
 import {
@@ -62,7 +63,17 @@ export const noteList = createSelector(
       published: list[id].isPublished === 1,
       date: list[id].date,
     }),
-  ),
+  ).sort((note1, note2) => {
+    const note1Date = new Date(note1.date);
+    const note2Date = new Date(note2.date);
+    if (note1Date > note2Date) {
+      return -1;
+    } else if (note1Date < note2Date) {
+      return 1;
+    }
+
+    return 0;
+  }),
 );
 
 
@@ -97,7 +108,7 @@ export const fetchNote = slug =>
 
     const req = {
       [API_REQUEST]: {
-        url: process.browser ? `${API}note/${slug}` : `${API_BACK}note/${slug}`,
+        url: process.browser ? `${API}v1/notes/${slug}` : `${API_BACK}v1/notes/${slug}`,
         config: {
           method: 'GET',
         },
@@ -129,7 +140,7 @@ export const fetchNoteList = () =>
 
     const req = {
       [API_REQUEST]: {
-        url: process.browser ? `${API}note` : `${API_BACK}note`,
+        url: process.browser ? `${API}v1/notes/list` : `${API_BACK}v1/notes/list`,
         config: {
           method: 'GET',
         },
@@ -154,26 +165,32 @@ export const fetchNoteList = () =>
       );
   };
 export const postNote = note =>
-  ({
-    [API_REQUEST]: {
-      types: [
-        POST_NOTE,
-        POST_NOTE_SUCCESS,
-        POST_NOTE_ERROR,
-      ],
-      url: `${API}note`,
-      config: {
-        method: 'POST',
-        body: JSON.stringify({
-          note: {
-            title: note.title,
-            content: note.content,
-            date: moment.utc(Date.now()).format(),
+  (dispatch) => {
+    dispatch({ type: POST_NOTE });
+    const req = ({
+      [API_REQUEST]: {
+        url: `${API}v1/notes`,
+        config: {
+          method: 'POST',
+          body: {
+            note: {
+              title: note.title,
+              content: note.content,
+              date: moment.utc(Date.now()).format('MM-DD-YYYY'),
+            },
           },
-        }),
+        },
       },
-    },
-  });
+    });
+
+    Api.fetch(req).then(
+      (response) => {
+        dispatch({ type: POST_NOTE_SUCCESS, paylaod: response });
+        Router.push('/writer');
+      },
+      err => dispatch({ type: POST_NOTE_ERROR, payload: err }),
+    );
+  };
 export const patchNote = (id, note) =>
   ({
     [API_REQUEST]: {
@@ -182,15 +199,15 @@ export const patchNote = (id, note) =>
         PATCH_NOTE_SUCCESS,
         PATCH_NOTE_ERROR,
       ],
-      url: `${API}note/${id}`,
+      url: `${API}v1/notes/${id}`,
       config: {
         method: 'PATCH',
-        body: JSON.stringify({ note }),
+        body: { note },
         // params: { id },
       },
     },
   });
-export const deleteNote = id =>
+export const deleteNote = (id, title) =>
   ({
     [API_REQUEST]: {
       types: [
@@ -198,9 +215,13 @@ export const deleteNote = id =>
         DELETE_NOTE_SUCCESS,
         DELETE_NOTE_ERROR,
       ],
-      url: `${API}note/${id}`,
+      url: `${API}v1/notes/${id}`,
       config: {
         method: 'DELETE',
+        body: {
+          id,
+          title,
+        },
       },
     },
   });
@@ -214,21 +235,27 @@ const ACTION_HANDLERS = {
   [PATCH_NOTE]: state => toggleLoading(state),
   [DELETE_NOTE]: state => toggleLoading(state),
 
-  [GET_LIST_SUCCESS]: (state, { payload }) => {
+  [GET_LIST_SUCCESS]: (prevState, { payload }) => {
+    const state = { ...prevState };
     const byId = { ...state.byId };
     const ids = state.ids.slice(0);
+
+    if (!payload || !payload.notes) {
+      return state;
+    }
 
     console.log(payload);
     payload.notes.forEach((n) => {
       if (!byId[n.id]) {
         byId[n.id] = n;
+        byId[n.id].date = byId[n.id].date.substr(0, 10);
       }
 
       ids.push(n.id);
     });
 
     return ({
-      ...state,
+      ...prevState,
       loading: false,
       byId,
       ids,
@@ -249,24 +276,37 @@ const ACTION_HANDLERS = {
       byId,
     });
   },
-  [PATCH_NOTE_SUCCESS]: (state, { params, data }) => {
-    const byId = { ...state.byId };
-    const updated = JSON.parse(data);
+  [PATCH_NOTE_SUCCESS]: (prevState, { payload }) => {
+    const state = { ...prevState };
+    const { note } = payload;
 
-    byId[params.id] = { ...state.byId[params.id], ...updated.note };
-
-    return {
-      ...state,
-      byId,
+    state.byId = {
+      ...state.byId,
+      [note.id]: {
+        ...prevState.byId[note.id],
+        ...note,
+      },
     };
+
+    if (payload.content) {
+      state.contentById = {
+        ...state.contentById,
+        [note.id]: payload.content,
+      };
+    }
+
+    return state;
   },
   [DELETE_NOTE_SUCCESS]: (prevState, { data }) => {
     const byId = { ...prevState.byId };
+
+    const ids = prevState.ids.filter(id => id !== data.id);
     delete byId[data.id];
 
     return {
       ...prevState,
       byId,
+      ids,
     };
   },
 

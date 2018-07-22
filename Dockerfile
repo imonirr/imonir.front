@@ -25,7 +25,7 @@ COPY ./.env.production $APP/.env.production
 WORKDIR $APP
 
 # install dependencies
-RUN yarn install
+RUN yarn --pure-lockfile
 
 # run app
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
@@ -33,7 +33,7 @@ CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   yarn buildnext; \
   yarn start; \
   else \
-  yarn install; \
+  yarn --pure-lockfile; \
   yarn devnext; \
   fi
 

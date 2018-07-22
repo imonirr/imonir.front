@@ -47,8 +47,8 @@ export const login = (accessToken, Router) =>
       [API_REQUEST]: {
         url: `${API}auth/facebook`,
         config: {
-          method: 'post',
-          data: {
+          method: 'POST',
+          body: {
             access_token: accessToken,
           },
         },

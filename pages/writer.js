@@ -46,8 +46,11 @@ class WriterPage extends PureComponent {
     );
   }
 }
+WriterPage.defaultProps = {
+  id: '',
+};
 WriterPage.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string,
 };
 const mapDispatchToProps = dispatch =>
   bindActionCreators({

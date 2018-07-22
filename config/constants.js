@@ -15,6 +15,11 @@ const PATHS = {
 
 const PROTOCOL = '//';
 
+const APP_URL = {
+  development: `${PROTOCOL}local.www.imonir.com/`,
+  production: `${PROTOCOL}www.imonir.com/`,
+};
+
 const API_URL = {
   development: `${PROTOCOL}local.api.imonir.com/`,
   production: `${PROTOCOL}api.imonir.com/`,
@@ -31,3 +36,4 @@ exports.PORT = 80;
 exports.PATHS = PATHS;
 exports.API_URL = API_URL;
 exports.API_URL_BACK = API_URL_BACK;
+exports.APP_URL = APP_URL;

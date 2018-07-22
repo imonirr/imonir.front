@@ -17,19 +17,9 @@ const http = store => next => (action) => { // eslint-disable-line no-unused-var
   // console.log(`#################REQUESTING ${url}#################`);
   // fetch(url, request)
   Api.fetch(action, next)
-    .then((response) =>
-      // if (response.status >= 400) {
-      //   next({ type: errorType, payload: 'Bad response' });
-      //   throw new Error('Bad response from server');
-      // }
-      // if (response.status === 401) {
-      //   next(authExpired());
-      // }
-
-      response.json())
-    .then((result) => {
+    .then((response) => {
       const { body, params } = config;
-      next({ type: successType, payload: result, data: body, params });
+      next({ type: successType, payload: response, data: body, params });
     })
     .catch((err) => {
       next({ type: errorType, payload: err });

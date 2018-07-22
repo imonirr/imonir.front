@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+// import Router from 'next/router';
 
 import { Row, Column } from 'styled/Responsive';
 import { Input } from 'styled/Form';

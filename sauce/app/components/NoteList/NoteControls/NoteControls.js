@@ -42,7 +42,7 @@ class NoteControls extends Component {
     this.props.patchNote(this.props.id, { isPublished: 0 });
   }
   deleteNote() {
-    this.props.deleteNote(this.props.id);
+    this.props.deleteNote(this.props.id, this.props.title);
   }
 
   render() {
@@ -67,6 +67,7 @@ class NoteControls extends Component {
 
 NoteControls.propTypes = {
   id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   published: PropTypes.bool.isRequired,
   patchNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,

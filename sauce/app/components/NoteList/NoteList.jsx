@@ -51,7 +51,11 @@ class NoteList extends PureComponent {
               {
                 this.props.authorized &&
                 (
-                  <NoteControls id={n.id} published={n.published} />
+                  <NoteControls
+                    id={n.id}
+                    published={n.published}
+                    title={n.link.title}
+                  />
                 )
               }
             </Row>

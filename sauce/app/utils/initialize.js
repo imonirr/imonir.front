@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import {
   setToken,
+  getToken,
 } from 'redux/modules/auth';
 import {
   getCookie,
@@ -8,18 +9,33 @@ import {
 
 // checks if the page is being loaded on the server, and if so, get auth token from the cookie:
 const initialize = (ctx) => {
+  let token = null;
+
   if (ctx.isServer) {
     if (ctx.req.headers.cookie) {
-      ctx.store.dispatch(setToken(getCookie('mj-token', ctx.req)));
+      token = getCookie('mj-token', ctx.req);
+      ctx.store.dispatch(setToken(token));
     }
   } else {
-    const token = ctx.store.getState().auth.token;
+    token = getToken(ctx.store.getState());
+  }
 
-    if (token && (ctx.pathname === '/signin' || ctx.pathname === '/signup')) {
-      setTimeout(() => {
-        Router.push('/');
-      }, 0);
+
+  if (!token && ctx.pathname === '/writer') {
+    if (ctx.res) {
+      ctx.res.writeHead(401, {
+        Location: `{APP_URL}`,
+      })
+      ctx.res.end();
+      ctx.res.finished = true;
+    } else {
+      Router.push('/');
     }
+    // ctx.url.push('/');
+    // this.props.
+    // setTimeout(() => {
+    //   Router.push('/');
+    // }, 0);
   }
 };
 

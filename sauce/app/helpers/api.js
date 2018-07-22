@@ -25,6 +25,9 @@ const addToken = (meta, req) => {
   return req;
 };
 
+const transformResponse = response =>
+  ((response && response.json) ? response.json() : '');
+
 const Api = {
   fetch: (action, dispatch) => {
     const {
@@ -37,7 +40,7 @@ const Api = {
     const options = addToken(meta, {
       credentials: 'include',
       method: config.method,
-      body: JSON.stringify(config.data),
+      body: JSON.stringify(config.body),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -51,16 +54,20 @@ const Api = {
         } else if (response.status === 401) {
           return dispatch(authExpired());
         } else if (response.status >= 400) {
-          dispatch({ type: types[2], payload: 'Bad response' });
-          throw new Error('Bad response from server');
+          // throw new Error('Bad response from server');
+          return dispatch({ type: types[2], payload: 'Bad response' });
         }
 
-        console.log(response.json());
         // const error = new Error(response.statusText || response.status);
         // error.response = response;
-        return Promise.reject(response.json());
+        return Promise.reject(response);
       })
-      .then(response => response.json());
+      .then(response => transformResponse(response))
+      .catch((error) => {
+        console.log('could not connect to api');
+        console.log(error);
+        return dispatch({ type: 'CONNECTION_FAILED' });
+      });
   },
 };
 
