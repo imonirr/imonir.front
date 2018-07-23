@@ -45,7 +45,7 @@ export const login = (accessToken, Router) =>
     dispatch({ type: LOGIN });
     const req = {
       [API_REQUEST]: {
-        url: `${API}auth/facebook`,
+        url: `${API}v1/auth/facebook`,
         config: {
           method: 'POST',
           body: {
