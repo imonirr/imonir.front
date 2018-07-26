@@ -17,7 +17,7 @@ export const PROJECTS = [
     skills: ['Angularjs', 'Gruntjs', 'Scripting', 'Devops'],
     image: '/static/images/portfolio/ringid_x300.jpg',
     description: `Social Network website with chat, pages, news and entertainment channels.
-    Implemented the Web frontnned as Single page application in Angularjs with a team of frontend developers.
+    Implemented the Web frontend as Single page application in Angularjs with a team of frontend developers.
     Built and maintained build tools using grunt and nodejs plugins.
     Worked also as Devops and developed Continuous integration and deployment tools.`,
   },
