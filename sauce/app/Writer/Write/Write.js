@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 // import Router from 'next/router';
 
 import { Row, Column } from 'styled/Responsive';
@@ -23,6 +24,8 @@ import {
 import Editor from './Editor/Editor';
 import Preview from './Preview/Preview';
 
+// const formateDate = (browserDate, ) =>
+// `${value.substr(5, 2)}-${value.substr(8, 2)}-${value.substr(0, 4)}`
 
 class Write extends Component {
   constructor(props) {
@@ -32,12 +35,16 @@ class Write extends Component {
     this.state = {
       title: note ? note.title : '',
       content: note ? note.content : '',
+      date: note ? note.date : moment.utc(Date.now()).format('YYYY-MM-DD'),
 
       showPreview: false,
     };
     this._changed = {
       title: this.state.title,
     };
+    if (!note) {
+      this._changed.date = this.state.date;
+    }
 
     this.saveNote = this.saveNote.bind(this);
     this.previewNote = this.previewNote.bind(this);
@@ -63,6 +70,12 @@ class Write extends Component {
 
   handleTitle(event) {
     event.preventDefault();
+
+    // let value = event.target.value;
+    // if (event.target.name === 'date') {
+    //   value = `${value.substr(5, 2)}-${value.substr(8, 2)}-${value.substr(0, 4)}`;
+    // }
+
     this._changed[event.target.name] = event.target.value;
 
     this.setState({ [event.target.name]: event.target.value });
@@ -109,6 +122,16 @@ class Write extends Component {
             name="title"
             placeholder="Note Title"
             value={this.state.title}
+            onChange={this.handleTitle}
+          />
+        </Row>
+
+        <Row>
+          <Input
+            name="date"
+            type="date"
+            placeholder="Publish Date"
+            value={this.state.date}
             onChange={this.handleTitle}
           />
         </Row>

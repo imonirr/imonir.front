@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 
 import {
-  noteBySlug,
+  noteContentBySlug,
 } from 'redux/modules/note';
 
 import Loader from 'components/Loader/Loader';
 import Container from 'styled/Container';
 
-class Note extends Component {
 
+class Note extends Component {
   render() {
     console.warn('RENDER NOTE');
-    console.log(`note length: ${this.props.note.length}`);
+    console.log(`note length: ${this.props.noteContent.length}`);
 
-    if (this.props.note) {
+    if (this.props.noteContent) {
       return (
         <Container>
           {/* this.props.note */}
-          <Markdown source={this.props.note} />
+          <Markdown source={this.props.noteContent} />
         </Container>
       );
     }
@@ -31,15 +31,15 @@ class Note extends Component {
 }
 
 Note.defaultProps = {
-  note: null,
+  noteContent: '',
 };
 Note.propTypes = {
-  note: PropTypes.string,
+  noteContent: PropTypes.string,
 };
 
 const mapStateToProps = (state, props) =>
   ({
-    note: noteBySlug(state, props),
+    noteContent: noteContentBySlug(state, props),
   });
 export default connect(mapStateToProps)(Note);
 

@@ -5,7 +5,9 @@ import moment from 'moment';
 
 class NiceDate extends PureComponent {
   render() {
-    const time = moment(this.props.time, 'MM-DD-YYYY').format('LL');
+    // const time = moment(this.props.time).format('LL');
+    const time = moment(this.props.time, 'YYYY-MM-DD').format('LL');
+
     return (
       <Fragment>{time}</Fragment>
     );

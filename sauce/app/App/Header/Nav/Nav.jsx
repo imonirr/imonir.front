@@ -48,7 +48,6 @@ class Nav extends PureComponent {
         <NavItem>
           <Link
             passHref
-            target="_blank"
             href="https://stackoverflow.com/cv/imonir"
           >
             <Navigation>CV</Navigation>

@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import moment from 'moment';
 import Api from 'helpers/api';
 import Router from 'next/router';
 import { API_REQUEST } from 'redux/middleware/http';
@@ -16,41 +15,47 @@ import {
 const initialState = {
   loading: false,
   byId: {},
-  contentById: {},
-
   ids: [],
+
+  slugToId: {},
 };
 
 // SELECTORS
 export const sampleNote = () => '';
 export const noteLoading = state => state.note.loading;
-const notes = state => state.note.byId;
+const getNotes = state => state.note.byId;
 const noteIds = state => state.note.ids;
-const getContents = state => state.note.contentById;
 
-export const noteById = (state, params) =>
+export const getNote = (state, params) =>
   (params.id === 'new' ?
     '' : state.note.byId[params.id]);
-export const noteBySlug = (state, props) => {
-  console.warn(`noteBySlug: ${props.slug}`);
-  return state.note.contentById[props.slug];
-};
+const noteSlugToId = (state, props) =>
+  state.note.slugToId[props.slug];
 
-export const getNote = createSelector(
-  [noteById, getContents],
-  (note, contents) => {
-    if (!note) {
-      return null;
-    }
+// export const getNote = createSelector(
+//   [notebyid, getNotes],
+//   (note, notes) => {
+//     if (!note) {
+//       return null;
+//     }
 
-    return {
-      ...note,
-      content: contents[note.slug],
-    };
-  },
+//     return {
+//       ...note,
+//       content: contents[note.slug],
+//     };
+//   },
+// );
+const getNoteBySlug = createSelector(
+  [noteSlugToId, getNotes],
+  (id, noteObjects) => noteObjects[id],
 );
+export const noteContentBySlug = createSelector(
+  [getNoteBySlug],
+  note => (note ? note.content : ''),
+);
+
 export const noteList = createSelector(
-  [noteIds, notes],
+  [noteIds, getNotes],
   (ids, list) => ids.map(id =>
     ({
       id,
@@ -176,7 +181,7 @@ export const postNote = note =>
             note: {
               title: note.title,
               content: note.content,
-              date: moment.utc(Date.now()).format('MM-DD-YYYY'),
+              date: note.date,
             },
           },
         },
@@ -203,7 +208,9 @@ export const patchNote = (id, note) =>
       config: {
         method: 'PATCH',
         body: { note },
-        // params: { id },
+      },
+      meta: {
+        id,
       },
     },
   });
@@ -236,45 +243,51 @@ const ACTION_HANDLERS = {
   [DELETE_NOTE]: state => toggleLoading(state),
 
   [GET_LIST_SUCCESS]: (prevState, { payload }) => {
-    const state = { ...prevState };
-    const byId = { ...state.byId };
-    const ids = state.ids.slice(0);
+    const state = toggleLoading(prevState);
 
     if (!payload || !payload.notes) {
       return state;
     }
 
+    const byId = { ...state.byId };
+    const ids = state.ids.slice(0);
+    const slugToId = { ...state.slugToId };
+
+
     console.log(payload);
     payload.notes.forEach((n) => {
       if (!byId[n.id]) {
         byId[n.id] = n;
-        byId[n.id].date = byId[n.id].date.substr(0, 10);
+        // byId[n.id].date = byId[n.id].date.substr(0, 10);
       }
+      slugToId[n.slug] = n.id;
 
       ids.push(n.id);
     });
 
-    return ({
-      ...prevState,
-      loading: false,
-      byId,
-      ids,
-    });
+    state.byId = byId;
+    state.ids = ids;
+    state.slugToId = slugToId;
+
+    return state;
   },
-  [GET_NOTE_SUCCESS]: (state, { payload }) => {
+  [GET_NOTE_SUCCESS]: (prevState, { payload }) => {
     const { note, content } = payload;
-    const contentById = { ...state.contentById };
-    const byId = { ...state.byId };
+    const state = { ...prevState };
 
-    contentById[note.slug] = content;
-    byId[note.id] = note;
+    state.slugToId = {
+      ...state.slugToId,
+      [note.slug]: note.id,
+    };
+    state.byId = {
+      ...state.byId,
+      [note.id]: {
+        ...note,
+        content,
+      },
+    };
 
-    return ({
-      ...state,
-      loading: false,
-      contentById,
-      byId,
-    });
+    return state;
   },
   [PATCH_NOTE_SUCCESS]: (prevState, { payload }) => {
     const state = { ...prevState };
@@ -287,13 +300,6 @@ const ACTION_HANDLERS = {
         ...note,
       },
     };
-
-    if (payload.content) {
-      state.contentById = {
-        ...state.contentById,
-        [note.id]: payload.content,
-      };
-    }
 
     return state;
   },

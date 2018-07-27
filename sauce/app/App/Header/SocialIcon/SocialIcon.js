@@ -16,7 +16,8 @@ class SocialIcon extends Component {
       links: {
         twitter: 'https://twitter.com/dostokhan',
         github: 'https://github.com/dostokhan',
-        stackoverflow: 'https://stackoverflow.com/users/story/3637797',
+        stackoverflow: 'https://stackoverflow.com/story/imonir',
+        linkedin: 'https://www.linkedin.com/in/imonir/',
       },
     };
   }
