@@ -19,11 +19,28 @@ class SocialNav extends PureComponent {
       twitter: 'https://twitter.com/dostokhan',
       github: 'https://github.com/dostokhan',
       stackoverflow: 'https://stackoverflow.com/users/story/3637797',
+      linkedin: 'https://www.linkedin.com/in/imonir/',
     };
   }
   render() {
     return (
       <SocialNavs>
+        <NavItem>
+          <SocialAnchor
+            href={this._links.linkedin}
+          >linkedin</SocialAnchor>
+        </NavItem>
+
+        <NavSeperator />
+
+        <NavItem>
+          <SocialAnchor
+            href={this._links.stackoverflow}
+          >stackoverflow</SocialAnchor>
+        </NavItem>
+
+        <NavSeperator />
+
         <NavItem>
           <SocialAnchor
             href={this._links.twitter}
@@ -41,11 +58,6 @@ class SocialNav extends PureComponent {
 
         <NavSeperator />
 
-        <NavItem>
-          <SocialAnchor
-            href={this._links.stackoverflow}
-          >stackoverflow</SocialAnchor>
-        </NavItem>
       </SocialNavs>
     );
   }
