@@ -9,28 +9,54 @@ const autoKey = () => {
 export const PROJECTS = [
   {
     key: autoKey(),
-    date: new Date('2014-12-04'),
+    date: new Date('2017-04-01'),
+    title: {
+      text: 'Shikhai Live',
+      link: 'https://www.shikhai.live',
+    },
+    skills: ['React', 'Redux', 'Webpack', 'Fabricjs', 'Strophe', 'Jitsi'],
+    image: '/static/images/portfolio/shikhai_x300.jpg',
+    description: 'Live, Interactive Tutoring/Mentoring Web App.',
+    bullets: [
+      'ReactJS, Redux based frontend.',
+      'HTML5 Canvas and Fabric.js library was used to develop the Interactive Classroom for writing and communication.',
+      'XMPP protocol based interactive communication among students and tutor.',
+    ],
+  },
+  {
+    key: autoKey(),
+    date: new Date('2015-03-04'),
     title: {
       text: 'RingId',
       link: 'https://www.ringid.com',
     },
     skills: ['Angularjs', 'Gruntjs', 'Scripting', 'Devops'],
     image: '/static/images/portfolio/ringid_x300.jpg',
-    description: `Social Network website with chat, pages, news and entertainment channels.
-    Implemented the Web frontend as Single page application in Angularjs with a team of frontend developers.
-    Built and maintained build tools using grunt and nodejs plugins.
-    Worked also as Devops and developed Continuous integration and deployment tools.`,
+    description: 'Social Network with chat, pages, news and entertainment channels.',
+    bullets: [
+      'Implemented the Web frontend as Single page application in Angularjs with a team of frontend developers.',
+      'Built and maintained build tools using grunt and nodejs plugins.',
+      'Worked also as Devops and developed Continuous integration and deployment tools.',
+    ],
   },
   {
     key: autoKey(),
-    date: new Date('2016-12-10'),
+    date: new Date('2012-11-15'),
     title: {
-      text: 'Shikhai Live',
-      link: 'https://www.shikhai.live',
+      text: 'Phil Hedries',
+      link: 'https://www.philhendrieshow.com/',
     },
-    skills: ['React', 'Webpack', 'Fabricjs', 'Strophe', 'Jitsi'],
-    image: '/static/images/portfolio/shikhai_x300.jpg',
-    description: 'Live, Interactive Tutoring/Mentoring Web app ',
+    skills: ['Joomla', 'Paypal', 'Amazon Web Services', 'Squarespace', 'PHP Scripting'],
+    image: '',
+    description: 'Phil Hendries Website Migration to Joomla from Squarespace.',
+    bullets: [
+      '5k+ articles.',
+      'Articles belonged to categories.',
+      'Comments on articles by paid users.',
+      'Paid Membership plans with access to priviledged content.',
+      'All information were correctly moved to Joomla database by a PHP script.',
+      'Extensions were built, customized for membership, restricted contents etc.',
+    ],
   },
   {
     key: autoKey(),
@@ -42,6 +68,7 @@ export const PROJECTS = [
     skills: ['Html', 'Css', 'PSD->HTML', 'JOOMLA'],
     image: '/static/images/portfolio/crosspoint-dentistry_x300.jpg',
     description: 'Full website development using Joomla from Provided PSD.',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -54,20 +81,7 @@ export const PROJECTS = [
     skills: ['html', 'css', 'jquery'],
     description: `Crank Text submission form and preview templates work.
     used html and css along with jQuery Sortable Plugin`,
-  },
-  {
-    key: autoKey(),
-    date: new Date('2012-11-15'),
-    title: {
-      text: 'Phil Hedries',
-      link: 'https://www.philhendrieshow.com/',
-    },
-    skills: ['Joomla', 'Paypal', 'Amazon Web Services'],
-    image: '',
-    description: `Phil Hendries Website recreated from Squarespace hosted website.
-      10k+ articles with images/mp3s(hosted securely on amazon s3) exported and then imported to new site.
-      With tons of comments.
-      Paid Membership plans with access to priviledged content.`,
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -92,6 +106,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS'],
     image: '/static/images/portfolio/idgbuffalo_x300.jpg',
     description: 'Marketing firm website',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -103,6 +118,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS'],
     image: '/static/images/portfolio/babysitter_x300.jpg',
     description: 'Babysitter marketplace with member(babysitters) management',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -114,6 +130,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS', 'Joomla Template'],
     image: '/static/images/portfolio/buffspine_x300.jpg',
     description: 'Buffspine Institute Website',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -125,6 +142,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Joomla Template', 'Html', 'CSS'],
     image: '/static/images/portfolio/citymission_x300.jpg',
     description: 'Buffalo City Mission Website with Donation capabilities',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -136,6 +154,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS', 'Virtuemart', 'Joomla Template'],
     image: '',
     description: 'Vitaminblue Surf equipments E-Commerce website',
+    bullets: [],
   },
   {
     key: autoKey(),
@@ -147,9 +166,10 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS', 'Joomla Template'],
     image: '/static/images/portfolio/kensington_x300.jpg',
     description: '',
+    bullets: [],
   },
 
 
-].sort((a, b) => -(a.date - b.date));
+].sort((a, b) => (a.date > b.date ? -1 : (a.date < b.date ? 1 : 0)));
 
 /* eslint-enable import/prefer-default-export */

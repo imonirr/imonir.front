@@ -59,7 +59,7 @@ class ProjectList extends PureComponent {
                   <StyledLink href={project.title.link}>{project.title.text}</StyledLink>
                 </ProjectTitle>
                 <When>
-                  {moment(project.date).format('LL')}
+                  Started: {moment(project.date).format('MMM, YYYY')}
                 </When>
                 {
                   project.skills.map((skill, index) => (
@@ -76,6 +76,17 @@ class ProjectList extends PureComponent {
                 <Pic src={project.image} />
               </Column2>
               <Column py={2}>{project.description}</Column>
+              <Column>
+                {
+                  project.bullets.length > 0 && (
+                    <ul>
+                      {
+                        project.bullets.map((bullet, index) => (<li key={`${index}-{bullet.substr(0, 1)}`}>{bullet}</li>))
+                      }
+                    </ul>
+                  )
+                }
+              </Column>
             </Project>
           ))
         }

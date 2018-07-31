@@ -45,7 +45,7 @@ class WhatIDo extends PureComponent {
             <div>
               <p>
                 I am <strong>Moniuzzaman Monir.</strong><br />
-                Fullstack Developer.<br />
+                Full Stack Developer.<br />
                 I have been working for {this.state.years}+ years.<br /><br />
               </p>
               <h5>Favorite stack</h5>
@@ -58,7 +58,7 @@ class WhatIDo extends PureComponent {
             </div>
           </Column2>
           <Column2>
-            <Pic alt="" src="/static/images/pic.jpg" />
+            <Pic alt="" src="/static/images/pic_200.jpg" />
           </Column2>
         </Row>
 
