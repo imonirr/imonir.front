@@ -8,7 +8,7 @@ import {
   fetchNoteList,
 } from 'redux/modules/note';
 import App from 'App/App';
-import Home from 'Home/Home';
+import Home from 'routes/Home/Home';
 import initialize from 'utils/initialize';
 
 // NOTE: if cookie is needed

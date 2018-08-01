@@ -5,12 +5,12 @@ import {
   ClearButton,
   Anchor,
 } from 'styled/Elements';
-import { media } from 'styled/utils';
+// import { media } from 'styled/utils';
 import Container from 'styled/Container';
 
 
 const ContactFontSize = css`
-  font-size: 1.2rem;
+  font-size: ${props => props.theme.font.small};
 `;
 
 export const ContactRow = styled(Row)`
@@ -24,12 +24,6 @@ export const Button = styled(ClearButton)`
   line-height: 1em;
   height: auto;
 
-  ${ContactFontSize};
-`;
-export const Email = styled(Anchor)`
-  ${ContactFontSize};
-`;
-export const Phone = styled.span`
   ${ContactFontSize};
 `;
   // &:hover {

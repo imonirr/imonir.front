@@ -26,7 +26,7 @@ class Nav extends PureComponent {
             passHref
             href="/"
           >
-            <Navigation>Monir</Navigation>
+            <Navigation>Notes</Navigation>
           </Link>
         </NavItem>
 
@@ -34,11 +34,11 @@ class Nav extends PureComponent {
 
         <NavItem>
           <Link
-            href="/whatido"
+            href="/projects"
             passHref
           >
             <Navigation>
-              What I do
+              Projects
             </Navigation>
           </Link>
         </NavItem>
@@ -48,9 +48,9 @@ class Nav extends PureComponent {
         <NavItem>
           <Link
             passHref
-            href="https://stackoverflow.com/cv/imonir"
+            href="/resume"
           >
-            <Navigation>CV</Navigation>
+            <Navigation>Resume</Navigation>
           </Link>
         </NavItem>
 

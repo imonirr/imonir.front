@@ -24,7 +24,7 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 
 const theme = {
   colors: {
-    background: '#f9f9f9',
+    background: '#f8f8f8',
     text: '#2c2d30', // #333',
     // '#e25a5e',
     primary: '#001f3f', //  '#9b4dca',
@@ -40,6 +40,11 @@ const theme = {
   },
   xy: {
     navHeight: '60px',
+  },
+  font: {
+    small: '1.2rem',
+    regular: '1.6rem',
+    big: '3.2rem',
   },
 };
 

@@ -14,6 +14,7 @@ import {
   initGA,
   logPageView,
 } from 'utils/analytics';
+import DetectHuman from 'containers/DetectHuman/DetectHuman';
 // import {
 //   setToken,
 // } from 'redux/modules/auth';
@@ -23,6 +24,7 @@ import './App.css';
 import Header from './Header/Header';
 
 const AppBody = styled.div`
+  min-height: 100vh;
   position: relative;
   color: ${props => props.theme.colors.text};
   background: ${props => props.theme.colors.background};
@@ -52,6 +54,7 @@ class App extends PureComponent {
     return (
       <ThemeProvider theme={theme}>
         <AppBody>
+          <DetectHuman />
           <Header />
           { this.props.children }
         </AppBody>
