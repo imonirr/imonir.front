@@ -9,9 +9,9 @@ export const EXPERIENCES = [
     position: 'CTO',
     company: 'Shikhai Live',
     bullets: [
-      'Helped Design and Develop Shikhai Live platform with a team of two.',
+      'Helped architect and develop Shikhai Live platform with a team of two.',
       'Designed Database to accomodate product features with growth in mind.',
-      'Designed and implemented Multi party Student, Tutor teaching activity(e.g. writing, chatting) protocol.',
+      'Planned and implemented Multi party Student, Tutor teaching activity(e.g. writing, chatting) protocol.',
       'UX principles followed in creation of content pages and on Interactive whiteboard.',
     ].map(point => ({ key: autoKey(), point })),
   },
