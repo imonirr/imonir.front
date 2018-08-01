@@ -18,6 +18,11 @@ export const Action = styled(ClearButton)`
 
   font-size: ${props => props.theme.font.small};
 `;
+export const MailAddress = styled.span`
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+`;
 
 
 class Email extends PureComponent {
@@ -25,9 +30,8 @@ class Email extends PureComponent {
     super(props);
     const emailAddress = 'imonir.com@gmail.com';
     this.state = {
-      viewEmail: false,
-      mail: `${emailAddress}`,
-      mailtoHref: `mailto:${emailAddress}`,
+      viewEmail: true,
+      mail: emailAddress.split('').reverse().join(''),
     };
 
     this.viewEmail = this.viewEmail.bind(this);
@@ -42,11 +46,9 @@ class Email extends PureComponent {
   render() {
     if (this.props.human || this.state.viewEmail) {
       return (
-        <Anchor
-          href={this.state.mailtoHref}
-        >
+        <MailAddress>
           {this.state.mail}
-        </Anchor>
+        </MailAddress>
       );
     }
 

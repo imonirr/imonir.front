@@ -51,7 +51,7 @@ export const PROJECTS = [
     description: 'Phil Hendries Website Migration to Joomla from Squarespace.',
     bullets: [
       '5k+ articles.',
-      'Articles belonged to categories.',
+      'Articles organized in categories.',
       'Comments on articles by paid users.',
       'Paid Membership plans with access to priviledged content.',
       'All information were correctly moved to Joomla database by a PHP script.',
@@ -93,6 +93,7 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS', 'CB Extension'],
     image: '',
     description: 'Paid Membership. Custom extensions. Event Management',
+    bullets: []
   },
 
 

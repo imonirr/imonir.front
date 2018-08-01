@@ -10,6 +10,9 @@ import {
 } from 'redux/modules/app';
 
 export const CellNo = styled.span`
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  direction: rtl;
   margin-left: 2em;
 `;
 export const Action = styled(ClearButton)`
@@ -27,7 +30,8 @@ class Phone extends PureComponent {
     super(props);
 
     this.state = {
-      viewPhone: false,
+      viewPhone: true,
+      cellNo: '+880 1716-108114'.split('').reverse().join(''),
     };
 
     this.viewPhone = this.viewPhone.bind(this);
@@ -43,7 +47,7 @@ class Phone extends PureComponent {
     if (this.props.human || this.state.viewPhone) {
       return (
         <CellNo>
-          +880 1716-108114
+          {this.state.cellNo}
         </CellNo>
       );
     }
