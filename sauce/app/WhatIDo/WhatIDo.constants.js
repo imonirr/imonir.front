@@ -50,12 +50,9 @@ export const PROJECTS = [
     image: '',
     description: 'Phil Hendries Website Migration to Joomla from Squarespace.',
     bullets: [
-      '5k+ articles.',
-      'Articles organized in categories.',
-      'Comments on articles by paid users.',
-      'Paid Membership plans with access to priviledged content.',
-      'All information were correctly moved to Joomla database by a PHP script.',
-      'Extensions were built, customized for membership, restricted contents etc.',
+      'Created Migration script to export 5k+ articles, comments, categories, users, memebership etc from Squarespace to Joomla Website.',
+      'Wrote test scripts to test migration accuracy.',
+      'Built Custom extensions for AWS paid contents.',
     ],
   },
   {
@@ -93,7 +90,12 @@ export const PROJECTS = [
     skills: ['Joomla', 'Html', 'CSS', 'CB Extension'],
     image: '',
     description: 'Paid Membership. Custom extensions. Event Management',
-    bullets: []
+    bullets: [
+      'Built Website with Joomla CMS.',
+      'Extensions were customized for Membership and Payments.',
+      'Custom Extension was built for searching members with geolocation and other parameters.',
+      'A User migration script was created to import Member users from csv file.',
+    ],
   },
 
 

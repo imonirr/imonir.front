@@ -9,8 +9,10 @@ export const EXPERIENCES = [
     position: 'CTO',
     company: 'Shikhai Live',
     bullets: [
-      'Built ReactJS based frontend for listing Tuitions and User Dashboard for tutor and student.',
-      'HTML5 Canvas and Fabric.js library was used to develop collaborative whiteboard for writing and communicating among students, teachers.',
+      'Helped Design and Develop Shikhai Live platform with a team of two.',
+      'Designed Database to accomodate product features with growth in mind.',
+      'Designed and implemented Multi party Student, Tutor teaching activity(e.g. writing, chatting) protocol.',
+      'UX principles followed in creation of content pages and on Interactive whiteboard.',
     ].map(point => ({ key: autoKey(), point })),
   },
   {
@@ -19,9 +21,10 @@ export const EXPERIENCES = [
     position: 'Sr. Software Analyst',
     company: 'Ipvision Canada',
     bullets: [
-      'Helped architecture and develop AngularJS based frontend for Social Network application with a team of 6.',
-      'Optimized AngularJS performance bottleneck with controlled Digest Cycle.',
-      'Created build and deployment tools with python, Bash, Gulp etc.',
+      'Designed and developed RingID website with a team of 9.',
+      'Helped mange team members with  Coding Structure, Style and Code reviews.',
+      'Created Build and Deployment tools and policies for smoother delivery.',
+      'Managed devops duties and managed servers for development and production.',
     ].map(point => ({ key: autoKey(), point })),
   },
   {
