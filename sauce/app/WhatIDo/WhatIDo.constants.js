@@ -30,12 +30,12 @@ export const PROJECTS = [
       text: 'RingId',
       link: 'https://www.ringid.com',
     },
-    skills: ['Angularjs', 'Gruntjs', 'Scripting', 'Devops'],
+    skills: ['Angularjs', 'Gruntjs', 'Bash Scripting', 'Devops'],
     image: '/static/images/portfolio/ringid_x300.jpg',
     description: 'Social Network with chat, pages, news and entertainment channels.',
     bullets: [
       'Implemented the Web frontend as Single page application in Angularjs with a team of frontend developers.',
-      'Built and maintained build tools using grunt and nodejs plugins.',
+      'Built and maintained build tools using grunt and node.js plugins.',
       'Worked also as Devops and developed Continuous integration and deployment tools.',
     ],
   },
@@ -50,7 +50,7 @@ export const PROJECTS = [
     image: '',
     description: 'Phil Hendries Website Migration to Joomla from Squarespace.',
     bullets: [
-      'Created Migration script to export 5k+ articles, comments, categories, users, memebership etc from Squarespace to Joomla Website.',
+      'Created Migration script to export 5k+ articles, comments, categories, users, membership etc from Squarespace to Joomla Website.',
       'Wrote test scripts to test migration accuracy.',
       'Built Custom extensions for AWS paid contents.',
     ],
