@@ -22,7 +22,7 @@ class WorkExperience extends PureComponent {
       <Fragment>
         <Row>
           <Column>
-            <Heading>Experience</Heading>
+            <Heading>Employment</Heading>
           </Column>
         </Row>
         {

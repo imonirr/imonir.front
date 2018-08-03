@@ -9,10 +9,9 @@ export const EXPERIENCES = [
     position: 'CTO',
     company: 'Shikhai Live',
     bullets: [
-      'Helped architect and develop Shikhai Live platform with a team of two.',
-      'Designed Database to accomodate product features with growth in mind.',
-      'Planned and implemented Multi party Student, Tutor teaching activity(e.g. writing, chatting) protocol.',
-      'UX principles followed in creation of content pages and on Interactive whiteboard.',
+      'Helped design and develop Shikhai Live platform with a team of two.',
+      'Designed database schema to accommodate product features with growth in mind.',
+      'Created multi-party Student, Tutor teaching activity(e.g. drawing, chatting) protocol.',
     ].map(point => ({ key: autoKey(), point })),
   },
   {
@@ -21,9 +20,8 @@ export const EXPERIENCES = [
     position: 'Sr. Software Analyst',
     company: 'Ipvision Canada',
     bullets: [
-      'Designed and developed RingID website with a team of 9.',
-      'Helped manage team members with  Coding Structure, Style and Code reviews.',
-      'Created Build and Deployment tools and policies for smoother delivery.',
+      'Developed RingID website with a team of 9.',
+      'Helped manage team members with Coding Structure, Style and Reviews.',
       'Managed devops duties and managed servers for development and production.',
     ].map(point => ({ key: autoKey(), point })),
   },

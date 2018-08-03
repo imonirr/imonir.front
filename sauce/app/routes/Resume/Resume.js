@@ -31,7 +31,6 @@ class Resume extends PureComponent {
         <Row wrap="wrap" mb={4}>
           <Column>
             <Name>Md Moniruzzaman Monir</Name>
-            <Role>Full Stack Developer</Role>
           </Column>
           {/*
           <ContactInfo>

@@ -19,8 +19,8 @@ export const PROJECTS = [
     description: 'Live, Interactive Tutoring/Mentoring Web App.',
     bullets: [
       'ReactJS, Redux based frontend.',
-      'HTML5 Canvas and Fabric.js library was used to develop the Interactive Classroom for writing and communication.',
-      'XMPP protocol based interactive communication among students and tutor.',
+      'Live, Interactive Tutoring/Mentoring Web App.',
+      'HTML5 Canvas and Fabric.js library was used to develop the Interactive Classroom for writing free hand and other objects(shapes, images etc) on the whiteboard.',
     ],
   },
   {
@@ -34,9 +34,11 @@ export const PROJECTS = [
     image: '/static/images/portfolio/ringid_x300.jpg',
     description: 'Social Network with chat, pages, news and entertainment channels.',
     bullets: [
-      'Implemented the Web frontend as Single page application in Angularjs with a team of frontend developers.',
-      'Built and maintained build tools using grunt and node.js plugins.',
-      'Worked also as Devops and developed Continuous integration and deployment tools.',
+      'AngularJS based SPA.',
+      'Social Network with chat, pages, news and entertainment channels.',
+      'Worked on api response(UDP packets from websocket connection) parsing library.',
+      'Improved code quality and deployment flow with Eslint, Git flow.',
+      'Built and maintained build tools using Grunt and Node.js plugins, Bash.',
     ],
   },
   {
