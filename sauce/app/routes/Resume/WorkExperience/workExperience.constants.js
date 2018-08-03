@@ -21,8 +21,8 @@ export const EXPERIENCES = [
     company: 'Ipvision Canada',
     bullets: [
       'Developed RingID website with a team of 9.',
-      'Helped manage team members with Coding Structure, Style and Reviews.',
-      'Managed devops duties and managed servers for development and production.',
+      'Mentored team members on Coding Structure, Style and development flow',
+      'Ran devops and managed development servers',
     ].map(point => ({ key: autoKey(), point })),
   },
   {
