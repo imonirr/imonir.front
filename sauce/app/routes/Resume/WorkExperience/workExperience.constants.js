@@ -5,7 +5,7 @@ import {
 export const EXPERIENCES = [
   {
     key: autoKey(),
-    duration: '04/2017 - current',
+    duration: '04/2017 - 07/2018',
     position: 'CTO',
     company: 'Shikhai Live',
     bullets: [
