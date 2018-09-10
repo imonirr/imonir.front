@@ -23,6 +23,8 @@ class Home extends Component {
     };
   }
   render() {
+    // I have been working for {this.state.years}+ years.<br /><br />
+
     return (
       <Container>
         <Row wrap="wrap" mb={4}>
@@ -34,14 +36,13 @@ class Home extends Component {
               <p>
                 My name is <strong>Moniuzzaman Monir.</strong><br />
                 I am a Full Stack Developer.<br />
-                I have been working for {this.state.years}+ years.<br /><br />
               </p>
               <p>
                 I am enthusiastic about problem solving and software engineering.
-                Interesting problems, curious and friend people inspire me most.
+                Interesting problems, curious and friendly people inspire me most.
               </p>
               <p>
-                Today technology enhances social and economic dynamic of everyday life with new and innovative ways to solve real problems. I endeavor to convey a crisp innovative procedure to each challenge i take. Alongside my experience and resourcefulness, I likewise bring an unparalleled love for my work.
+                Today technology changes social and economic dynamic of everyday life with new and innovative ways in solving real problems. I endeavor to convey a crisp innovative procedure to each challenge i take. Alongside my experience and resourcefulness, I likewise bring an unparalleled love for my work.
               </p>
               <h5>Favorite stack</h5>
               <p>

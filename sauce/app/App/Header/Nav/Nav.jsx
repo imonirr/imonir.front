@@ -17,6 +17,8 @@ import {
 } from 'styled/StyledLink';
 
 
+const resumeDownloadLink = 'https://docs.google.com/document/d/1aUbFQaS0sMzlcmENYWxa0ur2etX0mpqNffozIb2QLFQ/export?format=pdf';
+
 class Nav extends PureComponent {
   render() {
     return (
@@ -48,7 +50,7 @@ class Nav extends PureComponent {
         <NavItem>
           <Link
             passHref
-            href="/resume"
+            href={resumeDownloadLink}
           >
             <Navigation>Resume</Navigation>
           </Link>
