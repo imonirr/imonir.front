@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import {
   ClearButton,
-  Anchor,
 } from 'styled/Elements';
 import {
   isHuman,
@@ -28,7 +27,7 @@ export const MailAddress = styled.span`
 class Email extends PureComponent {
   constructor(props) {
     super(props);
-    const emailAddress = 'imonir.com@gmail.com';
+    const emailAddress = 'monir@imonir.com';
     this.state = {
       viewEmail: true,
       mail: emailAddress.split('').reverse().join(''),
