@@ -2,7 +2,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
 
 injectGlobal`
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css')
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css');
 `;
 
