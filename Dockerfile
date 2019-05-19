@@ -1,22 +1,22 @@
 # create image based on official node 6 image from Docker
-FROM node:8
+FROM node:8.10
 
 # set environment
 ENV NPM_CONFIG_LOGLEVEL warn
 
 # create app user
-# RUN useradd --user-group --create-home --shell /bin/false app 
+# RUN useradd --user-group --create-home --shell /bin/false app
 # RUN useradd -r -u 1001 -g appuser --create-home --shell /bin/false appuser
 
 # set app home
 ENV APP=/home/app
 
 # copy dependency lock files
-COPY ./package.json $APP/package.json 
+COPY ./package.json $APP/package.json
 COPY ./yarn.lock $APP/yarn.lock
 COPY ./.babelrc $APP/.babelrc
 COPY ./.env $APP/.env
-COPY ./.env.production $APP/.env.production
+# COPY ./.env.production $APP/.env.production
 
 # make user app owner of app directory
 # RUN chown -R app:app $HOME/*
@@ -25,7 +25,7 @@ COPY ./.env.production $APP/.env.production
 WORKDIR $APP
 
 # install dependencies
-RUN yarn --pure-lockfile
+RUN yarn install
 
 # run app
 CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
@@ -33,7 +33,7 @@ CMD [ -f "/bin/bash" ] && if [ ${NODE_ENV} = production ]; \
   yarn buildnext; \
   yarn start; \
   else \
-  yarn --pure-lockfile; \
+  yarn install; \
   yarn devnext; \
   fi
 

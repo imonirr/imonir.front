@@ -2,8 +2,8 @@ node_modules
 yarn-error.log
 npm-debug.log
 build
+.env*
 .env
-.env.production
 up.sh
 down.sh
 
