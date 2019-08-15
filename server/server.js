@@ -6,7 +6,7 @@ const { parse } = require('url');
 
 const dev = process.env.NODE_ENV !== 'production';
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-const PORT = 80;
+const PORT = process.env.VIRTUAL_PORT;
 
 const app = next({ dev });
 const handle = app.getRequestHandler(app);

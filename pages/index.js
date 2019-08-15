@@ -7,9 +7,9 @@ import {
   noteList,
   fetchNoteList,
 } from 'redux/modules/note';
-import App from 'App/App';
-import Home from 'routes/Home/Home';
-import initialize from 'utils/initialize';
+// import App from 'App/App';
+// import Home from 'routes/Home/Home';
+// import initialize from 'utils/initialize';
 
 // NOTE: if cookie is needed
 // import jsHttpCookie from 'cookie';
@@ -29,7 +29,7 @@ import initialize from 'utils/initialize';
 // }
 
 class Index extends PureComponent {
-  static getInitialProps(ctx) {
+  static async getInitialProps(ctx) {
     initialize(ctx);
 
     const state = ctx.store.getState();
@@ -47,12 +47,12 @@ class Index extends PureComponent {
 
   render() {
     return (
-      <App>
-        <Home />
-      </App>
+        <p>hola</p>
     );
   }
 }
+
+      //   <Home />
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({

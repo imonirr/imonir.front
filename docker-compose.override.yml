@@ -1,6 +1,4 @@
-version: '3'
+version: '3.5'
 services:
-  frontend:
-    environment:
-      NODE_ENV: "development"
-      VIRTUAL_HOST: "local.www.imonir.com"
+  front:
+    restart: 'no'

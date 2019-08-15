@@ -10,7 +10,7 @@ import sys
 TASK = sys.argv[1]
 ENVIRONMENT = Path('.env.run').read_text().rstrip()
 
-CONTAINER = sys.argv[2] if len(sys.argv) > 2 else 'nginx'
+CONTAINER = 'front'
 COMPOSE_FILES = ' -f docker-compose.yml -f docker-compose.production.yml ' if ENVIRONMENT == 'production' \
     else ' -f docker-compose.yml -f docker-compose.override.yml '
 
@@ -27,7 +27,7 @@ def build():
     call(['bash', '-c', 'docker-compose ' + COMPOSE_FILES + ' build '])
 
 def log():
-    call(['bash', '-c', f"sudo tail -f ./volumes/log/{CONTAINER}/container.log"])
+    call(['bash', '-c', f"docker-compose {COMPOSE_FILES} logs --follow  {CONTAINER}"])
 
 def bash():
     call(['bash', '-c', f"docker-compose {COMPOSE_FILES} exec {CONTAINER} bash"])

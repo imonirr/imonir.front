@@ -1,17 +1,43 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
 
-injectGlobal`
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css');
-`;
+// injectGlobal`
+//   @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
+//   @import url('https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css');
+// `;
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+        });
+
+      const isProduction = process.env.NODE_ENV === 'production';
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        isProduction,
+        ...initialProps,
+        styles: (
+          <>
+              {initialProps.styles}
+              {sheet.getStyleElement()}
+          </>
+        )
+      }
+    } finally {
+      sheet.seal();
+    }
+
+
+    // const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
+    // const styleTags = sheet.getStyleElement();
+    // return { ...page, styleTags };
   }
 
   render() {
@@ -23,7 +49,6 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content="Full stack developer with background in DevOps" />
-          <title>Moniruzzaman Monir</title>
 
           <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicon/apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicon/apple-icon-60x60.png" />

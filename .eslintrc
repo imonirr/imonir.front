@@ -8,11 +8,6 @@
         "import/parser": "babel-eslint",
         "import/cache": {
             "lifetime": 5
-        },
-        "import/resolver": {
-            "webpack": {
-                "config": "webpack.config.vim.js"
-            }
         }
     },
     "rules": {
@@ -41,7 +36,7 @@
         "import/no-extraneous-dependencies": "off",
         "import/no-unresolved": "off",
         "import/extensions": "off",
-    }, 
+    },
     "globals": {
         "DEVMODE": true,
         "PRODUCTION": true,

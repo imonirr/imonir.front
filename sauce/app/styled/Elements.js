@@ -18,7 +18,7 @@ export const Button = styled.button`
   ${ButtonFontSize};
 `;
 
-export const SmallButton = Button.extend`
+export const SmallButton = styled(Button)`
   height: 2.6rem;
   padding: 0 .5rem;
   margin: .5rem;
@@ -27,7 +27,7 @@ export const SmallButton = Button.extend`
 
 
 // ${props => props.theme.bigTextColor};
-export const ClearButton = Button.extend`
+export const ClearButton = styled(Button)`
   color: ${props => props.theme.colors.primary};
   margin: 0;
   ${transparentBack};

@@ -205,8 +205,8 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         test: /\.css$/,
         include,
         exclude,
-        loader: 'style-loader!css-loader',
-        // use: ['style-loader', 'css-loader'],
+        // loader: 'style-loader!css-loader',
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -289,19 +289,19 @@ exports.clean = path =>
     ],
   });
 
-exports.minifyJavaScript = {
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      sourceMap: true,
-      parallel: true,
-      compress: {
-        warnings: false,
-        drop_console: true,
-      },
-    }),
-  ],
-};
+// exports.minifyJavaScript = {
+//   plugins: [
+//     new webpack.optimize.UglifyJsPlugin({
+//       comments: false,
+//       sourceMap: true,
+//       parallel: true,
+//       compress: {
+//         warnings: false,
+//         drop_console: true,
+//       },
+//     }),
+//   ],
+// };
 
 exports.minifyCSS = ({ options }) => ({
   plugins: [
