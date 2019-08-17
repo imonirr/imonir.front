@@ -10,7 +10,7 @@ import sys
 TASK = sys.argv[1]
 ENVIRONMENT = Path('.env.run').read_text().rstrip()
 
-CONTAINER = 'front'
+CONTAINER = 'imonir_front'
 COMPOSE_FILES = ' -f docker-compose.yml -f docker-compose.production.yml ' if ENVIRONMENT == 'production' \
     else ' -f docker-compose.yml -f docker-compose.override.yml '
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import initializeStore from './create'
+import initializeStore from './store'
 
 const isServer = typeof window === 'undefined'
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
@@ -22,10 +22,10 @@ export default App => {
     static async getInitialProps (appContext) {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
-      const store = getOrCreateStore()
+      const reduxStore = getOrCreateStore()
 
       // Provide the store to getInitialProps of pages
-      appContext.ctx.store = store
+      appContext.ctx.reduxStore = reduxStore
 
       let appProps = {}
       if (typeof App.getInitialProps === 'function') {
@@ -34,17 +34,17 @@ export default App => {
 
       return {
         ...appProps,
-        initialReduxState: store.getState()
+        initialReduxState: reduxStore.getState()
       }
     }
 
     constructor (props) {
       super(props)
-      this.store = getOrCreateStore(props.initialReduxState)
+      this.reduxStore = getOrCreateStore(props.initialReduxState)
     }
 
     render () {
-      return <App {...this.props} store={this.store} />
+      return <App {...this.props} reduxStore={this.reduxStore} />
     }
   }
 }

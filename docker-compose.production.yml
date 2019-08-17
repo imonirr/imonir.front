@@ -1,6 +1,6 @@
 version: '3'
 services:
-  imfront:
+  imonir_front:
     environment:
       NODE_ENV: "production"
       VIRTUAL_HOST: "www.imonir.com"

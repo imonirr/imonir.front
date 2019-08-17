@@ -34,21 +34,21 @@ class App extends PureComponent {
 
   render() {
 
-    return (
-      <ThemeProvider theme={theme}>
-          { this.props.children }
-      </ThemeProvider>
-    );
-
     // return (
     //   <ThemeProvider theme={theme}>
-    //     <AppBody>
-    //       <DetectHuman />
-    //       <Header />
     //       { this.props.children }
-    //     </AppBody>
     //   </ThemeProvider>
     // );
+
+    return (
+      <ThemeProvider theme={theme}>
+        <AppBody>
+          <DetectHuman />
+          <Header />
+          { this.props.children }
+        </AppBody>
+      </ThemeProvider>
+    );
   }
 }
 App.propTypes = {

@@ -1,20 +1,20 @@
 version: '3.5'
 
 services:
-  front:
-    container_name: front
+  imonir_front:
+    container_name: imonir_front
     restart: 'unless-stopped'
     build: .
     expose:
       - 4100
     volumes:
      - .:/home/app
-     - front_node_modules:/home/app/node_modules
+     - imonir_front_node_modules:/home/app/node_modules
     env_file:
       - .env.front
 
 volumes:
-  front_node_modules:
+  imonir_front_node_modules:
 
 networks:
   default:
